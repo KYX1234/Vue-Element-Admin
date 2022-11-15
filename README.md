@@ -2,7 +2,7 @@
 
 ## 项目示例图
 
-<img src="https://s1.ax1x.com/2022/11/14/zAN8DU.png" />
+<img src="https://s1.ax1x.com/2022/11/15/zAx5lD.png" />
 
 
 ## 安装使用
