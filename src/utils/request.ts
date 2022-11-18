@@ -30,8 +30,8 @@ service.interceptors.response.use(
     const { data } = response
     
 		if (data.code !== 200) {
-			ElMessage.error(data.message || '服务器端错误')
-			return Promise.reject(new Error('Error'))
+			ElMessage.error(data.msg || '服务器端错误')
+			return Promise.reject(new Error(data.msg||'Error'))
 		}
 		return response
 	},
