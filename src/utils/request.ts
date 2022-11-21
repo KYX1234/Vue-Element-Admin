@@ -27,13 +27,13 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
 	(response: AxiosResponse) => {
-    const { data } = response
+		const { data }= response
     
 		if (data.code !== 200) {
 			ElMessage.error(data.msg || '服务器端错误')
 			return Promise.reject(new Error(data.msg||'Error'))
 		}
-		return response
+		return data
 	},
 	error => {
 		ElMessage.closeAll()
@@ -42,4 +42,12 @@ service.interceptors.response.use(
 	}
 )
 
-export default service;
+export default service
+
+
+// export default <T=any>(config: AxiosRequestConfig) => {
+//   return service(config).then(res => {
+//     return res.data as T
+//   })
+// }
+
