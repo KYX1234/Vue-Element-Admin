@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios'
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios'
 import { getToken } from '@/utils/auth'
 
 const service: AxiosInstance = axios.create({
@@ -27,11 +27,11 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
 	(response: AxiosResponse) => {
-		const { data }= response
-    
+		const { data } = response
+
 		if (data.code !== 200) {
 			ElMessage.error(data.msg || '服务器端错误')
-			return Promise.reject(new Error(data.msg||'Error'))
+			return Promise.reject(new Error(data.msg || 'Error'))
 		}
 		return data
 	},
@@ -42,12 +42,23 @@ service.interceptors.response.use(
 	}
 )
 
-export default service
+// 封装axios类型
+const request = {
+	get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+		return service.get(url, config)
+	},
 
+	post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
+		return service.post(url, data, config)
+	},
 
-// export default <T=any>(config: AxiosRequestConfig) => {
-//   return service(config).then(res => {
-//     return res.data as T
-//   })
-// }
+	put<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
+		return service.put(url, data, config)
+	},
 
+	delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+		return service.delete(url, config)
+	}
+}
+
+export default request

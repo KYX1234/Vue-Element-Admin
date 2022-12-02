@@ -7,47 +7,61 @@ import setupExtend from 'vite-plugin-vue-setup-extend'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { resolve } from 'path'
+import { viteMockServe } from "vite-plugin-mock";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-	plugins: [
-		vue(),
-		setupExtend(), //setup name使用
-		AutoImport({
-			imports: ['vue', 'vue-router', 'pinia'],
-			resolvers: [
-				ElementPlusResolver(),
-								// 自动导入图标组件
-								IconsResolver({
-									prefix: 'Icon'
-								})
-			],
-			// 可以选择auto-imports.d.ts生成的位置，使用ts建议设置为'src/auto-imports.d.ts'
-			dts: resolve(__dirname, './types/auto-imports.d.ts')
-		}),
-		Components({
-			resolvers: [
-				ElementPlusResolver(),
-								// 自动注册图标组件
-								IconsResolver({
-									enabledCollections: ['ep']
-								})
-			],
-			dts: resolve(__dirname, './types/components.d.ts')
-		}),
-    Icons({
-      autoInstall: true,
-    })
-	],
-	server: {
-		open: true,
-		host: '0.0.0.0',
-		port: 9527
-	},
-	resolve: {
-		alias: {
-			'@': resolve(__dirname, './src')
-		}
-	},
-	base: '/my-demo/'
+export default defineConfig(({ command, mode }) => {
+	return {
+		plugins: [
+			vue(),
+			setupExtend(), //setup name使用
+			AutoImport({
+				imports: ['vue', 'vue-router', 'pinia'],
+				resolvers: [
+					ElementPlusResolver(),
+									// 自动导入图标组件
+									IconsResolver({
+										prefix: 'Icon'
+									})
+				],
+				// 可以选择auto-imports.d.ts生成的位置，使用ts建议设置为'src/auto-imports.d.ts'
+				dts: resolve(__dirname, './types/auto-imports.d.ts')
+			}),
+			Components({
+				resolvers: [
+					ElementPlusResolver(),
+									// 自动注册图标组件
+									IconsResolver({
+										enabledCollections: ['ep']
+									})
+				],
+				dts: resolve(__dirname, './types/components.d.ts')
+			}),
+			Icons({
+				autoInstall: true,
+			}),
+			viteMockServe({
+				mockPath: 'mock',
+				localEnabled: command === 'serve',
+				prodEnabled: command !== 'serve',
+				//  这样可以控制关闭mock的时候不让mock打包到最终代码内
+				injectCode: `
+				import { setupProdMockServer } from '../mock/index';
+				setupProdMockServer();
+			`,
+			}),
+		],
+		server: {
+			open: true,
+			host: '0.0.0.0',
+			port: 9527
+		},
+		resolve: {
+			alias: {
+				'@': resolve(__dirname, './src')
+			}
+		},
+		base: '/my-demo/'
+	}
+
 })

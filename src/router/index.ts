@@ -1,17 +1,23 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
 
-const constantRoutes: RouteRecordRaw[] = [
+export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect:'/index',
-    meta: {
-      hideMenu: true,
-      title: '首页',
-    },
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        name: 'dashboard',
+        meta: { title: '首页'}
+      }
+    ]
   },
   {
     path: '/login',
+    name: 'login',
     component:  () => import('@/views/login/index.vue'),
     meta: {
       hideMenu: true,

@@ -16,9 +16,7 @@ export const useUserStore =defineStore({
     }
   }),
   getters: {
-    userName(): string {
-      return this.userInfo.name
-    }
+    userName:(state)=> state.userInfo.name
   },
   actions: {
     // 登录

@@ -44,6 +44,8 @@
 </template>
 
 <script lang='ts' setup name="Login">
+import { useUserStore } from '@/store'
+const userStore = useUserStore()
 const router = useRouter()
 const state = reactive({
   form: {
@@ -58,13 +60,14 @@ const state = reactive({
   }
 });
 
-const onSubmit=()=>{
+const onSubmit=async ()=>{
   if(!state.form.username){
      ElMessage.error('账号不能为空！')
   }
   if(!state.form.password){
     ElMessage.error('密码不能为空！')
   }
+  await userStore.login(state.form)
   router.push('/')
 }
 </script>
