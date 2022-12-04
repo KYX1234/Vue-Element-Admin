@@ -47,6 +47,7 @@
 import { useUserStore } from '@/store'
 const userStore = useUserStore()
 const router = useRouter()
+const route = useRoute();
 const state = reactive({
   form: {
     username: 'admin',
@@ -68,7 +69,7 @@ const onSubmit=async ()=>{
     ElMessage.error('密码不能为空！')
   }
   await userStore.login(state.form)
-  router.push('/')
+  await router.replace((route.query.redirect as string) || '/');
 }
 </script>
 

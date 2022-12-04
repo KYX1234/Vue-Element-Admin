@@ -1,10 +1,11 @@
 import { constantRoutes } from '@/router'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import router from '@/router'
 import { menuList } from '@/api'
-import { filterAsyncRoutes } from '@/utils/perssion'
+import { generateMenu } from '@/utils/permission'
 
 export const useRouteStore = defineStore({
-	id: 'app',
+	id: 'route',
 	state: () => ({
 		addRoutes: [] as RouteRecordRaw[]
 	}),
@@ -12,13 +13,15 @@ export const useRouteStore = defineStore({
 		routes: state => constantRoutes.concat(state.addRoutes)
 	},
 	actions: {
-		setRoutes(routes: RouteRecordRaw[]) {
-			this.addRoutes = constantRoutes.concat(routes)
-		},
 		async generateRoutes() {
 			const { data } = await menuList()
-			const accessedRoutes = filterAsyncRoutes([], data)
-			this.setRoutes(accessedRoutes)
+			const accessedRoutes = generateMenu([], data)
+			this.addRoutes=accessedRoutes
+			return this.addRoutes;
+		},
+		//初始化路由
+		async initRoutes() {
+			(await this.generateRoutes()).forEach(route => router.addRoute(route))
 		}
 	}
 })

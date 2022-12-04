@@ -1,4 +1,4 @@
-import { success, fail } from '../mock'
+import { success, fail } from '../base'
 
 const menu = [
 	{
@@ -26,10 +26,17 @@ const menu = [
 		]
 	}
 ]
+const user = {
+	admin: {
+		avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+		name: '超级管理员',
+		username: 'admin',
+	}
+}
 
 export default [
 	{
-		url: '/api/user/login', // 登录
+		url: '/mock/user/login', // 登录
 		method: 'post',
 		timeout: 300,
 		response: (req: any) => {
@@ -41,7 +48,7 @@ export default [
 			if (!password) {
 				return fail('密码不能为空', 5000, null)
 			}
-			return success('登录成功', token)
+			return success('登录成功', { token,userInfo:user.admin})
 		}
 	},
 	{

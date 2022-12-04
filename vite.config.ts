@@ -45,10 +45,7 @@ export default defineConfig(({ command, mode }) => {
 				localEnabled: command === 'serve',
 				prodEnabled: command !== 'serve',
 				//  这样可以控制关闭mock的时候不让mock打包到最终代码内
-				injectCode: `
-				import { setupProdMockServer } from '../mock/index';
-				setupProdMockServer();
-			`,
+				injectCode: `import { setupProdMockServer } from 'mock';setupProdMockServer();`,
 			}),
 		],
 		server: {
@@ -56,12 +53,19 @@ export default defineConfig(({ command, mode }) => {
 			host: '0.0.0.0',
 			port: 9527
 		},
+		esbuild: {},
 		resolve: {
 			alias: {
 				'@': resolve(__dirname, './src')
 			}
 		},
-		base: '/my-demo/'
+		base: '/my-demo/',
+		build: {
+      target: 'es2015',
+      cssTarget: 'chrome80',
+      reportCompressedSize: false,
+      chunkSizeWarningLimit: 2000,
+    },
 	}
 
 })

@@ -1,10 +1,7 @@
-import { createProdMockServer } from "vite-plugin-mock/es/createProdMockServer";
+import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
+
+import user from './modules/user'
 
 export function setupProdMockServer() {
-  const modules = import.meta.glob('./modules/*.ts')
-  let moduleArr: any[] = [];
-  Object.entries(modules).forEach(([key, module]: any) => {
-    moduleArr = moduleArr.concat(module);
-  });
-  createProdMockServer([...moduleArr]);
+  createProdMockServer([...user])
 }

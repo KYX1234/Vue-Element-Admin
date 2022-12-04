@@ -2,9 +2,9 @@ import { defineStore } from 'pinia'
 import type { LoginParams } from '@/api/login/type'
 import { login as userLogin, logout as userLogout } from '@/api'
 import { setToken, clearToken } from '@/utils/auth'
-
+import { useRouteStore } from './route';
 export const useUserStore =defineStore({
-  id: 'User',
+  id: 'user',
   state:() =>({
     userInfo: JSON.parse(localStorage.getItem('UserInfo') as string) || {
       name: '',
@@ -26,6 +26,7 @@ export const useUserStore =defineStore({
         setToken(res.data.token)
         this.userInfo = res.data.userInfo
         localStorage.setItem('UserInfo', JSON.stringify(this.userInfo))
+        await useRouteStore().initRoutes()
       } catch (err) {
         clearToken()
         throw err
