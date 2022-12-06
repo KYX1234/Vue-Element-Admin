@@ -12,7 +12,7 @@ export const generateMenu = (routes:RouteRecordRaw[], data:MenuInfo[]) => {
       children: [],
       name: item.alias,
       meta: {
-        hideMenu: item.show === 0,
+        hidden: item.show === 0,
         title: item.name,
         icon: item.icon
       }

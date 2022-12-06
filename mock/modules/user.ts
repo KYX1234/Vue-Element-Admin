@@ -13,7 +13,7 @@ const menu = [
 		type: 1,
 		children: [
 			{
-				icon: null,
+				icon: 'avatar',
 				id: 11,
 				name: '关于我们',
 				pid: 1,

@@ -1,58 +1,70 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import Layout from '@/layout/index.vue';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Layout from '@/layout/index.vue'
+import { useRouteStore } from '@/store'
 
 export const constantRoutes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
-        name: 'dashboard',
-        meta: { title: '首页'}
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component:  () => import('@/views/login/index.vue'),
-    meta: {
-      hideMenu: true,
-      title: '登录',
-    },
-  },
-  {
-    path: '/redirect',
-    component: Layout,
-    children: [
-      {
-        name: 'redirect',
-        path: '/redirect/:path(.*)',
-        component:  () => import('@/views/redirect/index.vue'),
-      },
-    ],
-    meta: {
-      hideMenu: true,
-      title: '',
-    },
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    component:  () => import('@/views/error/404.vue'),
-    meta: {
-      hideMenu: true,
-      title: '404'
-    },
-  },
-];
+	{
+		path: '/',
+		component: Layout,
+		redirect: '/dashboard',
+		children: [
+			{
+				path: 'dashboard',
+				component: () => import('@/views/dashboard/index.vue'),
+				name: 'dashboard',
+				meta: { title: '首页',icon:'menu-work' }
+			}
+		]
+	},
+	{
+		path: '/login',
+		name: 'login',
+		component: () => import('@/views/login/index.vue'),
+		meta: {
+			hidden: true,
+			title: '登录'
+		}
+	},
+	{
+		path: '/redirect',
+		component: Layout,
+		children: [
+			{
+				name: 'redirect',
+				path: '/redirect/:path(.*)',
+				component: () => import('@/views/redirect/index.vue')
+			}
+		],
+		meta: {
+			hidden: true,
+			title: ''
+		}
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		component: () => import('@/views/error/404.vue'),
+		meta: {
+			hidden: true,
+			title: '404'
+		}
+	}
+]
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes:constantRoutes,
-  scrollBehavior: () => ({ left: 0, top: 0 })
+	history: createWebHashHistory(import.meta.env.BASE_URL),
+	routes: constantRoutes,
+	scrollBehavior: () => ({ left: 0, top: 0 })
 })
+
+// 重置路由
+export function resetRouter() {
+	const { routes } = useRouteStore()
+	routes.forEach(route => {
+		const name = route.name
+		if (name && router.hasRoute(name)) {
+			router.removeRoute(name)
+		}
+	})
+}
 
 export default router

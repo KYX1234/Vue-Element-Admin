@@ -1,6 +1,7 @@
 <template>
 <div>
 header
+<svg-icon class-name="menu-error"/>
 </div>
 </template>
 

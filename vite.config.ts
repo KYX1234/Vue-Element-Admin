@@ -7,7 +7,8 @@ import setupExtend from 'vite-plugin-vue-setup-extend'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { resolve } from 'path'
-import { viteMockServe } from "vite-plugin-mock";
+import { viteMockServe } from 'vite-plugin-mock'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -19,34 +20,44 @@ export default defineConfig(({ command, mode }) => {
 				imports: ['vue', 'vue-router', 'pinia'],
 				resolvers: [
 					ElementPlusResolver(),
-									// 自动导入图标组件
-									IconsResolver({
-										prefix: 'Icon'
-									})
+					// 自动导入图标组件
+					IconsResolver({
+						prefix: 'Icon'
+					})
 				],
 				// 可以选择auto-imports.d.ts生成的位置，使用ts建议设置为'src/auto-imports.d.ts'
-				dts: resolve(__dirname, './types/auto-imports.d.ts')
+				dts: resolve(__dirname, 'types/auto-imports.d.ts')
 			}),
 			Components({
+				// 自动导入自定义组件
+				dirs: ['src/components'],
 				resolvers: [
 					ElementPlusResolver(),
-									// 自动注册图标组件
-									IconsResolver({
-										enabledCollections: ['ep']
-									})
+					// 自动注册图标组件
+					IconsResolver({
+						enabledCollections: ['ep']
+					})
 				],
-				dts: resolve(__dirname, './types/components.d.ts')
+				 // 组件的有效文件扩展名
+				extensions: ['vue'],
+				dts: resolve(__dirname, 'types/components.d.ts')
 			}),
 			Icons({
-				autoInstall: true,
+				autoInstall: true
+			}),
+			createSvgIconsPlugin({
+				// 指定需要缓存的图标文件夹
+				iconDirs: [resolve(__dirname, 'src/icons')],
+				// 指定symbolId格式
+				symbolId: 'icon-[dir]-[name]'
 			}),
 			viteMockServe({
 				mockPath: 'mock',
 				localEnabled: command === 'serve',
 				prodEnabled: command !== 'serve',
 				//  这样可以控制关闭mock的时候不让mock打包到最终代码内
-				injectCode: `import { setupProdMockServer } from 'mock';setupProdMockServer();`,
-			}),
+				injectCode: `import { setupProdMockServer } from 'mock';setupProdMockServer();`
+			})
 		],
 		server: {
 			open: true,
@@ -61,11 +72,10 @@ export default defineConfig(({ command, mode }) => {
 		},
 		base: '/my-demo/',
 		build: {
-      target: 'es2015',
-      cssTarget: 'chrome80',
-      reportCompressedSize: false,
-      chunkSizeWarningLimit: 2000,
-    },
+			target: 'es2015',
+			cssTarget: 'chrome80',
+			reportCompressedSize: false,
+			chunkSizeWarningLimit: 2000
+		}
 	}
-
 })
