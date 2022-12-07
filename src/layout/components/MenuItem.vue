@@ -1,7 +1,7 @@
 <template>
 	<template v-if="!data.meta?.hidden">
-		<template v-if="hasOneShowingChild">
-			<el-menu-item :index="onlyOneChild.path" :title="onlyOneChild.meta.title">
+		<template v-if="onlyOneChild&&onlyOneChild.meta">
+			<el-menu-item :index="onlyOneChild.path" :titlfe="onlyOneChild.meta.title">
         <svg-icon v-if="onlyOneChild.meta.icon" :class-name="onlyOneChild.meta.icon" />
 				<template #title>
 					<span class="menu">{{ onlyOneChild.meta.title }}</span>
@@ -10,8 +10,8 @@
 		</template>
 		<el-sub-menu v-else>
 			<template #title>
-				<svg-icon :class-name="data.meta.icon"></svg-icon>
-				<span>{{ data.meta.title }}</span>
+				<svg-icon :class-name="data.meta?.icon"></svg-icon>
+				<span>{{ data.meta!.title }}</span>
 			</template>
 			<menu-item v-for="child in data.children" :key="child.path" :data="child"></menu-item>
 		</el-sub-menu>
@@ -19,11 +19,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { RouteRecordRaw } from 'vue-router'
+import { PropType } from 'vue';
+import { RouteRecordRaw } from 'vue-router'
 
 const props = defineProps({
 	data: {
-		type: Object,
+		type: Object as PropType<RouteRecordRaw>,
 		required: true
 	}
 })

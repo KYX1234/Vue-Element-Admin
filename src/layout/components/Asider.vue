@@ -1,10 +1,11 @@
 <template>
 	<div class="sidebar-container">
+		<Logo :collapse="appStore.isCollapse"/>
 		<el-scrollbar>
 			<el-menu
 				default-active="2"
 				class="el-menu-vertical-demo"
-				:collapse="!appStore.isCollapse"
+				:collapse="appStore.isCollapse"
 				:unique-opened="true"
 			>
 				<menu-item
@@ -21,6 +22,8 @@
 import { useAppStore } from '@/store'
 import MenuItem from './MenuItem.vue'
 import { useRouteStore } from '@/store'
+import Logo from './Logo.vue'
+
 const appStore = useAppStore()
 const routeStore = useRouteStore()
 const route = useRoute()
