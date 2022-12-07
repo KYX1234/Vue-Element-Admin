@@ -6,7 +6,7 @@
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
         <img src="favicon.ico" class="sidebar-logo" />
-        <span class="sidebar-title ellipsis-1">my-Admin</span>
+        <span class="sidebar-title ellipsis-1">my-Admin-pro</span>
       </router-link>
     </transition>
   </div>
@@ -38,13 +38,15 @@ defineProps({
   overflow: hidden;
 
   .sidebar-logo {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     vertical-align: middle;
   }
 
   .sidebar-title {
-    margin-left: 10px;
+    margin-left: 12px;
+    font-size: 16px;
+      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
   }
 }
 </style>
