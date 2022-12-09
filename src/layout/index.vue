@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts" setup name="Layout">
-import Asider from './components/Asider.vue'
-import Header from './components/Header.vue'
-// import NavTab from './components/NavTab.vue'
-import Main from './components/Main.vue'
+import Asider from './components/Asider/index.vue'
+import Header from './components/Header/index.vue'
+// import NavTabs from './components/NavTabs/index.vue'
+import Main from './components/Main/index.vue'
 </script>
 
 <style lang="scss" scoped>
