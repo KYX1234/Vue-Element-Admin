@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { LoginParams } from '@/api/login/type'
+import { LoginParams } from '@/api/login/type'
 import { login as userLogin, logout as userLogout } from '@/api'
 import { setToken, clearToken } from '@/utils/auth'
 import { useRouteStore } from './route'

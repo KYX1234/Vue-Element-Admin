@@ -1,7 +1,7 @@
-import type { MenuInfo } from '@/api'
+import { MenuInfo } from '@/api'
 import { localMap } from '@/router/modules/components'
 import Layout from '@/layout/index.vue';
-import type { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router';
 
 // 过滤后端返回路由组件
 export const generateMenu = (routes:RouteRecordRaw[], data:MenuInfo[]) => {

@@ -1,5 +1,5 @@
 import { constantRoutes } from '@/router'
-import type { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import router from '@/router'
 import { menuList } from '@/api'
 import { generateMenu } from '@/utils/permission'

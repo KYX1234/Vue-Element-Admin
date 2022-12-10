@@ -19,7 +19,7 @@ const onUpdateStatus = () => {
   align-items: center;
   height: 100%;
   padding: 0 10px;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
   &:hover{
     background-color: #f6f6f6;

@@ -3,12 +3,15 @@ import { ElMessage } from 'element-plus';
 import {useUserStore,useRouteStore} from '@/store';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { clearPending } from "@/utils/request"
+
 NProgress.configure({ showSpinner: false }); // 进度环显示/隐藏
 
 // 白名单路由
 const whiteList = ['/login'];
 
 router.beforeEach(async (to, from, next) => {
+  clearPending()
   NProgress.start();
   const hasToken = useUserStore().token;
   if (hasToken) {
