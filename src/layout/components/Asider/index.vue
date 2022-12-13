@@ -4,7 +4,7 @@
 		<el-scrollbar>
 			<el-menu default-active="2" class="el-menu-vertical-demo" :collapse="appStore.isCollapse" :unique-opened="true"
 				:collapse-transition="false">
-				<menu-item v-for="route in routeStore.routes" :key="route.path" :data="route" />
+				<menu-item v-for="route in menus" :key="route.path" :data="route" />
 			</el-menu>
 		</el-scrollbar>
 	</div>
@@ -15,11 +15,12 @@ import { useAppStore } from '@/store'
 import MenuItem from './MenuItem.vue'
 import { useRouteStore } from '@/store'
 import Logo from './Logo.vue'
+import { getChildrenRouter } from '@/utils/permission'
 
 const appStore = useAppStore()
 const routeStore = useRouteStore()
 const route = useRoute()
-
+const menus=getChildrenRouter(routeStore.routes)
 const activeMenu = computed(() => route.path)
 </script>
 

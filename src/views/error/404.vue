@@ -1,6 +1,6 @@
 <template>
   <div class="no-page">
-    <img src="@/assets/images/404.svg" />
+    <img src="@/assets/svg/404-bg.svg" />
     <div class="info">
       <div class="title">404</div>
       <div class="content">

@@ -4,23 +4,23 @@ const menu = [
 	{
 		id: 1,
 		pid: 0,
-		name: '系统配置',
+		title: '系统配置',
 		sort: 1,
 		show: 1,
     icon: '',
-		url: '',
-		alias:'setting',
+		component: '',
+		name:'setting',
 		type: 1,
 		children: [
 			{
 				icon: 'avatar',
 				id: 11,
-				name: '关于我们',
+				title: '菜单权限',
 				pid: 1,
         show: 1,
-        url:'',
+        component:'/menu/index',
 				sort: 0,
-				alias:'about',
+				name:'menu',
 				type: 1
 			}
 		]
