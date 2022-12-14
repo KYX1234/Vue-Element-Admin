@@ -8,8 +8,9 @@
 
 <style lang="scss" scoped>
 .main-container {
-	min-height: calc(100vh - 50px);
+	min-height: calc(100vh - 80px);
 	position: relative;
 	overflow: hidden;
+	background: #f0f2f5;
 }
 </style>

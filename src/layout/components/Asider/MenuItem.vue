@@ -6,7 +6,7 @@
 		</template>
 		<menu-item v-for="child in data.children" :key="child.path" :data="child"></menu-item>
 	</el-sub-menu>
-	<el-menu-item :index="data.path" v-else>
+	<el-menu-item :index="data.path" v-else @click="onClickMenu(data)">
 		<svg-icon v-if="data.meta?.icon" :class-name="data.meta.icon" />
 		<template #title>
 			<span class="menu">{{ data.meta?.title }}</span>
@@ -24,6 +24,14 @@ defineProps({
 		required: true
 	}
 })
+
+const router = useRouter();
+const onClickMenu = (item:RouteRecordRaw) => {
+	if (item.meta?.isLink) return window.open(item.meta.isLink, "_blank");
+	router.push(item.path);
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

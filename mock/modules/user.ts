@@ -4,18 +4,29 @@ const menu = [
 	{
 		id: 1,
 		pid: 0,
-		title: '系统配置',
+		title: '权限管理',
 		sort: 1,
 		show: 1,
-    icon: '',
+    icon: 'menu-auth',
 		component: '',
 		name:'setting',
 		type: 1,
 		children: [
 			{
-				icon: 'avatar',
+				icon: '',
 				id: 11,
 				title: '菜单权限',
+				pid: 1,
+        show: 1,
+        component:'/menu/index',
+				sort: 0,
+				name:'menu',
+				type: 1
+			},
+			{
+				icon: '',
+				id: 12,
+				title: '按钮权限',
 				pid: 1,
         show: 1,
         component:'/menu/index',

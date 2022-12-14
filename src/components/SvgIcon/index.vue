@@ -31,7 +31,7 @@ const svgClass = computed<string>(() => {
 .svg-icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.15em;
+  vertical-align: middle;
   fill: currentColor;
   flex-shrink: 0;
 }

@@ -10,10 +10,10 @@ export const constantRoutes: RouteRecordRaw[] = [
 		redirect: '/dashboard',
 		children: [
 			{
-				path: 'dashboard',
+				path: '/dashboard',
 				component: () => import('@/views/dashboard/index.vue'),
 				name: 'dashboard',
-				meta: { title: '首页',icon:'menu-work' }
+				meta: { title: '首页',icon:'menu-home' }
 			}
 		]
 	},

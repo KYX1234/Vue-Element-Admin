@@ -31,7 +31,8 @@ import Setting from './Setting.vue'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 48px;
+  border-bottom: 1px solid #eee;
   .header-container-left{
     display: flex;
     align-items: center;

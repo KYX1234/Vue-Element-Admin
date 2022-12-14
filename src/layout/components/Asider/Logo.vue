@@ -18,7 +18,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .sidebar-logo-container {
-  height: 50px;
+  height: 48px;
   overflow: hidden;
   border-bottom: 1px solid #eee;
 
@@ -26,7 +26,7 @@ defineProps({
     display: flex;
     height: 100%;
     align-items: center;
-    padding: 10px 4px 10px 10px;
+    padding:0 20px ;
 
     .sidebar-logo {
       display: inline-block;
