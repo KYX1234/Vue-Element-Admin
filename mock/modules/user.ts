@@ -15,23 +15,34 @@ const menu = [
 			{
 				icon: '',
 				id: 11,
+				title: '用户权限',
+				pid: 1,
+        show: 1,
+        component:'/system/user',
+				sort: 0,
+				name:'user',
+				type: 1
+			},
+			{
+				icon: '',
+				id: 12,
 				title: '菜单权限',
 				pid: 1,
         show: 1,
-        component:'/menu/index',
+        component:'/system/menu',
 				sort: 0,
 				name:'menu',
 				type: 1
 			},
 			{
 				icon: '',
-				id: 12,
-				title: '按钮权限',
+				id: 13,
+				title: '角色权限',
 				pid: 1,
         show: 1,
-        component:'/menu/index',
+        component:'/system/role',
 				sort: 0,
-				name:'menu',
+				name:'role',
 				type: 1
 			}
 		]

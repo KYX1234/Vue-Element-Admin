@@ -6,4 +6,8 @@ interface ApiRes<T> {
 	success: boolean
 }
 
-
+// navTabs数据格式
+interface NavTabsItem{
+	title: string,
+	path:string
+}

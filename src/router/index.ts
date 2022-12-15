@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { useRouteStore } from '@/store'
 
-export const Layout = () => import("@/layout/index.vue")
+export const Layout = () => import('@/layout/index.vue')
 
 export const constantRoutes: RouteRecordRaw[] = [
 	{
@@ -11,9 +11,9 @@ export const constantRoutes: RouteRecordRaw[] = [
 		children: [
 			{
 				path: '/dashboard',
-				component: () => import('@/views/dashboard/index.vue'),
 				name: 'dashboard',
-				meta: { title: '首页',icon:'menu-home' }
+				component: () => import('@/views/dashboard/index.vue'),
+				meta: { title: '首页', icon: 'menu-home' }
 			}
 		]
 	},
@@ -21,33 +21,25 @@ export const constantRoutes: RouteRecordRaw[] = [
 		path: '/login',
 		name: 'login',
 		component: () => import('@/views/login/index.vue'),
-		meta: {
-			hidden: true,
-			title: '登录'
-		}
+		meta: { hidden: true, title: '登录' }
 	},
 	{
 		path: '/redirect',
+		name: 'redirect',
 		component: Layout,
 		children: [
 			{
-				name: 'redirect',
 				path: '/redirect/:path(.*)',
+				name: 'redirect',
 				component: () => import('@/views/redirect/index.vue')
 			}
 		],
-		meta: {
-			hidden: true,
-			title: ''
-		}
+		meta: { hidden: true, title: '' }
 	},
 	{
 		path: '/:pathMatch(.*)*',
 		component: () => import('@/views/error/404.vue'),
-		meta: {
-			hidden: true,
-			title: '404'
-		}
+		meta: { hidden: true, title: '404' }
 	}
 ]
 

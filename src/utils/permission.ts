@@ -13,7 +13,7 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
 	data.forEach((item: MenuInfo) => {
 		const menu = {
 			path: `/${item.name}`,
-			component: item.component ? viewsModules["/src/views" + item.component + ".vue"] : Layout,
+			component: item.component ? viewsModules["/src/views" + item.component + "/index.vue"] : Layout,
 			children: [],
 			name: item.name,
       meta: {

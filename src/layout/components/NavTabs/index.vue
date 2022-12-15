@@ -1,14 +1,35 @@
 <template>
 	<div class="navtabs-container">
-		<el-tabs v-model="activeName" type="card" class="demo-tabs" closable>
-			<el-tab-pane label="User" name="first1">User1</el-tab-pane>
-			<el-tab-pane label="User" name="first2">User2</el-tab-pane>
+		<el-tabs v-model="activeName" type="card">
+			<el-tab-pane
+				:label="item.title"
+				:key="item.path"
+				:name="item.path"
+				v-for="item in navTabsStore.tagList"
+				:closable="item.path !== '/dashboard'"
+			/>
 		</el-tabs>
 	</div>
 </template>
 
-<script lang="ts" setup>
-const activeName = ref('first1')
+<script lang="ts" setup name="NavTabs">
+import { useNavTabsStore } from '@/store'
+
+const navTabsStore = useNavTabsStore()
+const route = useRoute()
+const activeName = ref(route.path)
+
+// 监听路由变化
+watch(
+	() => route.path,
+	() => {
+		handleNavTab()
+	}
+)
+
+const handleNavTab = () => {
+	navTabsStore.addTagItem({title:route.meta.title||'未命名', path:route.path})
+}
 </script>
 
 <style lang="scss" scoped>
@@ -28,14 +49,14 @@ const activeName = ref('first1')
 		}
 		.el-tabs__item {
 			height: 28px;
-      line-height: 28px;
+			line-height: 28px;
 			margin-right: 3px;
 			padding: 0 15px 0 10px !important;
-			border: 1px solid #d9d9d9;
-      &.is-active{
-        background-color: #f3f7ff;
-        // color: #fff;
-      }
+			border: 1px solid #e5e6eb;
+			border-radius: 2px;
+			&.is-active {
+				background-color: #f3f7ff;
+			}
 			.is-icon-close:hover {
 				background-color: #409eff;
 			}

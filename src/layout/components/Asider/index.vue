@@ -9,7 +9,7 @@
 				:unique-opened="true"
 				:collapse-transition="false"
 			>
-				<menu-item v-for="menu in menus" :key="route.path" :data="menu" />
+				<menu-item v-for="menu in menus" :key="menu.path" :data="menu" />
 			</el-menu>
 		</el-scrollbar>
 	</div>
