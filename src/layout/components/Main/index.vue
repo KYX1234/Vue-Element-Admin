@@ -4,7 +4,10 @@
 	</div>
 </template>
 
-<script lang="ts" setup name="Main"></script>
+<script lang="ts" setup name="Main">
+
+
+</script>
 
 <style lang="scss" scoped>
 .main-container {

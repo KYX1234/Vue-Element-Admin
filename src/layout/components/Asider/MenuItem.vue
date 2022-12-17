@@ -26,6 +26,7 @@ defineProps({
 })
 
 const router = useRouter();
+
 const onClickMenu = (item:RouteRecordRaw) => {
 	if (item.meta?.isLink) return window.open(item.meta.isLink, "_blank");
 	router.push(item.path);

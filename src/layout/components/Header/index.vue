@@ -6,6 +6,7 @@
     </div>
     <div class="header-container-right">
       <Search/>
+      <Refresh/>
       <Notice/>
       <Fullscreen/>
       <Language/>
@@ -24,6 +25,7 @@ import Notice from './Notice.vue'
 import Search from './Search.vue'
 import Fullscreen from './Fullscreen.vue'
 import Setting from './Setting.vue'
+import Refresh from './Refresh.vue'
 </script>
 
 <style lang='scss' scoped>
