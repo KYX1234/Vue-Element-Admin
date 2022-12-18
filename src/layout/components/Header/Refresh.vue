@@ -1,23 +1,48 @@
 <template>
-  <div class="header-refresh-icon">
-      <i-ep-refreshRight></i-ep-refreshRight>
-  </div>
+	<div class="header-refresh-icon" @click="onRefresh">
+		<i-ep-refreshRight :class="isRefresh && 'tun-refresh'"></i-ep-refreshRight>
+	</div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup name="Reload">
+const router = useRouter()
+const route = useRoute()
+const isRefresh = ref(false)
 
+const onRefresh = () => {
+	if (isRefresh.value) return
+	isRefresh.value = true
+	router.push({
+		path: '/redirect' + unref(route).fullPath
+	})
+	setTimeout(() => {
+		isRefresh.value = false
+	}, 1200)
+}
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .header-refresh-icon {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  font-size: 15px;
-  padding: 0 8px;
-  cursor: pointer;
-  &:hover{
-    background-color: #f6f6f6;
-  }
+	display: flex;
+	align-items: center;
+	height: 100%;
+	font-size: 15px;
+	padding: 0 8px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #f6f6f6;
+	}
+	.tun-refresh {
+		animation: refresh 1.2s ease-in-out infinite;
+	}
+	@keyframes refresh {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
 }
 </style>

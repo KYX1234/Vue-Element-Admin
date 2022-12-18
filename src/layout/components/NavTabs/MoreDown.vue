@@ -1,11 +1,11 @@
 <template>
-	<el-dropdown>
+	<el-dropdown trigger="click">
 		<div class="more-down">
 			<el-icon><i-ep-arrowDown /></el-icon>
 		</div>
 		<template #dropdown>
 			<el-dropdown-menu>
-				<el-dropdown-item>
+				<el-dropdown-item @click="onRefresh">
 					<el-icon><i-ep-refreshRight /></el-icon>
 					重新加载
 				</el-dropdown-item>
@@ -29,8 +29,15 @@
 <script lang="ts" setup name="MoreDown">
 import { useNavTabsStore } from '@/store'
 
-const route= useRoute()
+const route = useRoute()
+const router = useRouter()
 const navTabsStore = useNavTabsStore()
+
+const onRefresh = () => {
+	router.push({
+		path: '/redirect' + unref(route).fullPath
+	})
+}
 </script>
 
 <style lang="scss" scoped>

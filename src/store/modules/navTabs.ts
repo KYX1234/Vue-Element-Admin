@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import router from '@/router'
 
-const defaultTabs: NavTabsItem = { title: '首页', path: '/dashboard' }
+const defaultTabs: NavTabsItem = { title: '首页', name: 'dashboard', path: '/dashboard' }
 
-const whiteList = ['/redirect', '/login','/dashboard']
+const whiteList = ['redirect', 'login', 'dashboard']
 
 export const useNavTabsStore = defineStore({
 	id: 'navTabs',
@@ -14,7 +14,7 @@ export const useNavTabsStore = defineStore({
 	actions: {
 		//add
 		addTabsItem(item: NavTabsItem) {
-			if (whiteList.includes(item.path)) return
+			if (whiteList.includes(item.name)) return
 			const flag = this.tabsList.some(i => i.path === item.path)
 			if (flag) return
 			this.tabsList.push(item)
@@ -30,19 +30,19 @@ export const useNavTabsStore = defineStore({
 					router.push(this.tabsList[this.tabsList.length - 1].path)
 				}
 			}
-    },
+		},
 
-    // closeOther
-    colseTabsOther(key: string) {
-      this.tabsList = this.tabsList.filter(item => {
-          return whiteList.includes(item.path)||item.path === key
-			});
-    },
+		// closeOther
+		colseTabsOther(key: string) {
+			this.tabsList = this.tabsList.filter(item => {
+				return whiteList.includes(item.name) || item.path === key
+			})
+		},
 
-    // clearAll
-    clearTabsAll() {
-      this.tabsList = [defaultTabs]
-      router.push(defaultTabs.path)
-    },
+		// clearAll
+		clearTabsAll() {
+			this.tabsList = [defaultTabs]
+			router.push(defaultTabs.path)
+		}
 	}
 })

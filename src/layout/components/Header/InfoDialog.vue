@@ -36,6 +36,8 @@ const userStore = useUserStore()
   .info{
     display: flex;
     align-items: center;
+    color:#000000;
+    font-weight: 500;
     img{
       width: 24px;
       height: 24px;

@@ -17,7 +17,4 @@ import Main from './components/Main/index.vue'
 </script>
 
 <style lang="scss" scoped>
-.layout {
-	height: 100%;
-}
 </style>

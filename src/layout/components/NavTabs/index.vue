@@ -42,7 +42,11 @@ watch(
 
 const handleNavTabs = () => {
 	activeName.value = route.path
-	navTabsStore.addTabsItem({ title: route.meta.title || '未命名', path: route.path })
+	navTabsStore.addTabsItem({
+		title: route.meta.title || '未命名',
+		name: route.name as string,
+		path: route.path
+	})
 }
 
 const onClick = (keyName: TabsPaneContext) => {
@@ -77,7 +81,8 @@ const onClick = (keyName: TabsPaneContext) => {
 						font-size: 13px;
 						padding: 0 15px 0 10px !important;
 						border: 1px solid #e5e6eb;
-						border-radius: 2px;
+						border-bottom: 0;
+						border-radius: 2px 2px 0 0;
 						color: #606266;
 						&:hover {
 							background-color: #e5e6eb;
@@ -94,6 +99,5 @@ const onClick = (keyName: TabsPaneContext) => {
 			}
 		}
 	}
-
 }
 </style>

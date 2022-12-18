@@ -9,5 +9,6 @@ interface ApiRes<T> {
 // navTabs数据格式
 interface NavTabsItem{
 	title: string,
+	name:string,
 	path:string
 }
