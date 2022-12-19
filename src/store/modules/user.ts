@@ -8,14 +8,11 @@ import { resetRouter } from '@/router';
 export const useUserStore = defineStore({
 	id: 'user',
 	state: () => ({
-		token: localStorage.getItem('token') || '',
+		token: localStorage.getItem('token') ,
 		userInfo: JSON.parse(localStorage.getItem('UserInfo') as string) || {
 			name: '',
 			avatar: '',
 			phone: '',
-			registrationDate: '',
-			accountId: '',
-			role: ''
 		}
 	}),
 	getters: {

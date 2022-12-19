@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse-icon" @click="onUpdateStatus">
+  <div class="collapse-icon" @click="appStore.updateCollapse">
     <SvgIcon :class-name="appStore.isCollapse?'menu-fold':'menu-unfold'" />
   </div>
 </template>
@@ -8,9 +8,7 @@
 import { useAppStore } from '@/store'
 
 const appStore = useAppStore()
-const onUpdateStatus = () => {
-  appStore.isCollapse = !appStore.isCollapse
-}
+
 </script>
 
 <style lang='scss' scoped>
