@@ -1,0 +1,18 @@
+// drawer
+.el-drawer {
+	.el-drawer__header {
+		padding: 15px 20px 14px;
+		margin-bottom: 0;
+		border-bottom: 1px solid var(--el-border-color-lighter);
+		span {
+			font-size: 17px;
+			color: var(--el-text-color-primary);
+		}
+	}
+	.el-divider {
+		border-top-color:var(--el-border-color-lighter) ;
+    .el-divider__text {
+			transform : translate(-50%,-60%);
+		}
+	}
+}

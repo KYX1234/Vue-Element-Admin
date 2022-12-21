@@ -1,16 +1,36 @@
 import { defineStore } from 'pinia'
-import { setting } from '@/settings/AppSetting'
+import { appSetting } from '@/settings/appSetting'
 
 const AppSetting = JSON.parse(localStorage.getItem('AppSetting') || '{}')
-console.log(setting)
+console.log(appSetting)
 export const useAppStore = defineStore({
 	id: 'app',
-	state: () => ({ ...setting,...AppSetting }),
-  getters: {},
+	state: () => ({ ...appSetting, ...AppSetting }),
+	getters: {
+		transitionName: state => (state.animate ? state.animateMode : '')
+	},
 	actions: {
-		updateCollapse() {
-      this.isCollapse = !this.isCollapse
-      localStorage.setItem('AppSetting', JSON.stringify(this.$state))
-		}
+
+		setCollapse() {
+			this.isCollapse = !this.isCollapse
+		},
+		setThemeColor(color: string) {
+			this.themeColor = color
+		},
+		setMenuColor(color: string) {
+			this.menuColor = color
+		},
+		onSetAnimate(value: boolean) {
+			this.animate = value
+		},
+		onSetAnimateMode(value: string) {
+			this.animateMode = value
+		},
+		onSetGrayMode(value: string) {
+			this.grayMode = value
+		},
+		setStorage() {
+			localStorage.setItem('AppSetting', JSON.stringify(this.$state))
+		},
 	}
 })

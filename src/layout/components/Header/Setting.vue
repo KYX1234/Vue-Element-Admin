@@ -2,11 +2,11 @@
 	<div class="header-setting-icon" @click="drawer=true">
 		<i-ep-setting></i-ep-setting>
 	</div>
-	<Settings v-model:drawer="drawer"/>
+	<ProjectSetting v-model:drawer="drawer"/>
 </template>
 
 <script lang="ts" setup name="Setting">
-import Settings from '../Settings/index.vue'
+import ProjectSetting from '../ProjectSetting/index.vue'
 
 const drawer=ref(false)
 </script>

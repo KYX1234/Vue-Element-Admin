@@ -2,7 +2,7 @@
 	<div class="main-container">
 		<router-view>
 			<template #default="{ Component, route }">
-				<transition :name="appStore.animateMode" mode="out-in" appear>
+				<transition :name="appStore.transitionName" mode="out-in" appear>
 					<component :is="Component" :key="route.path" />
 				</transition>
 			</template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse-icon" @click="appStore.updateCollapse">
+  <div class="collapse-icon" @click="appStore.setCollapse">
     <SvgIcon :class-name="appStore.isCollapse?'menu-fold':'menu-unfold'" />
   </div>
 </template>
