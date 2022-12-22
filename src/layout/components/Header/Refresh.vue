@@ -1,5 +1,5 @@
 <template>
-	<div class="header-refresh-icon" @click="onRefresh">
+	<div class="header-action-item" @click="onRefresh">
 		<i-ep-refreshRight :class="isRefresh && 'tun-refresh'"></i-ep-refreshRight>
 	</div>
 </template>
@@ -22,7 +22,7 @@ const onRefresh = () => {
 </script>
 
 <style lang="scss" scoped>
-.header-refresh-icon {
+.header-action-item {
 	display: flex;
 	align-items: center;
 	height: 100%;
@@ -31,7 +31,7 @@ const onRefresh = () => {
 	cursor: pointer;
 
 	&:hover {
-		background-color: #f6f6f6;
+    background-color: var(--el-fill-color-light);
 	}
 	.tun-refresh {
 		animation: refresh 1.2s ease-in-out infinite;

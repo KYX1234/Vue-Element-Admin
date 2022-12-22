@@ -1,7 +1,7 @@
 <template>
   <el-popover ref="popover" placement="bottom-end" width="250" trigger="click">
     <template #reference>
-      <div class="header-bell-icon">
+      <div class="header-action-item">
         <i-ep-bell></i-ep-bell>
       </div>
     </template>
@@ -50,7 +50,7 @@ const list = [
 </script>
 
 <style lang="scss" scoped>
-.header-bell-icon {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -59,7 +59,7 @@ const list = [
   cursor: pointer;
 
   &:hover {
-    background-color: #f6f6f6;
+        background-color: var(--el-fill-color-light);
   }
 }
 .list-item{

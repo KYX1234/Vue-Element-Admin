@@ -21,6 +21,6 @@ const appStore= useAppStore()
 	min-height: calc(100vh - 80px);
 	position: relative;
 	overflow: hidden;
-	background: #f0f2f5;
+	background: var(--el-bg-color-page);
 }
 </style>

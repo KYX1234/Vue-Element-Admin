@@ -1,5 +1,5 @@
 <template>
-  <div class="header-search-icon">
+  <div class="header-action-item">
       <i-ep-search></i-ep-search>
   </div>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style lang='scss' scoped>
-.header-search-icon {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -17,7 +17,7 @@
   padding: 0 8px;
   cursor: pointer;
   &:hover{
-    background-color: #f6f6f6;
+    background-color: var(--el-fill-color-light);
   }
 }
 </style>

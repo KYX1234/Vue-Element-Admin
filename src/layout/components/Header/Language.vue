@@ -1,5 +1,5 @@
 <template>
-  <div class="header-language-icon">
+  <div class="header-action-item">
     <SvgIcon class-name="language"></SvgIcon>
   </div>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style lang='scss' scoped>
-.header-language-icon {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -18,7 +18,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #f6f6f6;
+        background-color: var(--el-fill-color-light);
   }
 }
 </style>

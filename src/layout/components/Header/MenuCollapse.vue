@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse-icon" @click="appStore.setCollapse">
+  <div class="header-action-item" @click="appStore.setCollapse">
     <SvgIcon :class-name="appStore.isCollapse?'menu-fold':'menu-unfold'" />
   </div>
 </template>
@@ -12,7 +12,7 @@ const appStore = useAppStore()
 </script>
 
 <style lang='scss' scoped>
-.collapse-icon {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -20,7 +20,7 @@ const appStore = useAppStore()
   font-size: 20px;
   cursor: pointer;
   &:hover{
-    background-color: #f6f6f6;
+        background-color: var(--el-fill-color-light);
   }
 }
 </style>

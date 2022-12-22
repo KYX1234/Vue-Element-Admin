@@ -58,10 +58,12 @@ const onClick = (keyName: TabsPaneContext) => {
 .navtabs-container {
 	display: flex;
 	height: 32px;
-	border-bottom: 1px solid #d9d9d9;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--el-border-color-lighter);
 	:deep(.el-tabs) {
 		width: calc(100% - 35px);
 		--el-tabs-header-height: 32px;
+		overflow: hidden;
 		.el-tabs__header {
 			margin: 0;
 			padding: 2px 10px 0;
@@ -80,19 +82,15 @@ const onClick = (keyName: TabsPaneContext) => {
 						margin-right: 3px;
 						font-size: 13px;
 						padding: 0 15px 0 10px !important;
-						border: 1px solid #e5e6eb;
+						border: 1px solid var(--el-border-color-lighter);
 						border-bottom: 0;
 						border-radius: 2px 2px 0 0;
-						color: #606266;
-						&:hover {
-							background-color: #e5e6eb;
-						}
 						&.is-active {
-							color: #409eff;
-							background-color: #f3f7ff;
+							color: var(--el-color-white);
+							background-color: var(--el-color-primary-light-2);
 						}
 						.is-icon-close:hover {
-							background-color: #409eff;
+							background-color: var(--el-color-primary);
 						}
 					}
 				}

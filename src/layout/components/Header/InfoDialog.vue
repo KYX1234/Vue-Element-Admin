@@ -1,5 +1,5 @@
 <template>
-  <div class="header-infoDialog">
+  <div class="header-action-item">
     <el-dropdown>
       <div class="info">
         <img :src="userStore.userInfo.avatar" />
@@ -22,7 +22,7 @@ const userStore = useUserStore()
 </script>
 
 <style lang='scss' scoped>
-.header-infoDialog {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -31,12 +31,12 @@ const userStore = useUserStore()
   cursor: pointer;
 
   &:hover {
-    background-color: #f6f6f6;
+        background-color: var(--el-fill-color-light);
   }
   .info{
     display: flex;
     align-items: center;
-    color:#000000;
+    color:var(--el-text-color-primary);
     font-weight: 500;
     img{
       width: 24px;

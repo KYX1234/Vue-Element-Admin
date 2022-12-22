@@ -20,8 +20,8 @@ defineProps({
 .sidebar-logo-container {
   height: 48px;
   overflow: hidden;
-  border-bottom: 1px solid #eee;
-
+  border-bottom: 1px solid var(--el-border-color-lighter);
+  box-sizing: border-box;
   .sidebar-logo-link {
     display: flex;
     height: 100%;

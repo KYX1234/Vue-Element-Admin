@@ -1,5 +1,5 @@
 <template>
-<div class="header-screen-icon" @click="toggle">
+<div class="header-action-item" @click="toggle">
  <SvgIcon :class-name="isFullscreen?'full-screen':'screen'"></SvgIcon>
 </div>
 </template>
@@ -10,7 +10,7 @@ const { isFullscreen, toggle } = useFullscreen();
 </script>
 
 <style lang='scss' scoped>
-.header-screen-icon {
+.header-action-item {
   display: flex;
   align-items: center;
   height: 100%;
@@ -18,7 +18,7 @@ const { isFullscreen, toggle } = useFullscreen();
   padding: 0 8px;
   cursor: pointer;
   &:hover{
-    background-color: #f6f6f6;
+    background-color: var(--el-fill-color-light);
   }
 }
 </style>

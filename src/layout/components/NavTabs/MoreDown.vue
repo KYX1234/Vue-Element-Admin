@@ -48,6 +48,6 @@ const onRefresh = () => {
 	line-height: 32px;
 	text-align: center;
 	cursor: pointer;
-	border-left: 1px solid #d9d9d9;
+	border-left: 1px solid var(--el-border-color-lighter);
 }
 </style>

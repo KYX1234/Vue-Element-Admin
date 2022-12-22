@@ -26,6 +26,7 @@ import Search from './Search.vue'
 import Fullscreen from './Fullscreen.vue'
 import Setting from './Setting.vue'
 import Refresh from './Refresh.vue'
+
 </script>
 
 <style lang='scss' scoped>
@@ -34,16 +35,16 @@ import Refresh from './Refresh.vue'
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--el-border-color-lighter);
   .header-container-left{
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 47px;
   }
   .header-container-right{
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 47px;
   }
 }
 </style>

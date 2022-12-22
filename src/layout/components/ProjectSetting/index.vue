@@ -3,13 +3,13 @@
 		<el-divider>主题</el-divider>
 		<el-row class="row-bg" justify="center">
 			<el-switch
-				v-model="appStore.theme"
+				:model-value="appStore.theme"
 				inline-prompt
-				active-value="light"
-				inactive-value="dark"
-				style="--el-switch-on-color: #0a0a0a"
+				active-value="dark"
+				inactive-value="light"
 				:active-icon="Sunny"
 				:inactive-icon="Moon"
+				@change="appStore.setThemeMode"
 			/>
 		</el-row>
 		<el-divider>系统主题</el-divider>
@@ -47,7 +47,7 @@
 			</li>
 			<li>
 				<div>显示标签页</div>
-				<el-switch v-model="appStore.breadCrumb" />
+				<el-switch v-model="appStore.navTabs" />
 			</li>
 			<li>
 				<div>菜单手风琴模式</div>
@@ -55,11 +55,11 @@
 			</li>
 			<li>
 				<div>显示页脚</div>
-				<el-switch v-model="appStore.breadCrumb" />
+				<el-switch v-model="appStore.footer"/>
 			</li>
 			<li>
 				<div>灰色模式</div>
-				<el-switch v-model="appStore.breadCrumb" />
+				<el-switch v-model="appStore.grayMode"/>
 			</li>
 			<li>
 				<div>色弱模式</div>
@@ -70,11 +70,11 @@
 		<ul class="show-setting">
 			<li>
 				<div>显示动画</div>
-				<el-switch :model-value="appStore.animate" @change="appStore.onSetAnimate" />
+				<el-switch v-model="appStore.animate"/>
 			</li>
 			<li>
 				<div>动画类型</div>
-				<el-select :model-value="appStore.animateMode" @change="appStore.onSetAnimateMode">
+				<el-select v-model="appStore.animateMode">
 					<el-option
 						v-for="item in animateMode"
 						:key="item.value"
@@ -102,10 +102,16 @@ defineProps({
 const emit = defineEmits(['update:drawer'])
 const appStore = useAppStore()
 
+onBeforeMount(() => {
+	appStore.setThemeMode(appStore.theme)
+})
+
 const close = () => {
 	emit('update:drawer', false)
 	appStore.setStorage()
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -121,13 +127,13 @@ const close = () => {
 		margin-right: 8px;
 		margin-top: 8px;
 		margin-bottom: 8px;
+		border: 1px solid var(--el-border-color-lighter);
 		cursor: pointer;
 		transition: all 0.2s ease-in-out;
 		&:hover {
 			transform: scale(1.15);
 		}
 		&.white-li {
-			border: 1px solid #d9d9d9;
 			.el-icon {
 				color: #0a0a02;
 			}
