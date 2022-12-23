@@ -114,7 +114,7 @@ const onSubmit=async ()=>{
           width: 25px;
           height: 25px;
           vertical-align: sub;
-          background: url('@/assets/svg/login-icon.svg') no-repeat;
+          background: url('/public/favicon.ico') no-repeat;
           background-size: contain;
           margin-right: 6px;
         }
