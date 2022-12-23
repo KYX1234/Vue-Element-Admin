@@ -14,6 +14,7 @@ export const appTheme: string[] = [
 
 export const menuTheme: string[] = [
 	'#ffffff',
-	'#001428',
+	'#121212',
+	'#18181c',
 	'#28333e'
 ]

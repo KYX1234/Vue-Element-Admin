@@ -1,13 +1,17 @@
 <template>
 	<el-sub-menu :index="data.path" v-if="data.children && data.children.length > 0">
 		<template #title>
-			<svg-icon :class-name="data.meta?.icon"></svg-icon>
+			<el-icon>
+				<svg-icon :class-name="data.meta?.icon"></svg-icon>
+			</el-icon>
 			<span>{{ data.meta?.title }}</span>
 		</template>
 		<menu-item v-for="child in data.children" :key="child.path" :data="child"></menu-item>
 	</el-sub-menu>
 	<el-menu-item :index="data.path" v-else @click="onClickMenu(data)">
-		<svg-icon v-if="data.meta?.icon" :class-name="data.meta.icon" />
+		<el-icon v-if="data.meta?.icon">
+			<svg-icon :class-name="data.meta.icon" />
+		</el-icon>
 		<template #title>
 			<span class="menu">{{ data.meta?.title }}</span>
 		</template>

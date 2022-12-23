@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { appSetting } from '@/settings/appSetting'
-import { getLightColor, getDarkColor } from "@/utils/tools";
+import { hexToRgb,getLightColor, getDarkColor } from "@/utils/tools";
 
 const AppSetting = JSON.parse(localStorage.getItem('AppSetting') || '{}')
 
@@ -24,6 +24,7 @@ export const useAppStore = defineStore({
 		},
 		changePrimary(color: string){
 			document.documentElement.style.setProperty("--el-color-primary", color);
+			document.documentElement.style.setProperty("--el-color-primary-rgb", hexToRgb(color));
 			document.documentElement.style.setProperty("--el-color-primary-dark-2",this.isDark?`${getDarkColor(color,0.3)}`:`${getLightColor(color,0.3)}`)
 			for (let i = 1; i <= 9; i++) {
 				document.documentElement.style.setProperty(`--el-color-primary-light-${i}`,this.isDark?`${getDarkColor(color,i/10)}`:`${getLightColor(color,i/10)}`)
@@ -32,6 +33,9 @@ export const useAppStore = defineStore({
 		setThemeMode(value: string) {
 			this.theme = value
 			if (this.isDark) {
+				if (this.menuColor === '#ffffff') {
+					this.menuColor = '#121212'
+				}
 				document.documentElement.classList.add("dark")
 			} else {
 				document.documentElement.classList.remove("dark")

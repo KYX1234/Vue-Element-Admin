@@ -35,6 +35,7 @@ import Refresh from './Refresh.vue'
   justify-content: space-between;
   align-items: center;
   height: 48px;
+  border-left: 1px solid var(--el-border-color-lighter);
   border-bottom: 1px solid var(--el-border-color-lighter);
   .header-container-left{
     display: flex;

@@ -28,7 +28,7 @@
 		<el-divider>菜单风格</el-divider>
 		<ul class="setting-item">
 			<li
-				v-for="(item, index) in menuTheme"
+				v-for="(item, index) in menuColor"
 				:key="index"
 				:class="[item === '#ffffff' && 'white-li']"
 				:style="{ 'background-color': item }"
@@ -111,6 +111,9 @@ const close = () => {
 	appStore.setStorage()
 }
 
+const menuColor = computed(() =>
+	appStore.isDark?menuTheme.slice(1):menuTheme
+)
 
 </script>
 

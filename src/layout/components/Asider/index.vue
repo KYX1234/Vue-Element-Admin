@@ -1,5 +1,8 @@
 <template>
-	<div class="sidebar-container" :style="{ width: appStore.isCollapse ? '65px' : '200px' }">
+	<div
+		:class="['sidebar-container', appStore.menuColor === '#ffffff' && 'light-menu']"
+		:style="{ width: appStore.isCollapse ? '65px' : '200px', ...themeColor }"
+	>
 		<Logo :collapse="appStore.isCollapse" />
 		<el-scrollbar>
 			<el-menu
@@ -27,41 +30,77 @@ const routeStore = useRouteStore()
 const route = useRoute()
 const menus = getChildrenRouter(routeStore.routes)
 const activeMenu = computed(() => route.path)
+const themeColor = computed(() => {
+	return {
+		background: appStore.menuColor
+	}
+})
 </script>
 
 <style lang="scss" scoped>
 .sidebar-container {
-	border-right: 1px solid var(--el-border-color-lighter);
-	// box-shadow:var(--el-box-shadow-lighter);
 	transition: width 0.3s ease-in-out;
 
 	.el-scrollbar {
 		height: calc(100% - 48px);
-	}
+		:deep(.el-menu) {
+			overflow-x: hidden;
+			border-right: none;
+			width: 100%;
+			background-color: initial;
+			// 折叠时样式
+			&.el-menu--collapse {
+				.el-sub-menu {
+					&.is-active {
+						color: var(--el-color-primary);
+					}
+				}
+				.el-menu-item.is-active,
+				.el-sub-menu.is-active {
+					background: transparent;
+					.el-sub-menu__title {
+						color: var(--el-color-primary);
+					}
+					&::before {
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						right: 0;
+						z-index: 2;
+						width: 3px;
+						content: '';
+						background-color: var(--el-color-primary);
+					}
+				}
+			}
 
-	// Menu菜单组件修改
-
-	:deep(.el-menu) {
-		overflow-x: hidden;
-		border-right: none;
-		.svg-icon {
-			font-size: 20px;
-			margin: 0 auto;
-		}
-
-		&:not(.el-menu--collapse) {
-			.svg-icon {
-				margin-right: 8px;
+			.el-menu-item,
+			.el-sub-menu__title {
+				display: flex;
+				align-items: center;
+				overflow: hidden;
+				color: #bbbbbb;
+				&:hover {
+					color: var(--el-color-primary);
+					background: transparent;
+				}
+				&.is-active {
+					background: var(--el-color-primary);
+					color: var(--el-color-white);
+				}
 			}
 		}
-
-		.el-menu-item,
-		.el-sub-menu,
-		.el-sub-menu__title {
-			display: block;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+	}
+	&.light-menu {
+		:deep(.el-menu) {
+			.el-menu-item,
+			.el-sub-menu__title {
+				color: var(--el-color-black);
+				&:not(.is-active):hover {
+					background-color: var(--el-fill-color-light);
+				}
+			}
 		}
 	}
 }

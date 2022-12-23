@@ -3,32 +3,30 @@
 @import './transition.scss';
 
 html {
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-size: 14px;
-    line-height: 1.5;
-    box-sizing: border-box;
-    font-family:'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif;
-
-    #app {
-      width: 100%;
-      height: 100vh;
-      .layout{
-        height: 100%;
-        overflow-x: hidden;
-
-      } 
-    }
-  }
+	body {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		font-size: 14px;
+		line-height: 1.5;
+		font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+			'微软雅黑', Arial, sans-serif;
+		#app {
+			width: 100%;
+			height: 100vh;
+			.layout {
+				height: 100%;
+				overflow-x: hidden;
+			}
+		}
+	}
 }
 
 ol,
 ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 a:focus,
@@ -37,44 +35,44 @@ button,
 div,
 svg,
 span {
-  outline: none !important;
+	outline: none !important;
 }
 
 //去a标签默认样式
 a {
-  color: unset;
-  cursor: pointer;
-  text-decoration: none;
+	color: unset;
+	cursor: pointer;
+	text-decoration: none;
 }
 
-img, video{
-  display: block;
-  max-width: 100%;
-  height: auto;
+img,
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
 
 //超出一行...
 .ellipsis-1 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 //超出两行...
 .ellipsis-2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 //超出三行...
 .ellipsis-3 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
 }
-

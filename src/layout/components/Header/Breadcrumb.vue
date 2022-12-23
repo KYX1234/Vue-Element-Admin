@@ -25,7 +25,7 @@ const breadcrumbList = computed(() => route.matched.filter(item => item.meta && 
 
 .el-breadcrumb__item:last-child {
   .breadcrumb-title {
-    color: #999;
+    color: #bbbbbb;
   }
 
 }
