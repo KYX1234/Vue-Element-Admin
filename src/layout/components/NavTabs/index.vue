@@ -1,5 +1,5 @@
 <template>
-	<div class="navtabs-container">
+	<div class="navtabs-container" v-if="appStore.navTabs">
 		<el-tabs
 			v-model="activeName"
 			type="card"
@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts" setup name="NavTabs">
-import { useNavTabsStore } from '@/store'
+import { useNavTabsStore,useAppStore } from '@/store'
 import { TabsPaneContext } from 'element-plus'
 import MoreDown from './MoreDown.vue'
-
+const appStore=useAppStore()
 const navTabsStore = useNavTabsStore()
 const route = useRoute()
 const router = useRouter()

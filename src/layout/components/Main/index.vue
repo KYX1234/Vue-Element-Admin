@@ -18,7 +18,7 @@ const appStore= useAppStore()
 
 <style lang="scss" scoped>
 .main-container {
-	min-height: calc(100vh - 80px);
+	height: 100%;
 	position: relative;
 	overflow: hidden;
 	background: var(--el-bg-color-page);
