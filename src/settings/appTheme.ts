@@ -1,20 +1,19 @@
 export const appTheme: string[] = [
 	'#2d8cf0',
-	'#0960bd',
+	'#2e59a7',
+	'#d9a62e',
 	'#0084f4',
+	'#59b9c6',
 	'#009688',
 	'#536dfe',
 	'#ff5c93',
+	'#d77f66',
 	'#ee4f12',
 	'#0096c7',
 	'#9c27b0',
   '#ff9800',
-  '#165DFF'
-]
-
-export const menuTheme: string[] = [
-	'#ffffff',
-	'#121212',
-	'#18181c',
-	'#28333e'
+	'#165DFF',
+	'#775039',
+	'#c3d825',
+	'#a46244'
 ]

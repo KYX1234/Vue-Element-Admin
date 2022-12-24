@@ -2,11 +2,9 @@ export const appSetting = {
 	// 主题
 	theme: 'light',
 	// 主题颜色
-	themeColor: '#165DFF',
-	// 菜单颜色
-	menuColor:'#ffffff',
-	// 页脚
-	footer: false,
+	themeColor: '#2d8cf0',
+	// 菜单类型
+	menuMode:'light',
 	// 标签页
 	navTabs: true,
 	// 面包屑

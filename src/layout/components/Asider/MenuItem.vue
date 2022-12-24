@@ -1,5 +1,5 @@
 <template>
-	<el-sub-menu :index="data.path" v-if="data.children && data.children.length > 0">
+	<el-sub-menu :index="data.path" v-if="data.children && data.children.length > 0" :popper-class="appStore.isDark?'dark':''">
 		<template #title>
 			<el-icon>
 				<svg-icon :class-name="data.meta?.icon"></svg-icon>
@@ -21,6 +21,7 @@
 <script lang="ts" setup name="MenuItem">
 import { PropType } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
+import { useAppStore } from '@/store'
 
 defineProps({
 	data: {
@@ -30,6 +31,7 @@ defineProps({
 })
 
 const router = useRouter();
+const appStore = useAppStore()
 
 const onClickMenu = (item:RouteRecordRaw) => {
 	if (item.meta?.isLink) return window.open(item.meta.isLink, "_blank");

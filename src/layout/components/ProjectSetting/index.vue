@@ -26,18 +26,19 @@
 			</li>
 		</ul>
 		<el-divider>菜单风格</el-divider>
-		<ul class="setting-item">
+		<ul class="menu-item">
 			<li
-				v-for="(item, index) in menuColor"
-				:key="index"
-				:class="[item === '#ffffff' && 'white-li']"
-				:style="{ 'background-color': item }"
-				@click="appStore.setMenuColor(item)"
-			>
-				<el-icon v-if="item === appStore.menuColor">
-					<i-ep-check />
-				</el-icon>
-			</li>
+				:class="[appStore.menuMode === 'light' && 'is-select']"
+				@click="appStore.setMenuMode('light')"
+			></li>
+			<li
+				:class="[appStore.menuMode === 'dark' && 'is-select']"
+				@click="appStore.setMenuMode('dark')"
+			></li>
+			<li
+				:class="[appStore.menuMode === 'header-dark' && 'is-select']"
+				@click="appStore.setMenuMode('header-dark')"
+			></li>
 		</ul>
 		<el-divider>界面显示</el-divider>
 		<ul class="show-setting">
@@ -54,12 +55,8 @@
 				<el-switch v-model="appStore.breadCrumb" />
 			</li>
 			<li>
-				<div>显示页脚</div>
-				<el-switch v-model="appStore.footer"/>
-			</li>
-			<li>
 				<div>灰色模式</div>
-				<el-switch v-model="appStore.grayMode"/>
+				<el-switch v-model="appStore.grayMode" />
 			</li>
 			<li>
 				<div>色弱模式</div>
@@ -70,7 +67,7 @@
 		<ul class="show-setting">
 			<li>
 				<div>显示动画</div>
-				<el-switch v-model="appStore.animate"/>
+				<el-switch v-model="appStore.animate" />
 			</li>
 			<li>
 				<div>动画类型</div>
@@ -90,7 +87,7 @@
 <script lang="ts" setup name="Drawer">
 import { useAppStore } from '@/store'
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import { appTheme, menuTheme } from '@/settings/appTheme'
+import { appTheme } from '@/settings/appTheme'
 import { animateMode } from '@/settings/animateMode'
 
 defineProps({
@@ -111,9 +108,6 @@ const close = () => {
 	appStore.setStorage()
 }
 
-const menuColor = computed(() =>
-	appStore.isDark?menuTheme.slice(1):menuTheme
-)
 
 </script>
 
@@ -136,13 +130,81 @@ const menuColor = computed(() =>
 		&:hover {
 			transform: scale(1.15);
 		}
-		&.white-li {
-			.el-icon {
-				color: #0a0a02;
-			}
-		}
 		.el-icon {
 			color: #fff;
+		}
+	}
+}
+.menu-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	li {
+		width: 26%;
+		height: 55px;
+		background: #f0f2f5;
+		border-radius: 3px;
+		overflow: hidden;
+		border: .5px solid var(--el-border-color-light);
+		position: relative;
+		transition: all 0.5s;
+		cursor: pointer;
+		&.is-select{
+			box-shadow: 0 0 1px 2px var(--el-color-primary);
+		}
+		&:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 0 1px 2px var(--el-color-primary);
+		}
+		&:first-child {
+			&::before {
+				content: '';
+				position: absolute;
+				width: 15%;
+				height: 100%;
+				background: #ffffff;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 20%;
+				background: #ffffff;
+			}
+		}
+		&:nth-child(2) {
+			&::before {
+				content: '';
+				position: absolute;
+				width: 15%;
+				height: 100%;
+				background: #141414;
+				z-index: 2;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 20%;
+				background: #ffffff;
+			}
+		}
+		&:nth-child(3) {
+			&::before {
+				content: '';
+				position: absolute;
+				width: 15%;
+				height: 100%;
+				background: #141414;
+				z-index: 2;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 20%;
+				background: #141414;
+			}
 		}
 	}
 }

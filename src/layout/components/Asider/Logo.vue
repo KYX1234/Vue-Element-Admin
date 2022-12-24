@@ -1,5 +1,5 @@
 <template>
-	<div :class="['sidebar-logo-container', appStore.menuColor === '#ffffff' && 'light']">
+	<div class="sidebar-logo-container">
 		<router-link key="collapse" class="sidebar-logo-link" to="/">
 			<img src="favicon.ico" alt="logo" class="sidebar-logo" />
 			<span v-show="!collapse" class="sidebar-title">my-Admin-pro</span>
@@ -22,13 +22,9 @@ const appStore = useAppStore()
 
 <style lang="scss" scoped>
 .sidebar-logo-container {
-	&.light {
-		border-bottom: 1px solid var(--el-border-color-lighter);
-		color: var(--el-color-black);
-	}
+	border-bottom: 1px solid var(--el-border-color-lighter);
 	height: 48px;
 	overflow: hidden;
-	color: var(--el-color-white);
 	box-sizing: border-box;
 	.sidebar-logo-link {
 		display: flex;

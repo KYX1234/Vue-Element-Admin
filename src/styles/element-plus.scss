@@ -1,5 +1,6 @@
 // drawer
 .el-drawer {
+	color: var(--el-text-color-primary);
 	.el-drawer__header {
 		padding: 15px 20px 14px;
 		margin-bottom: 0;
@@ -13,6 +14,48 @@
 		border-top-color: var(--el-border-color-lighter);
 		.el-divider__text {
 			transform: translate(-50%, -60%);
+		}
+	}
+}
+.el-menu-item:hover {
+	color: var(--el-color-primary);
+}
+// 折叠时样式
+.el-menu.el-menu--collapse {
+	.el-menu-item.is-active,
+	.el-sub-menu.is-active {
+		background: var(--el-fill-color-light);
+		color: var(--el-color-primary);
+		.el-sub-menu__title {
+			color: var(--el-color-primary);
+		}
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 2;
+			width: 3px;
+			content: '';
+			background-color: var(--el-color-primary);
+		}
+	}
+}
+
+.el-menu:not(.el-menu--collapse) {
+	.el-menu-item,
+	.el-sub-menu__title {
+		display: flex;
+		align-items: center;
+		overflow: hidden;
+		&:hover {
+			color: var(--el-color-primary);
+			background: transparent;
+		}
+		&.is-active {
+			background: var(--el-color-primary);
+			color: var(--el-color-white);
 		}
 	}
 }
