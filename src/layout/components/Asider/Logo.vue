@@ -22,7 +22,7 @@ const appStore = useAppStore()
 
 <style lang="scss" scoped>
 .sidebar-logo-container {
-	border-bottom: 1px solid var(--el-border-color-lighter);
+	border-bottom: 1px solid var(--el-border-color-light);
 	height: 48px;
 	overflow: hidden;
 	box-sizing: border-box;
@@ -42,7 +42,7 @@ const appStore = useAppStore()
 		.sidebar-title {
 			margin-left: 12px;
 			font-size: 16px;
-
+			font-weight: 600;
 			white-space: nowrap;
 			font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
 		}

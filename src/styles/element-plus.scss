@@ -17,45 +17,83 @@
 		}
 	}
 }
-.el-menu-item:hover {
-	color: var(--el-color-primary);
-}
-// 折叠时样式
-.el-menu.el-menu--collapse {
-	.el-menu-item.is-active,
-	.el-sub-menu.is-active {
-		background: var(--el-fill-color-light);
-		color: var(--el-color-primary);
+// white
+.sidebar-container.light {
+	.el-menu:not(.el-menu--collapse) {
 		.el-sub-menu__title {
-			color: var(--el-color-primary);
+			&:hover {
+				background: transparent;
+				color: var(--el-color-primary);
+			}
 		}
-		&::before {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			z-index: 2;
-			width: 3px;
-			content: '';
-			background-color: var(--el-color-primary);
+		.el-menu-item {
+
+			&:hover {
+				color: var(--el-color-primary);
+				background: transparent;
+			}
+			&.is-active {
+				background: var(--el-color-primary);
+				color: #ffffff;
+			}
+		}
+	}
+	.el-menu.el-menu--collapse {
+		.el-menu-item {
+
+			&.is-active {
+				position: relative;
+				background: rgba(var(--el-color-primary-rgb), 0.09);
+				&::before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					z-index: 2;
+					width: 3px;
+					content: '';
+					background-color: var(--el-color-primary);
+				}
+			}
+			&:hover {
+				background: transparent;
+				color: var(--el-color-primary);
+			}
+		}
+		.el-sub-menu.is-active {
+			.el-sub-menu__title {
+				position: relative;
+				background: rgba(var(--el-color-primary-rgb), 0.09);
+				color: var(--el-color-primary);
+				&::before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					z-index: 2;
+					width: 3px;
+					content: '';
+					background-color: var(--el-color-primary);
+				}
+			}
 		}
 	}
 }
-
-.el-menu:not(.el-menu--collapse) {
+// dark&&header-dark
+.sidebar-container.dark,
+.sidebar-container.header-dark {
+	--el-menu-bg-color: #121213;
+	--el-menu-text-color: #b9b9b9;
+	.sidebar-logo-container {
+		border-bottom:none;
+		color: #ffffff;
+	}
 	.el-menu-item,
 	.el-sub-menu__title {
-		display: flex;
-		align-items: center;
-		overflow: hidden;
 		&:hover {
-			color: var(--el-color-primary);
-			background: transparent;
-		}
-		&.is-active {
-			background: var(--el-color-primary);
-			color: var(--el-color-white);
+			background-color: #29292c;
 		}
 	}
 }

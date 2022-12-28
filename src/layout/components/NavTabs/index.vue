@@ -59,7 +59,6 @@ const onClick = (keyName: TabsPaneContext) => {
 	display: flex;
 	height: 32px;
 	box-sizing: border-box;
-	border-left: 1px solid var(--el-border-color-lighter);
 	border-bottom: 1px solid var(--el-border-color-lighter);
 	:deep(.el-tabs) {
 		width: calc(100% - 35px);
@@ -93,17 +92,17 @@ const onClick = (keyName: TabsPaneContext) => {
 							}
 						}
 						&.is-active {
-							color: var(--el-color-white);
-							background-color: rgba(var(--el-color-primary-rgb));
+							color: var(--el-color-primary);
+							background-color: rgba(var(--el-color-primary-rgb),0.05);
 							.is-icon-close {
-								color: var(--el-color-white);
+								color: var(--el-color-primary);
 							}
 						}
 						.is-icon-close {
 							color: var(--el-color-white);
 							&:hover {
 								font-size: 30px;
-								background-color: transparent;
+								background-color:rgba(var(--el-color-primary-rgb),0.1);
 							}
 						}
 					}

@@ -33,14 +33,18 @@ const activeMenu = computed(() => route.path)
 
 <style lang="scss" scoped>
 .sidebar-container {
-	transition: width 0.3s ease-in-out;
+	transition: var(--el-transition-fade);
 	z-index: 99;
+	background-color: var(--el-menu-bg-color);
+	box-shadow: var(--el-box-shadow-lighter);
+	
 	.el-scrollbar {
 		height: calc(100% - 48px);
 		:deep(.el-menu) {
 			overflow-x: hidden;
 			border-right: none;
 			width: 100%;
+			background: transparent;
 		}
 	}
 }

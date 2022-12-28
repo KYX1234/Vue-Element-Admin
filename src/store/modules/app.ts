@@ -9,7 +9,7 @@ export const useAppStore = defineStore({
 	state: () => ({ ...appSetting, ...AppSetting }),
 	getters: {
 		transitionName: state => (state.animate ? state.animateMode : ''),
-		isDark: state => (state.menuMode!=='light'||state.theme==='dark'? true : false)
+		isDark: state => (state.theme==='dark'? true : false)
 	},
 	actions: {
 		setCollapse() {

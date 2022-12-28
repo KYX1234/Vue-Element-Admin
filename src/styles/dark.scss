@@ -1,33 +1,9 @@
 @use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
 
 /* 暗黑模式适配 */
-html {
-	.sidebar-container.dark,
-	.sidebar-container.header-dark,.el-menu--popup-container.dark {
-		--el-menu-bg-color: #141414;
-		--el-menu-text-color: #bbbbbb;
-		--el-fill-color-light: #262627;
-		--el-border-color-lighter: #363637;
-		background: var(--el-menu-bg-color) ;
-		.sidebar-title {
-			color: #ffffff;
-		}
-	}
-	.header-container.header-dark {
-		border-left-color: #363637;
-		border-bottom-color: #363637;
-		background: hsl(0, 0%, 8%);
-		color: #d3d3d4;
-		.el-breadcrumb__item:first-child .el-breadcrumb__inner {
-			color: #d3d3d4;
-		}
-		.header-action-item {
-			&:hover {
-				background-color: #262627;
-			}
-			.info {
-				color: #d3d3d4;
-			}
-		}
+html.dark {
+	--el-text-color-primary:#b9b9b9;
+	.sidebar-logo-container{
+		border-bottom:none ;
 	}
 }
