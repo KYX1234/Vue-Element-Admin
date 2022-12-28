@@ -3,7 +3,7 @@
 		<el-divider>主题</el-divider>
 		<el-row class="row-bg" justify="center">
 			<el-switch
-				:model-value="appStore.theme"
+				:model-value="appStore.themeMode"
 				inline-prompt
 				active-value="dark"
 				inactive-value="light"
@@ -52,15 +52,11 @@
 			</li>
 			<li>
 				<div>菜单手风琴模式</div>
-				<el-switch v-model="appStore.breadCrumb" />
+				<el-switch v-model="appStore.isMenuUnique" />
 			</li>
 			<li>
 				<div>灰色模式</div>
-				<el-switch v-model="appStore.grayMode" />
-			</li>
-			<li>
-				<div>色弱模式</div>
-				<el-switch v-model="appStore.breadCrumb" />
+				<el-switch :model-value="appStore.grayMode" @change="appStore.setGrayMode"/>
 			</li>
 		</ul>
 		<el-divider>动画</el-divider>
@@ -100,9 +96,8 @@ const emit = defineEmits(['update:drawer'])
 const appStore = useAppStore()
 
 onBeforeMount(() => {
-
-	appStore.setThemeMode(appStore.theme)
-
+	appStore.themeMode==='dark'&&document.documentElement.classList.add('dark')
+	appStore.grayMode&&document.documentElement.classList.add('html-grey')
 })
 
 const close = () => {

@@ -1,6 +1,6 @@
 <template>
   <div class="header-action-item">
-    <el-dropdown>
+    <el-dropdown trigger="click">
       <div class="info">
         <img :src="userStore.userInfo.avatar" />
         <span>{{ userStore.userInfo.username }}</span>
@@ -33,7 +33,9 @@ const userStore = useUserStore()
   &:hover {
         background-color: var(--el-fill-color-light);
   }
-  .info{
+  .el-dropdown{
+    height: 100%;
+    .info{
     display: flex;
     align-items: center;
     color:var(--el-text-color-primary);
@@ -45,5 +47,7 @@ const userStore = useUserStore()
       border-radius:50%
     }
   }
+  }
+
 }
 </style>

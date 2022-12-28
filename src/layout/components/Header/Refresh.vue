@@ -1,6 +1,8 @@
 <template>
 	<div class="header-action-item" @click="onRefresh">
-		<i-ep-refreshRight :class="isRefresh && 'tun-refresh'"></i-ep-refreshRight>
+		<el-icon>
+			<i-ep-refreshRight :class="isRefresh && 'tun-refresh'"></i-ep-refreshRight>
+		</el-icon>
 	</div>
 </template>
 
@@ -26,7 +28,7 @@ const onRefresh = () => {
 	display: flex;
 	align-items: center;
 	height: 100%;
-	font-size: 15px;
+	font-size: 18px;
 	padding: 0 8px;
 	cursor: pointer;
 

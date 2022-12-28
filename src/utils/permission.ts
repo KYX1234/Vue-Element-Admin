@@ -1,8 +1,6 @@
 import { MenuInfo } from '@/api'
 import { Layout } from '@/router'
-
 import { RouteRecordRaw } from 'vue-router'
-
 
 const viewsModules = import.meta.glob("@/views/**/*.vue");
 
@@ -11,7 +9,7 @@ const viewsModules = import.meta.glob("@/views/**/*.vue");
  * */
 export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
 	data.forEach((item: MenuInfo) => {
-		const menu = {
+		const menu:RouteRecordRaw = {
 			path: `/${item.name}`,
 			component: item.component ? viewsModules["/src/views" + item.component + "/index.vue"] : Layout,
 			children: [],
@@ -23,7 +21,8 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
 				icon: item.icon
 			}
 		}
-		if (item.children) {
+		if (item.children && item.children.length > 0) {
+			menu.redirect = `/${item.children[0].name}`
 			generateMenu(menu.children, item.children)
 		}
 		routes.push(menu)

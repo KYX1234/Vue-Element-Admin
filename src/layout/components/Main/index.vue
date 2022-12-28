@@ -13,7 +13,8 @@
 <script lang="ts" setup name="Main">
 import { useAppStore } from '@/store'
 
-const appStore= useAppStore()
+const appStore = useAppStore()
+const route = useRoute()
 </script>
 
 <style lang="scss" scoped>
@@ -23,5 +24,6 @@ const appStore= useAppStore()
 	overflow: hidden;
 	padding: 10px;
 	background: var(--el-bg-color-page);
+	padding: 10px;
 }
 </style>

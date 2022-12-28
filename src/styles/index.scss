@@ -22,6 +22,11 @@ html {
 	}
 }
 
+/* 灰色模式 */
+.html-grey {
+	filter: grayscale(100%);
+}
+
 ol,
 ul {
 	list-style: none;

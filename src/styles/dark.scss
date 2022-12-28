@@ -1,9 +1,10 @@
 @use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
 
 /* 暗黑模式适配 */
+
 html.dark {
-	--el-text-color-primary:#b9b9b9;
-	.sidebar-logo-container{
-		border-bottom:none ;
+	--el-text-color-primary: #b9b9b9;
+	.sidebar-logo-container {
+		border-bottom: none;
 	}
 }

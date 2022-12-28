@@ -9,7 +9,7 @@
 				:default-active="activeMenu"
 				class="el-menu-vertical-demo"
 				:collapse="appStore.isCollapse"
-				:unique-opened="true"
+				:unique-opened="appStore.isMenuUnique"
 				:collapse-transition="false"
 			>
 				<menu-item v-for="menu in menus" :key="menu.path" :data="menu" />

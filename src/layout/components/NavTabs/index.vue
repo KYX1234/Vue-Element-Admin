@@ -36,6 +36,7 @@ onMounted(() => {
 watch(
 	() => route.path,
 	() => {
+		if(route.name==='redirect') return 
 		handleNavTabs()
 	}
 )
@@ -84,7 +85,7 @@ const onClick = (keyName: TabsPaneContext) => {
 						padding: 0 15px 0 10px !important;
 						border: 1px solid var(--el-border-color-lighter);
 						border-bottom: 0;
-						border-radius: 2px 2px 0 0;
+						border-radius: 3px 3px 0 0;
 						transition:none;
 						&:hover {
 							.is-icon-close {

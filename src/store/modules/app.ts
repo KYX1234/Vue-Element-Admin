@@ -9,7 +9,7 @@ export const useAppStore = defineStore({
 	state: () => ({ ...appSetting, ...AppSetting }),
 	getters: {
 		transitionName: state => (state.animate ? state.animateMode : ''),
-		isDark: state => (state.theme==='dark'? true : false)
+		isDark: state => (state.themeMode==='dark'? true : false)
 	},
 	actions: {
 		setCollapse() {
@@ -24,13 +24,8 @@ export const useAppStore = defineStore({
 			this.changePrimary(this.themeColor)
 		},
 		setThemeMode(value: string) {
-			
-			this.theme = value
-			if (this.theme==='dark') {
-				document.documentElement.classList.add('dark')
-			} else {
-				document.documentElement.classList.remove('dark')
-			}
+			this.themeMode = value
+			document.documentElement.classList.toggle('dark')
 			this.changePrimary(this.themeColor)
 		},
 		changePrimary(color: string) {
@@ -48,6 +43,10 @@ export const useAppStore = defineStore({
 				)
 			}
 
+		},
+		setGrayMode(value:boolean) {
+			this.grayMode = value
+			document.documentElement.classList.toggle('html-grey')
 		},
 		setStorage() {
 			localStorage.setItem('AppSetting', JSON.stringify(this.$state))

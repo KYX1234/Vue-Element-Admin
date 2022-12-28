@@ -1,6 +1,6 @@
 export const appSetting = {
 	// 主题
-	theme: 'light',
+	themeMode: 'light',
 	// 主题颜色
 	themeColor: '#2d8cf0',
 	// 菜单类型
@@ -11,6 +11,8 @@ export const appSetting = {
 	breadCrumb: true,
 	// 折叠菜单状态
 	isCollapse: false,
+	// 菜单手风琴
+	isMenuUnique:true,
 	// 动画
 	animate: true,
 	// 动画类型

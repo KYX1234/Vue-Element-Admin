@@ -60,11 +60,9 @@
 <style lang="scss" scoped>
 :deep(.box-card){
 	.el-card__header {
-    height: 40px;
     padding: 10px 22px;
     .card-header{
       display: flex;
-      height: 100%;
       justify-content: space-between;
       align-items: center;
     }

@@ -1,6 +1,8 @@
 <template>
   <div class="header-action-item">
+    <el-icon>
       <i-ep-search></i-ep-search>
+    </el-icon>
   </div>
 </template>
 
@@ -13,7 +15,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: 15px;
+  font-size: 18px;
   padding: 0 8px;
   cursor: pointer;
   &:hover{

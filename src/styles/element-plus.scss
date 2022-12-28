@@ -81,6 +81,7 @@
 		}
 	}
 }
+
 // dark&&header-dark
 .sidebar-container.dark,
 .sidebar-container.header-dark {
@@ -94,6 +95,17 @@
 	.el-sub-menu__title {
 		&:hover {
 			background-color: #29292c;
+		}
+	}
+}
+
+// 折叠时popup样式
+.el-menu.el-menu--popup {
+	.el-menu-item {
+		&.is-active,
+		&:hover {
+			background-color: transparent;
+			color: var(--el-color-primary);
 		}
 	}
 }
