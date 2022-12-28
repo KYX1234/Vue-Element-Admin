@@ -22,7 +22,7 @@ const appStore = useAppStore()
 
 <style lang="scss" scoped>
 .sidebar-logo-container {
-	border-bottom: 1px solid var(--el-border-color-light);
+	border-bottom: 1px solid var(--el-border-color-lighter);
 	height: 48px;
 	overflow: hidden;
 	box-sizing: border-box;

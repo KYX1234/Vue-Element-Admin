@@ -1,14 +1,11 @@
 <template>
 <div>
-<el-button @click="test">test</el-button>
+ <Panel></Panel>
 </div>
 </template>
 
 <script lang='ts' setup>
-import { menuList } from '@/api'
-const test=async () => {
-  await menuList()
-}
+import Panel from './components/Panel.vue';
 </script>
 
 <style lang='scss' scoped>

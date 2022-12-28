@@ -100,7 +100,9 @@ const emit = defineEmits(['update:drawer'])
 const appStore = useAppStore()
 
 onBeforeMount(() => {
+
 	appStore.setThemeMode(appStore.theme)
+
 })
 
 const close = () => {

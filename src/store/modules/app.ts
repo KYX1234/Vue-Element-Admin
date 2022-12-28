@@ -24,6 +24,7 @@ export const useAppStore = defineStore({
 			this.changePrimary(this.themeColor)
 		},
 		setThemeMode(value: string) {
+			
 			this.theme = value
 			if (this.theme==='dark') {
 				document.documentElement.classList.add('dark')
@@ -33,6 +34,7 @@ export const useAppStore = defineStore({
 			this.changePrimary(this.themeColor)
 		},
 		changePrimary(color: string) {
+			
 			document.documentElement.style.setProperty('--el-color-primary', color)
 			document.documentElement.style.setProperty('--el-color-primary-rgb', hexToRgb(color))
 			document.documentElement.style.setProperty(
@@ -45,6 +47,7 @@ export const useAppStore = defineStore({
 					this.isDark ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
 				)
 			}
+
 		},
 		setStorage() {
 			localStorage.setItem('AppSetting', JSON.stringify(this.$state))
