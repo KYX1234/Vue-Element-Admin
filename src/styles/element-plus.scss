@@ -27,7 +27,6 @@
 			}
 		}
 		.el-menu-item {
-
 			&:hover {
 				color: var(--el-color-primary);
 				background: transparent;
@@ -93,8 +92,38 @@
 	}
 	.el-menu-item,
 	.el-sub-menu__title {
+		&.is-active {
+			position: relative;
+			background: rgba(var(--el-color-primary-rgb), 0.09);
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				z-index: 2;
+				width: 3px;
+				content: '';
+				background-color: var(--el-color-primary);
+			}
+		}
 		&:hover {
 			background-color: #29292c;
+		}
+	}
+	.el-sub-menu.is-active{
+		position: relative;
+		background: rgba(var(--el-color-primary-rgb), 0.09);
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 2;
+			width: 3px;
+			content: '';
+			background-color: var(--el-color-primary);
 		}
 	}
 }
