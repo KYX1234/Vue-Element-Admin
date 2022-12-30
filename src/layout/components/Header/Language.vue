@@ -1,6 +1,6 @@
 <template>
   <div class="header-action-item">
-    <SvgIcon class-name="language"></SvgIcon>
+    <SvgIcon class-name="language" size="18"></SvgIcon>
   </div>
 </template>
 
@@ -13,7 +13,6 @@
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: 18px;
   padding: 0 8px;
   cursor: pointer;
 

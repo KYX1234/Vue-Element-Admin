@@ -21,9 +21,9 @@ const route = useRoute()
 .main-container {
 	height: 100%;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 	padding: 10px;
 	background: var(--el-bg-color-page);
-	padding: 10px;
 }
 </style>

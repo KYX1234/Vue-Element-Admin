@@ -1,6 +1,6 @@
 <template>
 <div class="header-action-item" @click="toggle">
- <SvgIcon :class-name="isFullscreen?'full-screen':'screen'"></SvgIcon>
+ <SvgIcon :class-name="isFullscreen?'fullscreen':'screen'" size="18"></SvgIcon>
 </div>
 </template>
 
@@ -14,7 +14,6 @@ const { isFullscreen, toggle } = useFullscreen();
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: 18px;
   padding: 0 8px;
   cursor: pointer;
   &:hover{

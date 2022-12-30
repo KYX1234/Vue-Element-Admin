@@ -96,7 +96,8 @@ const emit = defineEmits(['update:drawer'])
 const appStore = useAppStore()
 
 onBeforeMount(() => {
-	appStore.themeMode==='dark'&&document.documentElement.classList.add('dark')
+	appStore.setThemeColor(appStore.themeColor)
+	appStore.isDark&&document.documentElement.classList.add('dark')
 	appStore.grayMode&&document.documentElement.classList.add('html-grey')
 })
 

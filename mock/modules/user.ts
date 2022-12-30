@@ -7,7 +7,7 @@ const menu = [
 		title: '权限管理',
 		sort: 1,
 		show: 1,
-    icon: 'menu-auth',
+    icon: 'setting',
 		component: '',
 		name:'setting',
 		type: 1,

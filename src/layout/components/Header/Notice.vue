@@ -3,9 +3,7 @@
 		<template #reference>
 			<div class="header-action-item">
 				<el-badge :value="3" :max="99">
-          <el-icon>
-            <i-ep-bell></i-ep-bell>
-          </el-icon>
+						<svg-icon class-name="notice" size="18"></svg-icon>
 				</el-badge>
 			</div>
 		</template>
@@ -58,11 +56,11 @@ const list = [
 	display: flex;
 	align-items: center;
 	height: 100%;
-	font-size: 18px;
 	padding: 0 8px;
 	cursor: pointer;
   .el-badge{
     height: 18px;
+		margin-top: -3px;
   }
 	&:hover {
 		background-color: var(--el-fill-color-light);

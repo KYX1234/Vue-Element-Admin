@@ -1,6 +1,6 @@
 <template>
 	<div class="header-action-item" @click="drawer = true">
-		<i-ep-setting></i-ep-setting>
+      <svg-icon class-name="setting" size="18"></svg-icon>
 	</div>
 	<ProjectSetting v-model:drawer="drawer" />
 </template>
@@ -16,7 +16,6 @@ const drawer = ref(false)
 	display: flex;
 	align-items: center;
 	height: 100%;
-	font-size: 15px;
 	padding: 0 8px;
 	cursor: pointer;
 
