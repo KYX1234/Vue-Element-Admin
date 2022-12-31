@@ -1,24 +1,13 @@
-<template>
-	<div class="testRef" />
-</template>
-
-<script lang="ts" setup>
 import * as echarts from 'echarts/core'
 import { BarChart, LineChart, PieChart } from 'echarts/charts'
 
 import {
 	TitleComponent,
-	TitleComponentOption,
 	TooltipComponent,
-	TooltipComponentOption,
 	GridComponent,
-	GridComponentOption,
 	LegendComponent,
-	LegendComponentOption,
 	ToolboxComponent,
-	ToolboxComponentOption,
-	TransformComponent,
-	TransformComponentOption
+	TransformComponent
 } from 'echarts/components'
 // 标签自动布局、全局过渡动画等特性
 import { LabelLayout, UniversalTransition } from 'echarts/features'
@@ -34,14 +23,11 @@ echarts.use([
 	TooltipComponent,
 	GridComponent,
 	LegendComponent,
-  ToolboxComponent,
-  TransformComponent,
+	ToolboxComponent,
+	TransformComponent,
 	LabelLayout,
 	UniversalTransition,
 	CanvasRenderer
 ])
 
-const testRef = ref()
-</script>
-
-<style lang="scss" scoped></style>
+export default echarts;

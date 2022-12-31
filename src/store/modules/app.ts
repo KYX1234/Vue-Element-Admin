@@ -29,7 +29,6 @@ export const useAppStore = defineStore({
 			this.changePrimary(this.themeColor)
 		},
 		changePrimary(color: string) {
-			
 			document.documentElement.style.setProperty('--el-color-primary', color)
 			document.documentElement.style.setProperty('--el-color-primary-rgb', hexToRgb(color))
 			document.documentElement.style.setProperty(
