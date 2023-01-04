@@ -1,12 +1,10 @@
 <template>
 <div>
- <Panel></Panel>
+111
 </div>
 </template>
 
 <script lang='ts' setup>
-import Panel from './components/Panel.vue';
-
 
 </script>
 

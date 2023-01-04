@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Echarts: typeof import('./../src/components/Echarts/index.vue')['default']
     ElBadge: typeof import('element-plus/es')['ElBadge']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -27,6 +26,7 @@ declare module '@vue/runtime-core' {
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElRow: typeof import('element-plus/es')['ElRow']
+    ElRowa: typeof import('element-plus/es')['ElRowa']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
