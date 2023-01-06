@@ -13,11 +13,6 @@
 		</el-form>
 		<el-table :data="state.list" border v-loading="state.loading">
 			<el-table-column label="ID" prop="id"></el-table-column>
-			<el-table-column label="头像">
-				<template #default="{row}">
-					<el-avatar :src="row.avatar" />
-				</template>
-			</el-table-column>
 			<el-table-column label="名称" prop="name"></el-table-column>
 			<el-table-column label="所属权限" prop="id"></el-table-column>
 			<el-table-column label="手机号" prop="id"></el-table-column>
