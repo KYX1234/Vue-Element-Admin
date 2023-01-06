@@ -42,7 +42,6 @@ const appStore = useAppStore()
 		.sidebar-title {
 			margin-left: 12px;
 			font-size: 16px;
-			font-weight: 600;
 			white-space: nowrap;
 			font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
 		}

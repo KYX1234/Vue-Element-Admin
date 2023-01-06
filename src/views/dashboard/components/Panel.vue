@@ -111,7 +111,7 @@
 		</el-row>
 		<!-- 占位卡片 -->
 		<el-row>
-			<el-col class="box-wrap" :md="3" :sm="12" v-for="(item, index) in cardList" :key="index">
+			<el-col class="box-wrap" :md="6" :sm="12" v-for="(item, index) in cardList" :key="index">
 				<el-card class="box-card" shadow="never">
 					<el-row justify="center">
 						<div style="text-align: center">
@@ -131,7 +131,7 @@
 					<template #header>
 						<el-row justify="space-between">
 							<span>成都降雨趋势分析</span>
-							<el-tag>月</el-tag>
+							<el-tag type="danger">天</el-tag>
 						</el-row>
 					</template>
 					<LineChart />

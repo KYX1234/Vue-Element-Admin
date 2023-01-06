@@ -3,5 +3,7 @@ import { MenuInfo } from './type'
 
 /** @desc 获取动态菜单 */
 export const menuList = () => {
-	return request.get<ApiRes<MenuInfo[]>>(`/mock/user/menu`)
+	return request.get<ApiRes<MenuInfo[]>>(`/mock/menu`)
 }
+
+// 

@@ -1,5 +1,5 @@
 <template>
-	<el-sub-menu :index="data.path" v-if="data.children && data.children.length > 0" :popper-class="appStore.isDark?'dark':''">
+	<el-sub-menu :index="data.path" v-if="data.children && data.children.length > 0" :popper-class="appStore.menuMode">
 		<template #title>
 			<el-icon>
 				<svg-icon :class-name="data.meta?.icon"></svg-icon>

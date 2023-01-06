@@ -35,10 +35,6 @@
 				:class="[appStore.menuMode === 'dark' && 'is-select']"
 				@click="appStore.setMenuMode('dark')"
 			></li>
-			<li
-				:class="[appStore.menuMode === 'header-dark' && 'is-select']"
-				@click="appStore.setMenuMode('header-dark')"
-			></li>
 		</ul>
 		<el-divider>界面显示</el-divider>
 		<ul class="show-setting">
@@ -185,23 +181,6 @@ const close = () => {
 				width: 100%;
 				height: 20%;
 				background: #ffffff;
-			}
-		}
-		&:nth-child(3) {
-			&::before {
-				content: '';
-				position: absolute;
-				width: 15%;
-				height: 100%;
-				background: #141414;
-				z-index: 2;
-			}
-			&::after {
-				content: '';
-				position: absolute;
-				width: 100%;
-				height: 20%;
-				background: #141414;
 			}
 		}
 	}
