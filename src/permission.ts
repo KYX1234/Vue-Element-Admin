@@ -1,5 +1,4 @@
 import router from '@/router'
-import { ElMessage } from 'element-plus'
 import { useUserStore, useRouteStore } from '@/store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -7,12 +6,12 @@ import { clearPending } from '@/utils/request'
 
 NProgress.configure({ showSpinner: false }) // 进度环显示/隐藏
 
-// 白名单路由
-const whiteList = ['/login']
-
+/**
+ * @description 路由拦截 beforeEach
+ * */
 router.beforeEach(async (to, from, next) => {
-
-  clearPending()
+  // 跳转页面时 清除axios请求，考虑有异步任务会导致报错
+  // clearPending()
   
 	const hasToken = useUserStore().token
 
@@ -26,7 +25,7 @@ router.beforeEach(async (to, from, next) => {
 	// 判断是否有 Token，没有重定向到 login
 	if (!hasToken) return next(`/login?redirect=${to.path}`);
 
-	// 如果没有菜单列表，重载菜单列表并添加动态路由
+	// 判断是否有 菜单列表，没有重载菜单列表并添加动态路由
 	const hasRoutes = useRouteStore().addRoutes.length > 0;
 	if (!hasRoutes) {
     await useRouteStore().initRoutes();
