@@ -11,15 +11,29 @@
 				<el-button :icon="Search">搜索</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="state.list" border v-loading="state.loading">
-			<el-table-column label="ID" prop="id"></el-table-column>
-			<el-table-column label="名称" prop="name"></el-table-column>
-			<el-table-column label="所属权限" prop="id"></el-table-column>
-			<el-table-column label="手机号" prop="id"></el-table-column>
-			<el-table-column label="邮箱" prop="id"></el-table-column>
-			<el-table-column label="状态" prop="status"></el-table-column>
-			<el-table-column label="创建时间" prop="creat_at"></el-table-column>
-			<el-table-column label="操作"></el-table-column>
+	
+		<el-table :data="state.list" v-loading="state.loading" style="width: 100%">
+			<el-table-column label="ID" prop="id" align="center" width="100"></el-table-column>
+			<el-table-column label="名称" prop="name" align="center"></el-table-column>
+			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
+			<el-table-column label="角色" prop="role" align="center">
+				<template #default="scope">
+					<el-tag type="">{{ scope.row.status?'启用':'禁用' }}</el-tag>
+					</template>
+			</el-table-column>
+			<el-table-column label="状态" prop="status" align="center">
+				<template #default="scope">
+					<el-tag :type="scope.row.status?'success':'info'">{{ scope.row.status?'启用':'禁用' }}</el-tag>
+				</template>
+			</el-table-column>
+			<el-table-column label="创建时间" prop="creat_at" width="180" align="center"></el-table-column>
+			<el-table-column label="操作" align="center" width="260" fixed="right">
+				<template #default>
+					<el-button type="primary" plain>编辑</el-button>
+					<el-button type="" plain>菜单权限</el-button>
+					<el-button type="danger" plain>删除</el-button>
+				</template>
+			</el-table-column>
 		</el-table>
 	</el-card>
 </template>

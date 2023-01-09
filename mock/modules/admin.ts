@@ -11,12 +11,14 @@ export default [
 			const { page = 1, limit = 10 } = query;
 			for (let i = 0; i < limit; i++){
 				result.push({
-					id: '@integer(10,999999)',
+					id: '@integer(10,100)',
 					name: '@cname()',
 					avatar: Random.image('200x100', Random.color(), '#FFF', 'png', '!'),
-					email:'@email',
+					phone:/^1[34578]\d{9}$/,
+					email: '@email',
+					'role|1':['超级管理员','普通用户'],
 					'sex|1': [0,1],
-					'status|1': [true, false],
+					'status': '@boolean',
 					creat_at: '@datetime',
 					end_at: '@datetime',
 				});

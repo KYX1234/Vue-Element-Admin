@@ -1,13 +1,7 @@
 <template>
-	<el-config-provider>
+	<el-config-provider :message="{max: 1}">
 		<router-view/>
 	</el-config-provider>
-
-	<!-- <router-view v-slot="{ Component }">
-    <transition mode="out-in" appear>
-      <component :is="Component" />
-    </transition>
-  </router-view> -->
 </template>
 
 <script lang="ts" setup></script>

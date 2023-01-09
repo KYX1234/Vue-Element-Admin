@@ -99,7 +99,6 @@
 	}
 }
 
-
 // 折叠时popup样式
 .el-menu--popup-container {
 	.el-menu-item {
@@ -110,9 +109,20 @@
 		}
 	}
 	&.dark {
-		.el-menu{
+		.el-menu {
 			--el-menu-text-color: #b9b9b9;
 			--el-menu-bg-color: #001428;
 		}
 	}
 }
+
+// table
+// .el-table {
+// 	flex: 1;
+// 	table {
+// 		width: 100%;
+// 	}
+// 	.el-table__header th.el-table__cell {
+// 		background-color: var(--el-fill-color-light);
+// 	}
+// }
