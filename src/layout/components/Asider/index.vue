@@ -1,7 +1,7 @@
 <template>
 	<div
-		:class="['sidebar-container', appStore.menuMode]"
 		:style="{ width: appStore.isCollapse ? '65px' : '200px' }"
+		:class="['sidebar-container', appStore.menuMode]"	
 	>
 		<Logo :collapse="appStore.isCollapse" />
 		<el-scrollbar>
@@ -34,7 +34,7 @@ const activeMenu = computed(() => route.path)
 <style lang="scss" scoped>
 .sidebar-container {
 	flex-shrink: 0;
-	transition:width 0.3s ease 0s;
+	transition:all 0.3s ease-in-out;
 	z-index: 99;
 	background-color: var(--el-menu-bg-color);
 	box-shadow: var(--el-box-shadow-lighter);
@@ -45,6 +45,7 @@ const activeMenu = computed(() => route.path)
 			border-right: none;
 			width: 100%;
 			background: transparent;
+			transition: all 10ms;
 		}
 	}
 }

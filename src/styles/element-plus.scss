@@ -40,52 +40,27 @@
 	}
 	// 折叠
 	.el-menu.el-menu--collapse {
-		.el-menu-item {
-			&.is-active {
-				position: relative;
-				background: rgba(var(--el-color-primary-rgb), 0.09);
-				&::before {
-					position: absolute;
-					top: 0;
-					left: 0;
-					bottom: 0;
-					right: 0;
-					z-index: 2;
-					width: 3px;
-					content: '';
-					background-color: var(--el-color-primary);
-				}
-			}
-			&:not(.is-active):hover {
-				background: transparent;
-				color: var(--el-color-primary);
+		.el-menu-item.is-active,
+		.el-sub-menu.is-active .el-sub-menu__title {
+			position: relative;
+			background: rgba(var(--el-color-primary-rgb), 0.09);
+			color: var(--el-color-primary);
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				z-index: 2;
+				width: 3px;
+				content: '';
+				background-color: var(--el-color-primary);
 			}
 		}
-		.el-sub-menu {
-			&.is-active {
-				.el-sub-menu__title {
-					position: relative;
-					background: rgba(var(--el-color-primary-rgb), 0.09);
-					color: var(--el-color-primary);
-					&::before {
-						position: absolute;
-						top: 0;
-						left: 0;
-						bottom: 0;
-						right: 0;
-						z-index: 2;
-						width: 3px;
-						content: '';
-						background-color: var(--el-color-primary);
-					}
-				}
-			}
-			&:not(.is-active) {
-				.el-sub-menu__title:hover {
-					background: transparent;
-					color: var(--el-color-primary);
-				}
-			}
+		.el-menu-item:not(.is-active):hover,
+		.el-sub-menu:not(.is-active) .el-sub-menu__title:hover {
+			background: transparent;
+			color: var(--el-color-primary);
 		}
 	}
 }
@@ -101,12 +76,9 @@
 
 // 折叠时popup样式
 .el-menu--popup-container {
-	.el-menu-item {
-		&.is-active,
-		&:hover {
+	.el-menu-item.is-activ,.el-menu-item:hover {
 			background-color: transparent;
 			color: var(--el-color-primary);
-		}
 	}
 	&.dark {
 		.el-menu {
