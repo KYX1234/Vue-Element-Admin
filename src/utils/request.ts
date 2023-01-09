@@ -1,35 +1,36 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { getToken } from '@/utils/auth'
 import qs from 'qs'
 
 const service: AxiosInstance = axios.create({
 	// baseURL: process.env.VUE_APP_API_PREFIX,
-	timeout: 30 * 1000
+	timeout: 10 * 1000
 })
 
 // 声明一个 Map 用于存储每个请求的标识 和 取消函数,如果不需要取消重复请求，可以注释removePending/addPending/removePending 方法引用
 const pending = new Map()
 
-// 请求拦截器
+/**
+ * @description 请求拦截器
+ * */
 service.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		removePending(config) // 在请求开始前，对之前的请求做检查取消操作
 		addPending(config) // 将当前请求添加到 pending 中
 		const token = getToken()
-		if (token) {
-			if (!config.headers) {
-				config.headers = {}
-			}
-			config.headers['Authorization'] = token
+		if (token && config.headers && typeof config.headers.set === 'function') {
+			config.headers.set('Authorization', token)
 		}
 		return config
 	},
-	error => {
+	(error: AxiosError) => {
 		return Promise.reject(error)
 	}
 )
 
-// 响应拦截器
+/**
+ * @description 响应拦截器
+ * */
 service.interceptors.response.use(
 	(response: AxiosResponse) => {
 		removePending(response.config) // 在请求结束后，移除本次请求
@@ -41,20 +42,21 @@ service.interceptors.response.use(
 		return data
 	},
 	error => {
-		if (axios.isCancel(error)) {
-		} else {
-			ElMessage.closeAll()
-			ElMessage.error(
-				error instanceof Error
-					? error.message
-					: String(error) || '系统异常, 请检查网络或联系管理员！'
-			)
-			return Promise.reject(error)
-		}
+		// 取消重复的 axios 不处理报错
+		if (axios.isCancel(error)) return
+		// 接口超时
+		if (error?.message?.includes('timeout')) ElMessage.error('请求超时！请您稍后重试')
+		// 其它错误
+		ElMessage.error(
+			error instanceof Error ? error.message : String(error) || '系统异常, 请检查网络或联系管理员！'
+		)
+		return Promise.reject(error)
 	}
 )
 
-// 添加请求
+/**
+ * @description 添加请求
+ * */
 const addPending = (config: AxiosRequestConfig) => {
 	const url = [
 		config.method,
@@ -72,7 +74,9 @@ const addPending = (config: AxiosRequestConfig) => {
 		})
 }
 
-// 移除请求
+/**
+ * @description 移除请求
+ * */
 const removePending = (config: AxiosRequestConfig) => {
 	const url = [
 		config.method,
@@ -88,7 +92,9 @@ const removePending = (config: AxiosRequestConfig) => {
 	}
 }
 
-// 清空 pending 中的请求（在路由跳转时调用）
+/**
+ * @description 清空 pending 中的请求（在路由跳转时调用）
+ * */
 export const clearPending = () => {
 	for (const [url, cancel] of pending) {
 		cancel(url)
@@ -96,7 +102,9 @@ export const clearPending = () => {
 	pending.clear()
 }
 
-// 封装axios类型
+/**
+ * @description 封装axios类型
+ * */
 const request = {
 	get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
 		return service.get(url, config)

@@ -41,9 +41,7 @@ const getList = async () => {
 		state.loading = true
 		const { data } = await adminList()
 		state.list = data.data
-	} catch (error) {
-		return error
-	} finally {
+	}finally {
 		state.loading = false
 	}
 }
