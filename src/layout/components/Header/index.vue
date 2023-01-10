@@ -1,5 +1,5 @@
 <template>
-	<div :class="['header-container', appStore.menuMode]">
+	<el-header :class="['header-container', appStore.menuMode]">
 		<div class="header-container-left">
 			<MenuCollapseVue />
 			<Breadcrumb />
@@ -13,7 +13,7 @@
 			<InfoDialog />
 			<Setting />
 		</div>
-	</div>
+	</el-header>
 </template>
 
 <script lang="ts" setup name="Header">
@@ -37,6 +37,7 @@ const appStore = useAppStore()
 	justify-content: space-between;
 	align-items: center;
 	height: 48px;
+	padding: 0;
 	border-bottom: 1px solid var(--el-border-color-lighter);
 	.header-container-left {
 		display: flex;

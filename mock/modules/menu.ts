@@ -46,6 +46,30 @@ const menu = [
 				type: 1
 			}
 		]
+	},
+	{
+		id: 2,
+		pid: 0,
+		title: '测试管理',
+		sort: 1,
+		show: 1,
+    icon: 'form',
+		component: '',
+		name:'test',
+		type: 1,
+		children: [
+			{
+				icon: 'form',
+				id: 21,
+				title: '测试页面1',
+				pid: 1,
+        show: 1,
+        component:'/test/test1',
+				sort: 0,
+				name:'test1',
+				type: 1
+			}
+		]
 	}
 ]
 export default [

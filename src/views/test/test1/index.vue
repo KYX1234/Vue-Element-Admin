@@ -16,9 +16,13 @@
 			<el-table-column label="ID" prop="id" align="center" width="100"></el-table-column>
 			<el-table-column label="名称" prop="name" align="center"></el-table-column>
 			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
-			<el-table-column label="角色" prop="role" align="center">
+			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
+			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
+			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
+			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
+			<!-- <el-table-column label="角色" prop="role" align="center">
 				<template #default="scope">
-					<el-tag type="">{{ scope.row.status?'超级管理员':'普通用户' }}</el-tag>
+					<el-tag type="">{{ scope.row.status?'启用':'禁用' }}</el-tag>
 					</template>
 			</el-table-column>
 			<el-table-column label="状态" prop="status" align="center">
@@ -33,7 +37,7 @@
 					<el-button type="" plain>菜单权限</el-button>
 					<el-button type="danger" plain>删除</el-button>
 				</template>
-			</el-table-column>
+			</el-table-column> -->
 		</el-table>
 	</el-card>
 </template>

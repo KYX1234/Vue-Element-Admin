@@ -4,7 +4,7 @@
 			<el-icon>
 				<svg-icon :class-name="data.meta?.icon"></svg-icon>
 			</el-icon>
-			<span>{{ data.meta?.title }}</span>
+			<span class="menu">{{ data.meta?.title }}</span>
 		</template>
 		<menu-item v-for="child in data.children" :key="child.path" :data="child"></menu-item>
 	</el-sub-menu>
