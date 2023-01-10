@@ -1,14 +1,11 @@
 <template>
 	<div class="sidebar-logo-container" :style="{ width: collapse ? '65px' : '210px' }">
-		<transition name="zoom-out" mode="out-in" >
-			<router-link key="collapse" class="sidebar-logo-link" to="/" v-if="!collapse">
-				<img src="favicon.ico" alt="logo" class="sidebar-logo" />
-				<span class="sidebar-title">my-Admin-pro-asdasd</span>
-			</router-link>
-			<router-link key="expand" class="sidebar-logo-link" to="/" v-else>
-				<img src="favicon.ico" alt="logo" class="sidebar-logo" />
-			</router-link>
-		</transition>
+		<router-link key="collapse" class="sidebar-logo-link" to="/" >
+			<img src="favicon.ico" alt="logo" class="sidebar-logo" />
+			<transition name="zoom-fade">
+				<span v-if="!collapse" class="sidebar-title">my-Admin-pro</span>
+			</transition>
+		</router-link>
 	</div>
 </template>
 
@@ -19,7 +16,6 @@ defineProps({
 		required: true
 	}
 })
-
 </script>
 
 <style lang="scss" scoped>
@@ -34,12 +30,12 @@ defineProps({
 		flex: 1;
 		height: 100%;
 		align-items: center;
-		padding: 0 20px;
+		justify-content: center;
 
 		.sidebar-logo {
 			display: inline-block;
-			width: 25px;
-			height: 25px;
+			width: 27px;
+			height: 27px;
 			flex-shrink: 0;
 			vertical-align: middle;
 		}
