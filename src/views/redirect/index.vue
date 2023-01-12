@@ -3,13 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-const router = useRouter()
-const route = useRoute()
+const { currentRoute, replace } = useRouter()
 
-const { params, query } = route
+const { params, query } = unref(currentRoute)
 const { path } = params
 
-router.replace({
+replace({
 	path: '/' + (Array.isArray(path) ? path.join('/') : path),
 	query
 })

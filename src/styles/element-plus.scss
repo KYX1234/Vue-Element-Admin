@@ -18,8 +18,15 @@
 	}
 }
 
+// aside
 .sidebar-container {
-	.menu {
+	.sidebar-logo-container {
+		width: 64px;
+		&:not(.collapse) {
+			width: 210px;
+		}
+	}
+	.menu-title {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -28,6 +35,7 @@
 
 	// 展开
 	.el-menu:not(.el-menu--collapse) {
+		width: 210px;
 		.el-sub-menu__title {
 			&:hover {
 				background: transparent;
@@ -56,21 +64,20 @@
 			color: var(--el-color-primary);
 		}
 	}
-}
-
-// dark&&header-dark
-.sidebar-container.dark {
-	--el-menu-bg-color: #001428;
-	--el-menu-text-color: #b9b9b9;
-	.sidebar-logo-container {
-		border-bottom-color: #363637;
-		color: #ffffff;
+	// dark&&header-dark
+	&.dark {
+		--el-menu-bg-color: #001428;
+		--el-menu-text-color: #b9b9b9;
+		.sidebar-logo-container {
+			border-bottom-color: #363637;
+			color: #ffffff;
+		}
 	}
 }
 
 // 折叠时popup样式
 .el-menu--popup-container {
-	.el-menu-item.is-activ,
+	.el-menu-item.is-active,
 	.el-menu-item:hover {
 		background-color: transparent;
 		color: var(--el-color-primary);
@@ -88,7 +95,23 @@
 	table {
 		width: 100%;
 	}
-	.el-table__header th.el-table__cell {
+	.el-table__header tr th.el-table__cell {
 		background-color: var(--el-fill-color-light);
 	}
 }
+
+// 表格 pagination 样式
+.el-pagination {
+	margin-top: 10px;
+}
+
+// 行内 form 样式
+.el-form--inline{
+	.el-form-item{
+		flex: 1;
+	}
+	.el-input{
+		width: 180px;
+	}
+	
+} 

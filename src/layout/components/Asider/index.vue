@@ -1,8 +1,5 @@
 <template>
-	<el-aside
-		:style="{ width: isCollapse ? '65px' : '210px' }"
-		:class="['sidebar-container', appStore.menuMode]"
-	>
+	<el-aside :class="['sidebar-container', appStore.menuMode]" width="max-width">
 		<Logo :collapse="isCollapse" />
 		<el-scrollbar>
 			<el-menu

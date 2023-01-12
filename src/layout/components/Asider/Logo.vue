@@ -1,10 +1,8 @@
 <template>
-	<div class="sidebar-logo-container" :style="{ width: collapse ? '65px' : '210px' }">
-		<router-link key="collapse" class="sidebar-logo-link" to="/" >
+	<div :class="['sidebar-logo-container', collapse && 'collapse']">
+		<router-link key="collapse" class="sidebar-logo-link" to="/">
 			<img src="favicon.ico" alt="logo" class="sidebar-logo" />
-			<transition name="zoom-fade">
-				<span v-if="!collapse" class="sidebar-title">my-Admin-pro</span>
-			</transition>
+			<span v-if="!collapse" class="sidebar-title">ElementAdmin</span>
 		</router-link>
 	</div>
 </template>
@@ -25,6 +23,8 @@ defineProps({
 	height: 48px;
 	box-sizing: border-box;
 	transition: all 0.3s;
+
+
 	.sidebar-logo-link {
 		display: flex;
 		flex: 1;
@@ -45,8 +45,15 @@ defineProps({
 			font-size: 16px;
 			white-space: nowrap;
 			overflow: hidden;
+			// transform: scale(1);
 			text-overflow: ellipsis;
+			// transition: all 0.3s;
 			font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+			// &.collapse{
+			// 	margin-left: 0;
+			// 	width: 0;
+			// 	// transform: scale(0.5);
+			// }
 		}
 	}
 }
