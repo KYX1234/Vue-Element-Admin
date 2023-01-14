@@ -3,12 +3,26 @@ interface ApiRes<T> {
 	code: number
 	message: string
 	data: T
-	success: boolean
 }
 
 // navTabs数据格式
-interface NavTabsItem{
-	title: string,
-	name:string,
-	path:string
+interface NavTabsItem {
+	title: string
+	name: string
+	path: string
+}
+
+// dataList数据格式
+interface DataList<T> {
+	limit: number
+	page: number
+	total: number
+	data: T[]
+}
+
+// page数据格式
+interface Page{
+	current: number,
+	limit: number,
+	total: number
 }
