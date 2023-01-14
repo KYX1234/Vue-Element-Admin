@@ -1,23 +1,26 @@
 export interface State {
 	loading: boolean
-	list: Form[]
-	search: Search
-	page: Page
+	list: ListItem[]
+	search: SearchParams
+	page: Pages
 }
-export interface Search {
+
+export interface SearchParams{
 	status: string
 	phone: string
 }
+
 export interface EditState {
 	visible: boolean
-	form: Form
+	form: ListItem
 }
-export interface Form {
+
+export interface ListItem {
 	id: number
 	name: string
 	email: string
-	phone: number | string
-	password: number | string
+	phone: number|string
+	password: number|string
 	status: 0 | 1
 	role: string
 }

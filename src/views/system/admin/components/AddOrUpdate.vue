@@ -1,5 +1,10 @@
 <template>
-	<el-dialog v-model="state.visible" :title="state.form.id ? '编辑' : '添加'" width="43%">
+	<el-dialog
+		v-model="state.visible"
+		:title="state.form.id ? '编辑' : '添加'"
+		width="43%"
+		@closed="onReset"
+	>
 		<el-form :model="state.form" inline label-width="55px">
 			<el-form-item label="用户名">
 				<el-input v-model="state.form.name" placeholder="请输入用户名" clearable></el-input>
@@ -36,8 +41,8 @@
 </template>
 
 <script lang="ts" setup>
-import type {EditState, Form } from '../types'
-const state = reactive<EditState>({
+import type { EditState, ListItem } from '@/api'
+const initState = (): EditState => ({
 	visible: false,
 	form: {
 		id: 0,
@@ -49,9 +54,13 @@ const state = reactive<EditState>({
 		role: ''
 	}
 })
-const init = (data: Form) => {
+const state = reactive<EditState>(initState())
+const init = (data: ListItem) => {
 	state.visible = true
 	if (data) state.form = data
+}
+const onReset = () => {
+	Object.assign(state, initState())
 }
 defineExpose({ init })
 </script>

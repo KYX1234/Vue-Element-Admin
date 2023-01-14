@@ -21,8 +21,8 @@ interface DataList<T> {
 }
 
 // page数据格式
-interface Page{
+interface Pages{
 	current: number,
 	limit: number,
-	total: number
+	total?: number
 }

@@ -51,25 +51,26 @@ service.interceptors.response.use(
 
 
 
-/**
- * @description 封装axios类型
- * */
-const request = {
-	get<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
-		return service.get(url, config)
-	},
+// /**
+//  * @description 封装axios类型
+//  * */
+// const request = {
+// 	get<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
+// 		return service.get(url, config)
+// 	},
 
-	post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
-		return service.post(url, data, config)
-	},
+// 	post<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
+// 		return service.post(url, data, config)
+// 	},
 
-	put<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
-		return service.put(url, data, config)
-	},
+// 	put<T = any>(url: string, data?: object, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
+// 		return service.put(url, data, config)
+// 	},
 
-	delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
-		return service.delete(url, config)
-	}
-}
+// 	delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<ApiRes<T>> {
+// 		return service.delete(url, config)
+// 	}
+// }
 
-export default request
+// export default request
+export default service

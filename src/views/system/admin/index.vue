@@ -38,7 +38,7 @@
 				align="center"
 			></el-table-column>
 			<el-table-column label="操作" align="center" width="260" fixed="right">
-				<template #default="{row}">
+				<template #default="{ row }">
 					<el-button type="primary" plain @click="onAddOrUpdate(row)">编辑</el-button>
 					<el-button type="" plain>菜单权限</el-button>
 					<el-button type="danger" plain @click="onDelete">删除</el-button>
@@ -50,16 +50,16 @@
 			v-model:page="state.page"
 			@pagination="getList()"
 		></pagination>
-		<add-or-update ref="addOrUpdateRef"/>
+		<add-or-update ref="addOrUpdateRef" />
 	</el-card>
 </template>
 
 <script lang="ts" setup>
 import { Search, Plus } from '@element-plus/icons-vue'
 import { adminList } from '@/api'
-import type { State,Form } from './types'
+import type { State, ListItem } from '@/api'
 import AddOrUpdate from './components/AddOrUpdate.vue'
-const addOrUpdateRef=ref()
+const addOrUpdateRef = ref()
 const state = reactive<State>({
 	loading: false,
 	list: [],
@@ -73,7 +73,7 @@ const state = reactive<State>({
 		total: 0
 	}
 })
-const getList = async (current:number = state.page.current) => {
+const getList = async (current: number = state.page.current) => {
 	try {
 		state.loading = true
 		const { data } = await adminList({ current, limit: state.page.limit, ...state.search })
@@ -103,7 +103,7 @@ const onDelete = () => {
 			})
 		})
 }
-const onAddOrUpdate = (data?:Form) => {
+const onAddOrUpdate = (data?: ListItem) => {
 	addOrUpdateRef.value.init(data)
 }
 </script>
