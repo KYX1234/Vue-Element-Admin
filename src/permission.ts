@@ -2,7 +2,6 @@ import router from '@/router'
 import { useUserStore, useRouteStore } from '@/store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { clearPending } from '@/utils/request'
 
 NProgress.configure({ showSpinner: false }) // 进度环显示/隐藏
 

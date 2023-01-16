@@ -57,8 +57,9 @@
 <script lang="ts" setup>
 import { Search, Plus } from '@element-plus/icons-vue'
 import { adminList } from '@/api'
-import type { State, ListItem } from '@/api'
+import type { State, ListItem } from './index'
 import AddOrUpdate from './components/AddOrUpdate.vue'
+
 const addOrUpdateRef = ref()
 const state = reactive<State>({
 	loading: false,
@@ -73,9 +74,11 @@ const state = reactive<State>({
 		total: 0
 	}
 })
+
 const getList = async (current: number = state.page.current) => {
 	try {
 		state.loading = true
+		if(current===1) state.page.current =1
 		const { data } = await adminList({ current, limit: state.page.limit, ...state.search })
 		state.list = data.data
 		state.page.total = data.total

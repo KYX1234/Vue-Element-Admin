@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { SearchParams } from './type'
+import { SearchParams } from '@/views/system/admin'
 
 /** @desc 获取管理员列表 */
 export const adminList = (params: Pages & SearchParams) => {

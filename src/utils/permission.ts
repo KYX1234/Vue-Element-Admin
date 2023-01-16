@@ -1,8 +1,9 @@
-import { MenuInfo } from '@/api'
 import { Layout } from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 
 const viewsModules = import.meta.glob("@/views/**/*.vue");
+
+
 
 /**
  * @description 过滤后端返回路由组件

@@ -36,7 +36,6 @@ onMounted(() => {
 watch(
 	() => route.path,
 	() => {
-		if(route.name==='redirect') return 
 		handleNavTabs()
 	}
 )

@@ -31,7 +31,6 @@ const props = defineProps({
 })
 
 const pageNum = (val: number) => {
-	console.log(props.page)
 	emit('update:page', { ...props.page, current: val })
 	emit('pagination')
 }

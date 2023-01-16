@@ -1,5 +1,5 @@
 import { Random } from 'mockjs';
-import { success, fail } from '../base'
+import { success } from '../base'
 
 export default [
 	{
@@ -18,7 +18,7 @@ export default [
 					email: '@email',
 					'role|1':['超级管理员','普通用户'],
 					'sex|1': [0,1],
-					'status': '@boolean',
+					'status|1': [0,1],
 					creat_at: '@datetime',
 					end_at: '@datetime',
 				});

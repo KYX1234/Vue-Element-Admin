@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import { LoginParams } from './type'
+import type { LoginParams } from '@/views/login'
 
 /** @desc 登录 */
 export const login = (data: LoginParams)=> {

@@ -2,7 +2,7 @@
 	<el-dialog
 		v-model="state.visible"
 		:title="state.form.id ? '编辑' : '添加'"
-		width="43%"
+		width="600px"
 		@closed="onReset"
 	>
 		<el-form :model="state.form" inline label-width="55px">
@@ -11,6 +11,15 @@
 			</el-form-item>
 			<el-form-item label="邮箱">
 				<el-input v-model="state.form.email" placeholder="请输入邮箱" clearable></el-input>
+			</el-form-item>
+			<el-form-item label="邮箱">
+				<el-input
+					v-model="state.form.email"
+					:rows="2"
+					type="textarea"
+					placeholder="请输入邮箱"
+					clearable
+				></el-input>
 			</el-form-item>
 			<el-form-item label="手机号">
 				<el-input v-model="state.form.phone" placeholder="请输入手机号" clearable></el-input>
@@ -41,7 +50,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { EditState, ListItem } from '@/api'
+import type { EditState, ListItem } from '../index'
 const initState = (): EditState => ({
 	visible: false,
 	form: {
@@ -57,7 +66,7 @@ const initState = (): EditState => ({
 const state = reactive<EditState>(initState())
 const init = (data: ListItem) => {
 	state.visible = true
-	if (data) state.form = data
+	if (data) state.form = { ...data }
 }
 const onReset = () => {
 	Object.assign(state, initState())
