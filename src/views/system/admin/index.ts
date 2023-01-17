@@ -3,18 +3,6 @@ export interface SearchParams {
 	phone: string
 }
 
-export interface State {
-	loading: boolean
-	list: ListItem[]
-	search: SearchParams
-	page: Pages
-}
-
-export interface EditState {
-	visible: boolean
-	form: ListItem
-}
-
 export interface ListItem {
 	id: number
 	name: string

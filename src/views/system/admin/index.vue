@@ -1,21 +1,21 @@
 <template>
 	<el-card shadow="never">
-		<el-form :model="state.search" inline class="search">
+		<el-form :model="search" inline class="search">
 			<el-form-item label="手机号">
-				<el-input v-model="state.search.phone" placeholder="请输入手机号" clearable></el-input>
+				<el-input v-model="search.phone" placeholder="请输入手机号" clearable></el-input>
 			</el-form-item>
 			<el-form-item label="状态">
-				<el-select v-model="state.search.status" clearable placeholder="请选择">
+				<el-select v-model="search.status" clearable placeholder="请选择">
 					<el-option label="启用" :value="1"></el-option>
 					<el-option label="禁用" :value="0"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
-				<el-button :icon="Search" @click="getList()" :loading="state.loading">搜索</el-button>
+				<el-button :icon="Search" @click="getList()" :loading="loading">搜索</el-button>
 				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="state.list" v-loading="state.loading">
+		<el-table :data="list" v-loading="loading">
 			<el-table-column label="ID" prop="id" align="center" width="100"></el-table-column>
 			<el-table-column label="名称" prop="name" align="center"></el-table-column>
 			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
@@ -46,8 +46,8 @@
 			</el-table-column>
 		</el-table>
 		<pagination
-			:disabled="state.loading"
-			v-model:page="state.page"
+			:disabled="loading"
+			v-model:page="page"
 			@pagination="getList()"
 		></pagination>
 		<add-or-update ref="addOrUpdateRef" />
@@ -57,33 +57,31 @@
 <script lang="ts" setup>
 import { Search, Plus } from '@element-plus/icons-vue'
 import { adminList } from '@/api'
-import type { State, ListItem } from './index'
+import type { ListItem } from './index'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 
 const addOrUpdateRef = ref()
-const state = reactive<State>({
-	loading: false,
-	list: [],
-	search: {
-		status: '',
-		phone: ''
-	},
-	page: {
-		current: 1,
-		limit: 10,
-		total: 0
-	}
+const loading = ref(false)
+const list = ref<ListItem[]>([])
+const page = reactive({
+	current: 1,
+	limit: 10,
+	total: 0
+})
+const search = reactive({
+	status: '',
+	phone: ''
 })
 
-const getList = async (current: number = state.page.current) => {
+const getList = async (current: number = page.current) => {
 	try {
-		state.loading = true
-		if(current===1) state.page.current =1
-		const { data } = await adminList({ current, limit: state.page.limit, ...state.search })
-		state.list = data.data
-		state.page.total = data.total
+		loading.value = true
+		if (current === 1) page.current = 1
+		const { data } = await adminList({ current, limit: page.limit, ...search })
+		list.value = data.data
+		page.total = data.total
 	} finally {
-		state.loading = false
+		loading.value = false
 	}
 }
 getList()
