@@ -2,7 +2,7 @@
   <div class="login">
     <section class="login-box">
       <div class="login-box-left">
-        <img src="@/assets/svg/login-img.svg" alt="">
+        <img src="@/assets/images/login-img.svg" alt="">
       </div>
       <div class="login-box-right">
         <div class="title">MY-Admin</div>
@@ -78,7 +78,7 @@ const onSubmit=async ()=>{
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url('@/assets/svg/login-bg.svg');
+  background-image: url('@/assets/images/login-bg.svg');
   position: relative;
   .login-box {
     position: absolute;

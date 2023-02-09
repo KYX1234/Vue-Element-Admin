@@ -15,76 +15,60 @@
 				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="list" v-loading="loading">
-			<el-table-column label="ID" prop="id" align="center" width="100"></el-table-column>
-			<el-table-column label="名称" prop="name" align="center"></el-table-column>
-			<el-table-column label="手机号" prop="phone" align="center" width="140"></el-table-column>
-			<el-table-column label="角色" prop="role" align="center">
-				<template #default="scope">
-					<el-tag type="">{{ scope.row.status ? '超级管理员' : '普通用户' }}</el-tag>
-				</template>
-			</el-table-column>
-			<el-table-column label="状态" prop="status" align="center">
-				<template #default="scope">
-					<el-tag :type="scope.row.status ? 'success' : 'info'">
-						{{ scope.row.status ? '启用' : '禁用' }}
-					</el-tag>
-				</template>
-			</el-table-column>
-			<el-table-column
-				label="创建时间"
-				prop="creat_at"
-				width="180"
-				align="center"
-			></el-table-column>
-			<el-table-column label="操作" align="center" width="260" fixed="right">
-				<template #default="{ row }">
-					<el-button type="primary" plain @click="onAddOrUpdate(row)">编辑</el-button>
-					<el-button type="" plain>菜单权限</el-button>
-					<el-button type="danger" plain @click="onDelete">删除</el-button>
-				</template>
-			</el-table-column>
-		</el-table>
-		<pagination
-			:disabled="loading"
-			v-model:page="page"
-			@pagination="getList()"
-		></pagination>
+		<BaseTable
+			:data="tableData"
+			:loading="loading"
+			:column="column"
+			:page="page"
+			@handleSizeChange="handleSizeChange"
+			@handleCurrentChange="handleCurrentChange"
+		>
+			<template #action="scope">
+				<el-button type="primary" plain @click="onAddOrUpdate(scope)">编辑</el-button>
+				<el-button type="primary" plain>菜单权限</el-button>
+				<el-button type="danger" plain @click="onDelete">删除</el-button>
+			</template>
+		</BaseTable>
+
 		<add-or-update ref="addOrUpdateRef" />
 	</el-card>
 </template>
 
 <script lang="ts" setup>
 import { Search, Plus } from '@element-plus/icons-vue'
-import { adminList } from '@/api'
-import type { ListItem } from './index'
+import { getAdminList } from '@/api'
 import AddOrUpdate from './components/AddOrUpdate.vue'
+import { useTable } from '@/hooks/useTable'
 
 const addOrUpdateRef = ref()
-const loading = ref(false)
-const list = ref<ListItem[]>([])
-const page = reactive({
-	current: 1,
-	limit: 10,
-	total: 0
-})
 const search = reactive({
 	status: '',
 	phone: ''
 })
-
-const getList = async (current: number = page.current) => {
-	try {
-		loading.value = true
-		if (current === 1) page.current = 1
-		const { data } = await adminList({ current, limit: page.limit, ...search })
-		list.value = data.data
-		page.total = data.total
-	} finally {
-		loading.value = false
-	}
-}
-getList()
+const { tableData, loading, page, getList, handleSizeChange, handleCurrentChange } = useTable(
+	getAdminList,
+	search
+)
+const column: Table.Column[] = [
+	{ type: 'selection', width: 50 },
+	{ type: 'index', width: 50, label: 'No.' },
+	{ prop: 'name', label: '名称' },
+	{ label: '手机号', prop: 'phone' },
+	{
+		label: '角色',
+		render: scope =>
+			h(ElTag, { type: 'success' }, () => (scope.row.role ? '超级管理员' : '普通用户'))
+	},
+	{
+		label: '状态',
+		render: scope =>
+			h(ElTag, { type: scope.row.status ? 'success' : 'info' }, () =>
+				scope.row.status ? '启用' : '禁用'
+			)
+	},
+	{ label: '创建时间', prop: 'creat_at', width: 180 },
+	{ label: '操作', slot: 'action', width: 260, fixed: 'right' }
+]
 const onDelete = () => {
 	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
 		confirmButtonText: '确认',
@@ -104,7 +88,7 @@ const onDelete = () => {
 			})
 		})
 }
-const onAddOrUpdate = (data?: ListItem) => {
+const onAddOrUpdate = (data?: Recordable) => {
 	addOrUpdateRef.value.init(data)
 }
 </script>

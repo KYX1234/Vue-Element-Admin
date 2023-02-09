@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { ListItem } from '../index'
 import type { FormInstance } from 'element-plus'
 const visible = ref(false)
 const formRef = ref<FormInstance>()
@@ -50,7 +49,7 @@ const form = reactive({
 	role: ''
 })
 
-const init = (data: ListItem) => {
+const init = (data:Recordable) => {
 	visible.value = true
 	if (data) Object.assign(form, data)
 }

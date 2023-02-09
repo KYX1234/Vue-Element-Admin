@@ -15,7 +15,7 @@ export const useRouteStore = defineStore({
 	actions: {
 		async generateRoutes() {
 			const { data } = await menuList()
-			const accessedRoutes = generateMenu([], data)
+			const accessedRoutes = generateMenu([], data.data)
 			this.addRoutes=accessedRoutes
 			return this.addRoutes;
 		},
