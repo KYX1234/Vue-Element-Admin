@@ -1,49 +1,62 @@
-export const useTable = (
+import { Ref } from "vue"
+
+interface TableData<T=any> {
+	loading:Ref<boolean> 
+	tableData: Ref<T[]>
+	page: {
+		current: number
+		limit: number
+		total: number
+	}
+	[key: string]: any
+}
+
+export const useTable = <T=any>(
 	api: (params: any) => Promise<any>,
 	searchParams?: Recordable,
 	isPageable: boolean = true,
 	callback?:(data: any) => any,
-) => {
-	const state = reactive({
-		loading: false,
-		tableData: [],
-		page: {
+): TableData<T> => {
+	const tableData = ref<T[]>([]) as Ref<T[]>
+	const loading=ref<boolean>(false)
+	const page= reactive({
 			current: 1,
 			limit: 10,
 			total: 0
-		}
 	})
 	onMounted(() => getList())
 
 	const getList = async () => {
 		try {
-			state.loading = true
+			loading.value = true
 			let { data } = await api({
 				...searchParams,
-				current: state.page.current,
-				limit: state.page.limit
+				current: page.current,
+				limit: page.limit
 			})
 			callback && (data = callback(data))
-			state.tableData = isPageable ? data.data: data 
-			if (isPageable) state.page.total = data.total
+			tableData.value = isPageable ? data.data: data 
+			if (isPageable) page.total = data.total
 		} finally {
-			state.loading = false
+			loading.value = false
 		}
 	}
 
 	const handleSizeChange = (val: number) => {
-		state.page.current = 1
-		state.page.limit = val
+		page.current = 1
+		page.limit = val
 		getList()
 	}
 
 	const handleCurrentChange = (val: number) => {
-		state.page.current = val
+		page.current = val
 		getList()
 	}
 
 	return {
-		...toRefs(state),
+		tableData,
+		page,
+		loading,
 		getList,
 		handleSizeChange,
 		handleCurrentChange

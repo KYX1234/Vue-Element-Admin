@@ -49,7 +49,7 @@ const form = reactive({
 	role: ''
 })
 
-const init = (data:Recordable) => {
+const init = (data: Recordable) => {
 	visible.value = true
 	if (data) Object.assign(form, data)
 }
