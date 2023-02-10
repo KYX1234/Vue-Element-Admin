@@ -62,7 +62,7 @@ const menu = [
 				icon: 'form',
 				id: 21,
 				title: '测试页面1',
-				pid: 1,
+				pid: 2,
         show: 1,
 				sort: 0,
 				name: 'test1',
@@ -72,7 +72,7 @@ const menu = [
 					{
 						icon: 'form',
 						id: 31,
-						title: '测试页面1',
+						title: '测试页面11',
 						pid: 21,
 						show: 1,
 						component:'/test/test1/index',
@@ -83,7 +83,7 @@ const menu = [
 					{
 						icon: 'form',
 						id: 32,
-						title: '测试页面1',
+						title: '测试页面12',
 						pid: 21,
 						show: 1,
 						component:'/test/test1/index',

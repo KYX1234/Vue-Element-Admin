@@ -2,7 +2,7 @@ import { Ref } from "vue"
 
 interface TableData<T=any> {
 	loading:Ref<boolean> 
-	tableData: Ref<T[]>
+	tableData: Ref<T[]> 
 	page: {
 		current: number
 		limit: number

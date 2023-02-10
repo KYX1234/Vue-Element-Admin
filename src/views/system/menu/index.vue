@@ -34,7 +34,7 @@
 			:total="page.total"
 			@pagination="getList"
 		/>
-		<add-or-update ref="addOrUpdateRef" :data="tableData"/>
+		<add-or-update ref="addOrUpdateRef" :data="tableData" />
 	</el-card>
 </template>
 
@@ -51,14 +51,19 @@ const page = reactive({
 	total: 0
 })
 const getList = async () => {
-	const { data } = await menuList({ current: page.current, limit: page.limit })
-	tableData.value = data.data
-	page.total = data.total
+	try {
+		loading.value = true
+		const { data } = await menuList({ current: page.current, limit: page.limit })
+		tableData.value = data.data
+		page.total = data.total
+	} finally {
+		loading.value = false
+	}
 }
 getList()
 
 const onAddOrUpdate = (data?: Recordable) => {
-		addOrUpdateRef.value.init(data)	
+	addOrUpdateRef.value.init(data)
 }
 
 const onDelete = () => {

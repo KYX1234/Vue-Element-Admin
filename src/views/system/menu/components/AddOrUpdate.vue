@@ -15,11 +15,12 @@
 			</el-form-item>
 			<el-form-item label="上级菜单" prop="name">
 				<el-tree-select
-					v-model="form.pid"
+					v-model="form.parentName"
 					:data="data"
 					:props="{ value: 'id', children: 'children', label: 'title' }"
 					check-strictly
 					clearable
+					@clear="onNodeClear"
 					:render-after-expand="false"
 					@node-click="onNodeClick"
 				/>
@@ -37,7 +38,7 @@
 		<template #footer>
 			<span class="dialog-footer">
 				<el-button @click="visible = false">取消</el-button>
-				<el-button type="primary" @click="visible = false">确认</el-button>
+				<el-button type="primary" @click="onSubmit">确认</el-button>
 			</span>
 		</template>
 	</el-dialog>
@@ -45,7 +46,12 @@
 
 <script lang="ts" setup>
 import { FormInstance } from 'element-plus'
-defineProps(['data'])
+interface TreeDataType {
+	title: string
+	id: string | number
+	children?: TreeDataType[]
+}
+const props = defineProps(['data'])
 const visible = ref(false)
 const formRef = ref<FormInstance>()
 const form = reactive({
@@ -53,24 +59,55 @@ const form = reactive({
 	type: 0,
 	name: '',
 	title: '',
-	pid: '',
+	pid: 0,
 	password: '',
 	component: '',
+	parentName: '',
 	hidden: 0,
 	icon: ''
 })
 
-const init = (data: Recordable) => {
+const init = (data: any) => {
 	visible.value = true
-	Object.keys(form).forEach((v:string) => {
-		form.v=data[v]
-	})
+	if (data) {
+		const { children, ...newData } = data
+		Object.assign(form, newData)
+		form.parentName = form.pid ? getNodeLabel(props.data) : ''
+	}
 }
-const onNodeClick = (data: any) => {
-	console.log(data)
+const getNodeLabel = (data: TreeDataType[]): string => {
+	if (data && data.length > 0) {
+		for (let index = 0; index < data.length; index++) {
+			const item = data[index]
+			if (item.id === form.pid) {
+				return item.title
+			} else {
+				if (item.children && item.children.length > 0) {
+					const label = getNodeLabel(item.children)
+					if (label) {
+						return label
+					} else {
+						continue
+					}
+				} else {
+					continue
+				}
+			}
+		}
+	}
+	return ''
+}
+const onNodeClick = (data: typeof form) => {
+	form.pid = data.id
+}
+const onNodeClear = () => {
+	form.pid = 0
 }
 const onReset = () => {
 	formRef.value!.resetFields()
+}
+const onSubmit = () => {
+	console.log('onSubmit', form)
 }
 defineExpose({ init })
 </script>
