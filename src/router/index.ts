@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { useRouteStore } from '@/store'
 
 export const Layout = () => import('@/layout/index.vue')
+export const ParentLayout = () => import('@/layout/parentLayout.vue')
 
 export const constantRoutes: RouteRecordRaw[] = [
 	{

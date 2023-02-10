@@ -1,9 +1,7 @@
-import { Layout } from '@/router'
+import { Layout,ParentLayout } from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 
 const viewsModules = import.meta.glob("@/views/**/*.vue");
-
-
 
 /**
  * @description 过滤后端返回路由组件
@@ -12,7 +10,7 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
 	data.forEach((item: MenuInfo) => {
 		const menu:RouteRecordRaw = {
 			path: `/${item.name}`,
-			component: item.component ? viewsModules["/src/views" + item.component + ".vue"] : Layout,
+			component: filterComponent(item.component),
 			children: [],
 			name: item.name,
       meta: {
@@ -30,7 +28,15 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
   })
 	return routes
 }
-
+const filterComponent=(component:string)=> {
+	if (component === 'Layout') {
+		return Layout
+	} else if (component !== 'ParentPage') {
+		return viewsModules["/src/views" + component + ".vue"]
+	}else{
+		return ParentLayout
+	}
+}
 /**
  * @description 判断根路由 Router
  * */

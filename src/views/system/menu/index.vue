@@ -10,7 +10,7 @@
 			<el-table-column label="类型" align="center">
 				<template #default="scope">
 					<el-tag :type="scope.row.type ? 'success' : ''">
-						{{ scope.row.type ? '菜单' : '目录' }}
+						{{ ['Layout', 'ParentLayout'].includes(scope.row.component) ? '目录' : '菜单' }}
 					</el-tag>
 				</template>
 			</el-table-column>
@@ -23,7 +23,7 @@
 			</el-table-column>
 			<el-table-column label="操作" align="center" fixed="right">
 				<template #default="scope">
-					<el-button type="primary" plain @click="onAddOrUpdate(scope)">编辑</el-button>
+					<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 					<el-button type="danger" plain @click="onDelete">删除</el-button>
 				</template>
 			</el-table-column>
@@ -34,7 +34,7 @@
 			:total="page.total"
 			@pagination="getList"
 		/>
-		<add-or-update ref="addOrUpdateRef" />
+		<add-or-update ref="addOrUpdateRef" :data="tableData"/>
 	</el-card>
 </template>
 
@@ -44,6 +44,7 @@ import AddOrUpdate from './components/AddOrUpdate.vue'
 const addOrUpdateRef = ref()
 const tableData = ref([])
 const loading = ref(false)
+
 const page = reactive({
 	current: 1,
 	limit: 10,
@@ -55,8 +56,9 @@ const getList = async () => {
 	page.total = data.total
 }
 getList()
+
 const onAddOrUpdate = (data?: Recordable) => {
-	addOrUpdateRef.value.init(data)
+		addOrUpdateRef.value.init(data)	
 }
 
 const onDelete = () => {

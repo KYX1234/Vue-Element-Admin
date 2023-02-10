@@ -1,5 +1,5 @@
 <template>
-	<el-dialog v-model="visible" :title="form.id ? '编辑' : '添加'" width="600px" @closed="onReset">
+	<el-dialog v-model="visible" :title="form.id ? '编辑' : '添加'" width="600px" @closed="onReset" append-to-body>
 		<el-form :model="form" inline label-width="55px" ref="formRef">
 			<el-form-item label="用户名" prop="name">
 				<el-input v-model="form.name" placeholder="请输入用户名" clearable></el-input>

@@ -8,7 +8,7 @@ const menu = [
 		sort: 1,
 		show: 1,
     icon: 'setting',
-		component: '',
+		component: 'Layout',
 		name:'setting',
 		type: 0,
 		children: [
@@ -54,7 +54,7 @@ const menu = [
 		sort: 1,
 		show: 1,
     icon: 'form',
-		component: '',
+		component: 'Layout',
 		name:'test',
 		type: 0,
 		children: [
@@ -64,10 +64,45 @@ const menu = [
 				title: '测试页面1',
 				pid: 1,
         show: 1,
+				sort: 0,
+				name: 'test1',
+				component:'ParentLayout',
+				type: 0,
+				children: [
+					{
+						icon: 'form',
+						id: 31,
+						title: '测试页面1',
+						pid: 21,
+						show: 1,
+						component:'/test/test1/index',
+						sort: 0,
+						name:'test11',
+						type: 1,	
+					},
+					{
+						icon: 'form',
+						id: 32,
+						title: '测试页面1',
+						pid: 21,
+						show: 1,
+						component:'/test/test1/index',
+						sort: 0,
+						name:'test12',
+						type: 1,	
+					}
+				]
+			},
+			{
+				icon: 'form',
+				id: 22,
+				title: '测试页面2',
+				pid: 2,
+        show: 1,
         component:'/test/test1/index',
 				sort: 0,
-				name:'test1',
-				type: 1
+				name:'test2',
+				type: 1,
 			}
 		]
 	}
