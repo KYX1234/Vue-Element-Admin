@@ -1,5 +1,5 @@
 <template>
-	<el-card shadow="never">
+	<div class="app-container">
 		<el-form :model="search" inline class="search">
 			<el-form-item label="手机号">
 				<el-input v-model="search.phone" placeholder="请输入手机号" clearable></el-input>
@@ -17,6 +17,7 @@
 		</el-form>
 		<BaseTable
 			:data="tableData"
+			max-height="800px"
 			:loading="loading"
 			:column="column"
 			:page="page"
@@ -29,14 +30,14 @@
 				<el-button type="danger" plain @click="onDelete">删除</el-button>
 			</template>
 		</BaseTable>
-
 		<add-or-update ref="addOrUpdateRef" />
-	</el-card>
+	</div>
 </template>
 
 <script lang="ts" setup>
 import { Search, Plus } from '@element-plus/icons-vue'
-import { getAdminList } from '@/api'
+import { adminList } from '@/api/admin'
+import type { AdminItem } from '@/api/admin'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import { useTable } from '@/hooks/useTable'
 
@@ -46,9 +47,31 @@ const search = reactive({
 	phone: ''
 })
 const { tableData, loading, page, getList, handleSizeChange, handleCurrentChange } = useTable(
-	getAdminList,
+	adminList,
 	search
 )
+const onDelete = () => {
+	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
+		confirmButtonText: '确认',
+		cancelButtonText: '取消',
+		type: 'warning'
+	})
+		.then(() => {
+			ElMessage({
+				type: 'success',
+				message: '只是个demo！'
+			})
+		})
+		.catch(() => {
+			ElMessage({
+				type: 'info',
+				message: '取消操作'
+			})
+		})
+}
+const onAddOrUpdate = (data?: AdminItem) => {
+	addOrUpdateRef.value.init(data)
+}
 const column: Table.Column[] = [
 	{ type: 'selection', width: 50 },
 	{ type: 'index', width: 50, label: 'No.' },
@@ -69,28 +92,6 @@ const column: Table.Column[] = [
 	{ label: '创建时间', prop: 'creat_at', width: 180 },
 	{ label: '操作', slot: 'action', width: 260, fixed: 'right' }
 ]
-const onDelete = () => {
-	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
-		confirmButtonText: '确认',
-		cancelButtonText: '取消',
-		type: 'warning'
-	})
-		.then(() => {
-			ElMessage({
-				type: 'success',
-				message: '只是个demo！'
-			})
-		})
-		.catch(() => {
-			ElMessage({
-				type: 'info',
-				message: '取消操作'
-			})
-		})
-}
-const onAddOrUpdate = (data?: Recordable) => {
-	addOrUpdateRef.value.init(data)
-}
 </script>
 
 <style lang="scss" scoped></style>

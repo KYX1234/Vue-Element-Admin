@@ -13,7 +13,7 @@
 			<el-form-item label="标识" prop="name">
 				<el-input v-model="form.name" placeholder="请输入标识" clearable></el-input>
 			</el-form-item>
-			<el-form-item label="上级菜单" prop="name">
+			<el-form-item label="上级菜单" prop="pid">
 				<el-tree-select
 					v-model="form.parentName"
 					:data="data"
@@ -31,7 +31,18 @@
 			<el-form-item label="图标" prop="icon">
 				<SelectISvg v-model:value="form.icon"></SelectISvg>
 			</el-form-item>
-			<el-form-item label="隐藏" prop="hidden">
+			<el-form-item label="排序" prop="sort">
+				<el-input-number
+					v-model="form.sort"
+					:precision="0"
+					:controls="false"
+					style="width: 100%"
+					placeholder="排序"
+					:value-on-clear="0"
+					:min="0"
+				></el-input-number>
+			</el-form-item>
+			<el-form-item label="隐藏">
 				<el-switch v-model="form.hidden" :active-value="1" :inactive-value="0" />
 			</el-form-item>
 		</el-form>
@@ -45,37 +56,34 @@
 </template>
 
 <script lang="ts" setup>
-import { FormInstance } from 'element-plus'
-interface TreeDataType {
-	title: string
-	id: string | number
-	children?: TreeDataType[]
-}
+import type { MenuFormItem } from '@/api/menu';
+import type { FormInstance } from 'element-plus'
+
 const props = defineProps(['data'])
 const visible = ref(false)
 const formRef = ref<FormInstance>()
 const form = reactive({
 	id: 0,
-	type: 0,
 	name: '',
 	title: '',
 	pid: 0,
-	password: '',
 	component: '',
 	parentName: '',
 	hidden: 0,
+	sort: undefined,
 	icon: ''
 })
 
-const init = (data: any) => {
+const init = async (data: MenuFormItem) => {
 	visible.value = true
 	if (data) {
 		const { children, ...newData } = data
+		await nextTick()
 		Object.assign(form, newData)
 		form.parentName = form.pid ? getNodeLabel(props.data) : ''
 	}
 }
-const getNodeLabel = (data: TreeDataType[]): string => {
+const getNodeLabel = (data: MenuFormItem[]): string => {
 	if (data && data.length > 0) {
 		for (let index = 0; index < data.length; index++) {
 			const item = data[index]
@@ -97,17 +105,19 @@ const getNodeLabel = (data: TreeDataType[]): string => {
 	}
 	return ''
 }
-const onNodeClick = (data: typeof form) => {
-	form.pid = data.id
+const onNodeClick = (data: MenuFormItem) => {
+	form.pid = data.id!
 }
 const onNodeClear = () => {
 	form.pid = 0
 }
 const onReset = () => {
-	formRef.value!.resetFields()
+	if (!formRef.value) return
+	formRef.value.resetFields()
 }
 const onSubmit = () => {
-	console.log('onSubmit', form)
+	ElMessage.success(JSON.stringify(form))
+	visible.value=false
 }
 defineExpose({ init })
 </script>

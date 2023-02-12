@@ -18,6 +18,11 @@ declare namespace Table {
 	}
 }
 
+interface Pageable {
+	current: number
+	limit: number
+}
+
 // 接口返回数据格式
 interface ApiRes<T> {
 	code: number
@@ -33,18 +38,17 @@ interface NavTabsItem {
 }
 
 // 菜单列表
-interface MenuInfo {
+interface MenuItem {
 	id?: number
-	pid?: number //父id
+	pid: number //父id
 	name: string //别名
 	component: string //匹配前端异步路由
-	title?: string //菜单名称
-	sort: number
+	title: string //菜单名称
+	sort: number | undefined
 	icon: string
-	show: 0 | 1 //状态0隐藏1显示
-	type: 1 | 2 | 3 //1菜单2页面3按钮
+	hidden: 0 | 1 //状态0显示1隐藏
 	alwaysShow: 0 | 1 //单子菜单是否一直显示父目录、1显示
-	children: MenuInfo[]
+	children: MenuItem[]
 }
 
 // dataList数据格式

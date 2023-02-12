@@ -1,7 +1,7 @@
 import { constantRoutes } from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 import router from '@/router'
-import { menuList } from '@/api'
+import { menuList } from '@/api/menu'
 import { generateMenu } from '@/utils/permission'
 
 export const useRouteStore = defineStore({

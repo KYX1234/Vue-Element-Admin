@@ -1,5 +1,5 @@
 <template>
-	<el-dialog v-model="visible" :title="form.id ? '编辑' : '添加'" width="600px" @closed="onReset" append-to-body>
+	<el-dialog v-model="visible" :title="form.id ? '编辑' : '添加'" width="650px" @closed="onReset" append-to-body>
 		<el-form :model="form" inline label-width="55px" ref="formRef">
 			<el-form-item label="用户名" prop="name">
 				<el-input v-model="form.name" placeholder="请输入用户名" clearable></el-input>
@@ -37,6 +37,7 @@
 
 <script lang="ts" setup>
 import type { FormInstance } from 'element-plus'
+import type { AdminItem } from '@/api/admin'
 const visible = ref(false)
 const formRef = ref<FormInstance>()
 const form = reactive({
@@ -49,7 +50,7 @@ const form = reactive({
 	role: ''
 })
 
-const init = (data: Recordable) => {
+const init = (data?:AdminItem) => {
 	visible.value = true
 	if (data) Object.assign(form, data)
 }

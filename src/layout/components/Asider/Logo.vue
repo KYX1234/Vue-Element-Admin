@@ -1,7 +1,7 @@
 <template>
 	<div :class="['sidebar-logo-container', collapse && 'collapse']">
 		<router-link key="collapse" class="sidebar-logo-link" to="/">
-			<img src="favicon.ico" alt="logo" class="sidebar-logo" />
+			<img src="/favicon.ico" alt="logo" class="sidebar-logo" />
 			<span v-if="!collapse" class="sidebar-title">ElementAdmin</span>
 		</router-link>
 	</div>

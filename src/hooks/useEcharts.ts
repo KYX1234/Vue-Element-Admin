@@ -2,7 +2,6 @@ import echarts from '@/utils/echarts'
 import { useDebounceFn } from '@vueuse/core'
 import { useAppStore } from '@/store'
 
-
 export const useEcharts = (elRef: HTMLDivElement, options: echarts.EChartsCoreOption) => {
 	let myChart: echarts.ECharts | null = null
 	const appStore = useAppStore()

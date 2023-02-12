@@ -70,7 +70,7 @@ export default defineConfig(({ command, mode }) => {
 				'@': resolve(__dirname, './src')
 			}
 		},
-		base: '/my-demo/',
+		base: './',
 		build: {
 			target: 'es2015',
 			cssTarget: 'chrome80',

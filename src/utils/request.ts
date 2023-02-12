@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
 import { getToken } from '@/utils/auth'
 
 const service: AxiosInstance = axios.create({
-	// baseURL: process.env.VUE_APP_API_PREFIX,
+	baseURL: import.meta.env.VUE_APP_API_PREFIX,
 	timeout: 10 * 1000
 })
 

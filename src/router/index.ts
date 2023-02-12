@@ -44,7 +44,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-	history: createWebHashHistory(import.meta.env.BASE_URL),
+	history: createWebHashHistory(),
 	routes: constantRoutes,
 	scrollBehavior: () => ({ left: 0, top: 0 })
 })

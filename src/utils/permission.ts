@@ -6,8 +6,8 @@ const viewsModules = import.meta.glob("@/views/**/*.vue");
 /**
  * @description 过滤后端返回路由组件
  * */
-export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
-	data.forEach((item: MenuInfo) => {
+export const generateMenu = (routes: RouteRecordRaw[], data: MenuItem[]) => {
+	data.forEach((item: MenuItem) => {
 		const menu:RouteRecordRaw = {
 			path: `/${item.name}`,
 			component: filterComponent(item.component),
@@ -15,7 +15,7 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuInfo[]) => {
 			name: item.name,
       meta: {
         alwaysShow:item.alwaysShow===1,
-				hidden: item.show === 0,
+				hidden: item.hidden === 1,
 				title: item.title,
 				icon: item.icon
 			}

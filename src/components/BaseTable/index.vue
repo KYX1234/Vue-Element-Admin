@@ -1,6 +1,6 @@
 <template>
-	<div v-loading="loading">
-		<el-table :data="data" :border="border" @selection-change="handleSelectionChange">
+	<div v-loading="loading" class="table">
+		<el-table :data="data" :border="border" :max-height="maxHeight" @selection-change="handleSelectionChange">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
 					<component v-if="item.render" :is="item.render" :row="row" :index="$index" />
@@ -28,6 +28,7 @@ interface BaseTableProps {
 	column: Table.Column[]
 	pagination?: boolean
 	border?: boolean
+	maxHeight?:string
 	loading?: boolean
 	page?: Table.Page
 }
@@ -51,4 +52,8 @@ const handleSelectionChange = (val: any[]) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-pagination {
+	margin-top: 15px;
+}
+</style>

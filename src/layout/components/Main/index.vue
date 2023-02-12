@@ -1,12 +1,12 @@
 <template>
 	<div class="main-container">
-		<router-view>
-			<template #default="{ Component, route }">
-				<transition :name="appStore.transitionName" mode="out-in" appear>
-					<component :is="Component" :key="route.path" />
-				</transition>
-			</template>
-		</router-view>
+			<router-view>
+				<template #default="{ Component, route }">
+					<transition :name="appStore.transitionName" mode="out-in" appear>
+						<component :is="Component" :key="route.path" />
+					</transition>
+				</template>
+			</router-view>
 	</div>
 </template>
 
@@ -22,7 +22,6 @@ const route = useRoute()
 	height: 100%;
 	position: relative;
 	overflow-x: hidden;
-	overflow-y: auto;
 	padding: 10px;
 	background: var(--el-bg-color-page);
 }

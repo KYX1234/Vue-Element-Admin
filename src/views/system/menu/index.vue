@@ -1,5 +1,11 @@
 <template>
-	<el-card shadow="never">
+	<div class="app-container">
+		<el-form inline>
+			<el-form-item>
+				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
+			</el-form-item>
+		</el-form>
+
 		<el-table
 			:data="tableData"
 			v-loading="loading"
@@ -35,16 +41,17 @@
 			@pagination="getList"
 		/>
 		<add-or-update ref="addOrUpdateRef" :data="tableData" />
-	</el-card>
+	</div>
 </template>
 
 <script lang="ts" setup>
 import { menuList } from '@/api/menu'
 import AddOrUpdate from './components/AddOrUpdate.vue'
-const addOrUpdateRef = ref()
-const tableData = ref([])
-const loading = ref(false)
+import { Plus } from '@element-plus/icons-vue'
 
+const addOrUpdateRef = ref()
+const tableData = ref<MenuItem[]>([])
+const loading = ref(false)
 const page = reactive({
 	current: 1,
 	limit: 10,
@@ -62,7 +69,7 @@ const getList = async () => {
 }
 getList()
 
-const onAddOrUpdate = (data?: Recordable) => {
+const onAddOrUpdate = (data?: MenuItem) => {
 	addOrUpdateRef.value.init(data)
 }
 

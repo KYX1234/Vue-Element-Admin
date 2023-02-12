@@ -1,8 +1,8 @@
-import { Ref } from "vue"
+import { Ref } from 'vue'
 
-interface TableData<T=any> {
-	loading:Ref<boolean> 
-	tableData: Ref<T[]> 
+interface TableData<T = any> {
+	loading: Ref<boolean>
+	tableData: Ref<T[]>
 	page: {
 		current: number
 		limit: number
@@ -11,18 +11,18 @@ interface TableData<T=any> {
 	[key: string]: any
 }
 
-export const useTable = <T=any>(
+export const useTable = <T = any>(
 	api: (params: any) => Promise<any>,
 	searchParams?: Recordable,
 	isPageable: boolean = true,
-	callback?:(data: any) => any,
+	callback?: (data: any) => any
 ): TableData<T> => {
 	const tableData = ref<T[]>([]) as Ref<T[]>
-	const loading=ref<boolean>(false)
-	const page= reactive({
-			current: 1,
-			limit: 10,
-			total: 0
+	const loading = ref<boolean>(false)
+	const page = reactive({
+		current: 1,
+		limit: 10,
+		total: 0
 	})
 	onMounted(() => getList())
 
@@ -35,7 +35,7 @@ export const useTable = <T=any>(
 				limit: page.limit
 			})
 			callback && (data = callback(data))
-			tableData.value = isPageable ? data.data: data 
+			tableData.value = isPageable ? data.data : data
 			if (isPageable) page.total = data.total
 		} finally {
 			loading.value = false
