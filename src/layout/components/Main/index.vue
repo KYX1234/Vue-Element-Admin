@@ -22,7 +22,7 @@ const route = useRoute()
 	height: 100%;
 	position: relative;
 	overflow-x: hidden;
-	padding: 10px;
+	padding: 15px;
 	background: var(--el-bg-color-page);
 }
 </style>

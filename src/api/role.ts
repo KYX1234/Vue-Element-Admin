@@ -4,3 +4,8 @@ import request from '@/utils/request'
 export const roleList = () => {
 	return request.get(`/mock/role`)
 }
+
+/** @desc 获取角色权限 */
+export const getRoleById = (data: { id: number }) => {
+	return request.post(`/mock/roleId`, data)
+}

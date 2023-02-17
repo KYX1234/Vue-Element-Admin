@@ -27,7 +27,7 @@
 					<svg-icon :class-name="scope.row.icon" size="22"></svg-icon>
 				</template>
 			</el-table-column>
-			<el-table-column label="操作" align="center" fixed="right">
+			<el-table-column label="操作" align="center" fixed="right" width="160">
 				<template #default="scope">
 					<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 					<el-button type="danger" plain @click="onDelete">删除</el-button>

@@ -17,7 +17,6 @@
 		</el-form>
 		<BaseTable
 			:data="tableData"
-			max-height="800px"
 			:loading="loading"
 			:column="column"
 			:page="page"
