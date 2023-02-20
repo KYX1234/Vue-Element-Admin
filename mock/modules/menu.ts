@@ -10,7 +10,6 @@ const menu = [
     icon: 'setting',
 		component: 'Layout',
 		name:'setting',
-		type: 0,
 		children: [
 			{
 				icon: '',
@@ -50,13 +49,34 @@ const menu = [
 	{
 		id: 2,
 		pid: 0,
+		title: '组件管理',
+		sort: 1,
+		hidden: 0,
+		icon: 'form',
+		component: 'Layout',
+		name: 'form-management',
+		children: [
+			{
+				icon: 'form',
+				id: 21,
+				title: '富文本',
+				pid: 2,
+        hidden: 0,
+				sort: 0,
+				name: 'form',
+				component:'/form/index'
+			}
+		]
+	},
+	{
+		id: 3,
+		pid: 0,
 		title: '测试管理',
 		sort: 1,
 		hidden: 0,
-    icon: 'form',
+    icon: 'order',
 		component: 'Layout',
 		name:'test',
-		type: 0,
 		children: [
 			{
 				icon: 'form',
@@ -67,7 +87,6 @@ const menu = [
 				sort: 0,
 				name: 'test1',
 				component:'ParentLayout',
-				type: 0,
 				children: [
 					{
 						icon: 'form',
@@ -77,8 +96,7 @@ const menu = [
 						hidden: 0,
 						component:'/test/test1/index',
 						sort: 0,
-						name:'test11',
-						type: 1,	
+						name:'test11',	
 					},
 					{
 						icon: 'form',
@@ -88,8 +106,7 @@ const menu = [
 						hidden: 0,
 						component:'/test/test1/index',
 						sort: 0,
-						name:'test12',
-						type: 1,	
+						name:'test12',	
 					}
 				]
 			},

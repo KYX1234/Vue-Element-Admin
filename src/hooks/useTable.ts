@@ -11,7 +11,7 @@ interface TableData<T = any> {
 	[key: string]: any
 }
 
-export const useTable = <T = any>(
+export const useTable = <T = any, U = any>(
 	api: (params: any) => Promise<any>,
 	searchParams?: Recordable,
 	isPageable: boolean = true,

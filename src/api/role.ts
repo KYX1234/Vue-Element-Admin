@@ -7,5 +7,5 @@ export const roleList = () => {
 
 /** @desc 获取角色权限 */
 export const getRoleById = (data: { id: number }) => {
-	return request.post(`/mock/roleId`, data)
+	return request.post<MenuItem[]>(`/mock/roleId`, data)
 }

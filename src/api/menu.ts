@@ -9,5 +9,3 @@ export interface MenuFormItem extends MenuItem {
 export const menuList = (params?: Pageable) => {
 	return request.get(`/mock/menu`, { params })
 }
-
-//

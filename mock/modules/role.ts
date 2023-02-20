@@ -66,7 +66,7 @@ const superadmin = [
 		]
 	},
 	{
-		id: 2,
+		id: 3,
 		pid: 0,
 		title: '测试管理',
 		sort: 1,
@@ -80,7 +80,7 @@ const superadmin = [
 				icon: 'form',
 				id: 21,
 				title: '测试页面1',
-				pid: 2,
+				pid: 3,
         hidden: 0,
 				sort: 0,
 				name: 'test1',
@@ -115,7 +115,7 @@ const superadmin = [
 				icon: 'form',
 				id: 22,
 				title: '测试页面2',
-				pid: 2,
+				pid: 3,
         hidden: 0,
         component:'/test/test1/index',
 				sort: 0,
@@ -151,7 +151,7 @@ const admin = [
 		]
 	},
 	{
-		id: 2,
+		id: 3,
 		pid: 0,
 		title: '测试管理',
 		sort: 1,
@@ -165,7 +165,7 @@ const admin = [
 				icon: 'form',
 				id: 21,
 				title: '测试页面1',
-				pid: 2,
+				pid: 3,
         hidden: 0,
 				sort: 0,
 				name: 'test1',
@@ -189,7 +189,7 @@ const admin = [
 				icon: 'form',
 				id: 22,
 				title: '测试页面2',
-				pid: 2,
+				pid: 3,
         hidden: 0,
         component:'/test/test1/index',
 				sort: 0,

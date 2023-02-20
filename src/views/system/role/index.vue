@@ -8,32 +8,52 @@
 			</template>
 		</BaseTable>
 		<add-or-update ref="addOrUpdateRef" />
+		<authority ref="authorityRef" />
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { roleList,getRoleById } from '@/api/role'
+import { roleList, getRoleById } from '@/api/role'
 import { useTable } from '@/hooks/useTable'
-import AddOrUpdate from './components/AddOrUpdate.vue';
-const addOrUpdateRef=ref()
+import { ElMessageBox } from 'element-plus';
+import AddOrUpdate from './components/AddOrUpdate.vue'
+import Authority from './components/Authority.vue'
+const addOrUpdateRef = ref()
+const authorityRef = ref()
 const callback = (data: any) => {
 	return data.list
 }
-const { tableData,loading } = useTable(roleList, {}, false, callback)
+const { tableData, loading } = useTable(roleList, {}, false, callback)
 
 const column: Table.Column[] = [
 	{ type: 'index', width: 50, label: 'No.' },
 	{ prop: 'name', label: '名称' },
 	{ prop: 'role_name', label: '标识' },
 	{ prop: 'creat_at', label: '创建时间' },
-	{ slot: 'action', label: '操作',width:260 },
+	{ slot: 'action', label: '操作', width: 260 }
 ]
 const onAddOrUpdate = (data?: Recordable) => {
 	addOrUpdateRef.value.init(data)
 }
-const onAuthority = (data?: Recordable) => {
-	getRoleById({id:1}).then(res => {
+const onAuthority = async (data: MenuItem) => {
+	const roleItem = await getRoleById({ id: data.id! })
+	const arr = handleRoleMenusSelected(roleItem.data)
+	const list =await getAllMenuList()
+	authorityRef.value.init({ arr, list })
+}
+const getAllMenuList = async () => {
+  const data = await getRoleById({ id: 1 })
+  return data.data
+}
+const handleRoleMenusSelected = (menus: MenuItem[], arr: number[] = []) => {
+	menus.forEach((item: any) => {
+		if (item.children&&item.children.length) {
+			handleRoleMenusSelected(item.children, arr)
+		} else {
+			arr.push(item.id)
+		}
 	})
+	return arr
 }
 const onDelete = () => {
 	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
