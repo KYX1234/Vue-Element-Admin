@@ -114,6 +114,7 @@ const onNodeClear = () => {
 const onReset = () => {
 	if (!formRef.value) return
 	formRef.value.resetFields()
+	form.parentName=''
 }
 const onSubmit = () => {
 	ElMessage.success(JSON.stringify(form))

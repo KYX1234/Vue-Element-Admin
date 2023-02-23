@@ -1,6 +1,6 @@
 <template>
 	<div v-loading="loading" class="table">
-		<el-table :data="list" :border="border">
+		<el-table :data="list" v-bind="getProps()">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
 					<slot v-if="item.slot" :name="item.slot" :row="row" :index="$index"></slot>
@@ -8,7 +8,7 @@
 			</el-table-column>
 		</el-table>
 		<el-pagination
-			v-if="isPageable"
+			v-if="isPageables"
 			background
 			layout="->,total, sizes, prev, pager, next, jumper"
 			:current-page="page.current"
@@ -22,15 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(['list'])
+const emit = defineEmits(['handleList'])
 const props = defineProps({
 	column: {
 		type: Object,
-		defalut: () => []
-	},
-	border: {
-		type: Boolean,
-		defalut: true
+		default: () => []
 	},
 	api: {
 		type: Function,
@@ -39,17 +35,22 @@ const props = defineProps({
 	//回调函数处理后端返回时不是对应的格式
 	callback: {
 		type: Function,
-		defalut: null
+		default: null
 	},
 	// 请求参数
 	params: {
 		type: Object,
-		defalut: () => ({})
+		default: () => ({})
 	},
 	// 是否显示分页
-	isPageable: {
+	isPageables: {
 		type: Boolean,
-		defalut: true
+		default: true
+	},
+	// table的其他属性
+	config: {
+		type: Object,
+		default: () => ({})
 	}
 })
 
@@ -60,15 +61,21 @@ const page = reactive({
 	limit: 10,
 	total: 0
 })
+const getProps = () => {
+	return {
+		border: true,
+		...props.config
+	}
+}
 const getList = async () => {
 	try {
 		loading.value = true
 		let { data } = await props.api(props.params)
 		props.callback && (data = props.callback(data))
-		list.value = props.isPageable ? data.data : data
-		props.isPageable && (page.total = data.total)
-		//暴露原始数据，以便有其他内容展示
-		emit('list', data)
+		list.value = props.isPageables ? data.data : data
+		props.isPageables && (page.total = data.total)
+		//暴露数组与原始数据，以便有其他内容展示
+		emit('handleList', list.value, data)
 	} finally {
 		loading.value = false
 	}

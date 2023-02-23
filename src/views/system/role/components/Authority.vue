@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 
-const props = defineProps({
+defineProps({
 	allMenuList: {
 		type: Array as PropType<MenuItem[]>,
 		default: () => []
