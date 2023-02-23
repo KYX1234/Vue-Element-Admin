@@ -1,15 +1,14 @@
 <template>
 	<div v-loading="loading" class="table">
-		<el-table :data="data" :border="border" @selection-change="handleSelectionChange">
+		<el-table :data="list" :border="border">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
-					<component v-if="item.render" :is="item.render" :row="row" :index="$index" />
-					<slot v-else-if="item.slot" :name="item.slot" :row="row" :index="$index"></slot>
+					<slot v-if="item.slot" :name="item.slot" :row="row" :index="$index"></slot>
 				</template>
 			</el-table-column>
 		</el-table>
 		<el-pagination
-			v-if="page"
+			v-if="isPageable"
 			background
 			layout="->,total, sizes, prev, pager, next, jumper"
 			:current-page="page.current"
@@ -23,32 +22,72 @@
 </template>
 
 <script lang="ts" setup>
-interface BaseTableProps {
-	data: any[]
-	column: Table.Column[]
-	pagination?: boolean
-	border?: boolean
-	loading?: boolean
-	page?: Table.Page
-}
-
-withDefaults(defineProps<BaseTableProps>(), {
-	column: () => [],
-	pagination: true,
-	border: true,
-	loading: false
+const emit = defineEmits(['list'])
+const props = defineProps({
+	column: {
+		type: Object,
+		defalut: () => []
+	},
+	border: {
+		type: Boolean,
+		defalut: true
+	},
+	api: {
+		type: Function,
+		required: true
+	},
+	//回调函数处理后端返回时不是对应的格式
+	callback: {
+		type: Function,
+		defalut: null
+	},
+	// 请求参数
+	params: {
+		type: Object,
+		defalut: () => ({})
+	},
+	// 是否显示分页
+	isPageable: {
+		type: Boolean,
+		defalut: true
+	}
 })
-const emit = defineEmits(['handleSizeChange', 'handleCurrentChange', 'handleSelectionChange'])
 
-const handleSizeChange = (limit: number) => {
-	emit('handleSizeChange', limit)
+const loading = ref(false)
+const list = ref([])
+const page = reactive({
+	current: 1,
+	limit: 10,
+	total: 0
+})
+const getList = async () => {
+	try {
+		loading.value = true
+		let { data } = await props.api(props.params)
+		props.callback && (data = props.callback(data))
+		list.value = props.isPageable ? data.data : data
+		props.isPageable && (page.total = data.total)
+		//暴露原始数据，以便有其他内容展示
+		emit('list', data)
+	} finally {
+		loading.value = false
+	}
 }
-const handleCurrentChange = (current: number) => {
-	emit('handleCurrentChange', current)
+const handleSizeChange = (val: number) => {
+	page.current = 1
+	page.limit = val
+	getList()
 }
-const handleSelectionChange = (val: any[]) => {
-	emit('handleSelectionChange', val)
+
+const handleCurrentChange = (val: number) => {
+	page.current = val
+	getList()
 }
+const resetTable = () => {
+	page.current = 1
+	getList()
+}
+defineExpose({ getList, resetTable })
 </script>
 
 <style lang="scss" scoped>

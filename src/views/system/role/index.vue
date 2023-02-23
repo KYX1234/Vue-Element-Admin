@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<BaseTable :data="tableData" :column="column" :loading="loading">
+		<BaseTable ref="tableRef" :column="column" :api="roleList" :callback="callback" :is-pageable="false">
 			<template #action="scope">
 				<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 				<el-button type="primary" plain @click="onAuthority(scope.row)">菜单权限</el-button>
@@ -8,23 +8,29 @@
 			</template>
 		</BaseTable>
 		<add-or-update ref="addOrUpdateRef" />
-		<authority ref="authorityRef" />
+		<authority ref="authorityRef" :all-menu-list="allMenuList"/>
 	</div>
 </template>
 
 <script lang="ts" setup>
 import { roleList, getRoleById } from '@/api/role'
-import { useTable } from '@/hooks/useTable'
-import { ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import Authority from './components/Authority.vue'
+
+const tableRef = ref()
 const addOrUpdateRef = ref()
 const authorityRef = ref()
+const allMenuList = ref<MenuItem[]>([])
+
+onMounted(() => {
+	tableRef.value.getList()
+	getAllMenuList()
+})
+
 const callback = (data: any) => {
 	return data.list
 }
-const { tableData, loading } = useTable(roleList, {}, false, callback)
-
 const column: Table.Column[] = [
 	{ type: 'index', width: 50, label: 'No.' },
 	{ prop: 'name', label: '名称' },
@@ -38,16 +44,15 @@ const onAddOrUpdate = (data?: Recordable) => {
 const onAuthority = async (data: MenuItem) => {
 	const roleItem = await getRoleById({ id: data.id! })
 	const arr = handleRoleMenusSelected(roleItem.data)
-	const list =await getAllMenuList()
-	authorityRef.value.init({ arr, list })
+	authorityRef.value.init(arr)
 }
 const getAllMenuList = async () => {
-  const data = await getRoleById({ id: 1 })
-  return data.data
+	const { data } = await getRoleById({ id: 1 })
+	allMenuList.value = data
 }
 const handleRoleMenusSelected = (menus: MenuItem[], arr: number[] = []) => {
 	menus.forEach((item: any) => {
-		if (item.children&&item.children.length) {
+		if (item.children && item.children.length) {
 			handleRoleMenusSelected(item.children, arr)
 		} else {
 			arr.push(item.id)
@@ -74,6 +79,7 @@ const onDelete = () => {
 			})
 		})
 }
+
 </script>
 
 <style lang="scss" scoped></style>

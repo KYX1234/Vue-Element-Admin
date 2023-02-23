@@ -1,6 +1,5 @@
 import { success } from '../base'
-
-const menu = [
+export const superadmin = [
 	{
 		id: 1,
 		pid: 0,
@@ -10,6 +9,7 @@ const menu = [
     icon: 'setting',
 		component: 'Layout',
 		name:'setting',
+		type: 0,
 		children: [
 			{
 				icon: '',
@@ -47,46 +47,26 @@ const menu = [
 		]
 	},
 	{
-		id: 2,
-		pid: 0,
-		title: '组件管理',
-		sort: 1,
-		hidden: 0,
-		icon: 'form',
-		component: 'Layout',
-		name: 'form-management',
-		children: [
-			{
-				icon: 'form',
-				id: 21,
-				title: '富文本',
-				pid: 2,
-        hidden: 0,
-				sort: 0,
-				name: 'form',
-				component:'/form/index'
-			}
-		]
-	},
-	{
 		id: 3,
 		pid: 0,
 		title: '测试管理',
 		sort: 1,
 		hidden: 0,
-    icon: 'order',
+    icon: 'form',
 		component: 'Layout',
 		name:'test',
+		type: 0,
 		children: [
 			{
 				icon: 'form',
 				id: 21,
 				title: '测试页面1',
-				pid: 2,
+				pid: 3,
         hidden: 0,
 				sort: 0,
 				name: 'test1',
 				component:'ParentLayout',
+				type: 0,
 				children: [
 					{
 						icon: 'form',
@@ -96,7 +76,8 @@ const menu = [
 						hidden: 0,
 						component:'/test/test1/index',
 						sort: 0,
-						name:'test11',	
+						name:'test11',
+						type: 1,	
 					},
 					{
 						icon: 'form',
@@ -106,7 +87,8 @@ const menu = [
 						hidden: 0,
 						component:'/test/test1/index',
 						sort: 0,
-						name:'test12',	
+						name:'test12',
+						type: 1,	
 					}
 				]
 			},
@@ -114,7 +96,81 @@ const menu = [
 				icon: 'form',
 				id: 22,
 				title: '测试页面2',
-				pid: 2,
+				pid: 3,
+        hidden: 0,
+        component:'/test/test1/index',
+				sort: 0,
+				name:'test2',
+				type: 1,
+			}
+		]
+	}
+]
+export const admin = [
+	{
+		id: 1,
+		pid: 0,
+		title: '权限管理',
+		sort: 1,
+		hidden: 0,
+    icon: 'setting',
+		component: 'Layout',
+		name:'setting',
+		type: 0,
+		children: [
+			{
+				icon: '',
+				id: 11,
+				title: '用户权限',
+				pid: 1,
+        hidden: 0,
+        component:'/system/admin/index',
+				sort: 0,
+				name:'admin',
+				type: 1
+			}
+		]
+	},
+	{
+		id: 3,
+		pid: 0,
+		title: '测试管理',
+		sort: 1,
+		hidden: 0,
+    icon: 'form',
+		component: 'Layout',
+		name:'test',
+		type: 0,
+		children: [
+			{
+				icon: 'form',
+				id: 21,
+				title: '测试页面1',
+				pid: 3,
+        hidden: 0,
+				sort: 0,
+				name: 'test1',
+				component:'ParentLayout',
+				type: 0,
+				children: [
+					{
+						icon: 'form',
+						id: 31,
+						title: '测试页面11',
+						pid: 21,
+						hidden: 0,
+						component:'/test/test1/index',
+						sort: 0,
+						name:'test11',
+						type: 1,	
+					}
+				]
+			},
+			{
+				icon: 'form',
+				id: 22,
+				title: '测试页面2',
+				pid: 3,
         hidden: 0,
         component:'/test/test1/index',
 				sort: 0,
@@ -130,7 +186,7 @@ export default [
 		method: 'get',
 		timeout: 300,
 		response: () => {
-			return success('获取成功',  { page:1,limit:20, total: 20,data:menu})
+			return success('获取成功',  { page:1,limit:20, total: 20,data:superadmin})
 		}
 	}
 ]

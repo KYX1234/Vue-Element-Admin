@@ -7,7 +7,7 @@
 			node-key="id"
 			:default-checked-keys="expandedKeys"
 			:default-expanded-keys="expandedKeys"
-			:props="defaultProps"
+			:props="{ label: 'title' }"
 		></el-tree>
 		<template #footer>
 			<span class="dialog-footer">
@@ -19,28 +19,31 @@
 </template>
 
 <script lang="ts" setup>
-interface InitProps {
-	arr: number[]
-	list: MenuItem[]
-}
+import { PropType } from 'vue'
+
+const props = defineProps({
+	allMenuList: {
+		type: Array as PropType<MenuItem[]>,
+		default: () => []
+	}
+})
 const tree = ref()
 const visible = ref(false)
-const allMenuList = ref<MenuItem[]>([])
 const expandedKeys = ref<number[]>([])
-const defaultProps = {
-	label: 'title'
-}
-const init = ({ arr, list }: InitProps) => {
-	allMenuList.value = list
-	expandedKeys.value = arr
+
+const init = (arr: number[]) => {
 	visible.value = true
+	expandedKeys.value=arr
+	nextTick(() => {
+		tree.value.setCheckedKeys(arr)
+	})
 }
 const onReset = () => {
-	allMenuList.value = expandedKeys.value = []
+	expandedKeys.value = []
 }
 const onConfirm = () => {
 	ElMessage.success('修改成功，数据为' + JSON.stringify(tree.value.getCheckedKeys()))
-	visible.value=false
+	visible.value = false
 }
 defineExpose({ init })
 </script>
