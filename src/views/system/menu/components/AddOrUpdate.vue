@@ -57,7 +57,7 @@
 
 <script lang="ts" setup>
 import type { MenuFormItem } from '@/api/menu';
-import type { FormInstance } from 'element-plus'
+import { ElMessage, FormInstance } from 'element-plus'
 
 const props = defineProps(['data'])
 const visible = ref(false)

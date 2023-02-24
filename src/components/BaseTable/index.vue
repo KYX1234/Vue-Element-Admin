@@ -1,9 +1,11 @@
 <template>
 	<div v-loading="loading" class="table">
+		<search :search="search" @search="onSearch"></search>
 		<el-table :data="list" v-bind="getProps()">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
-					<slot v-if="item.slot" :name="item.slot" :row="row" :index="$index"></slot>
+					<component v-if="item.render" :is="item.render" :row="row" :index="$index" />
+					<slot v-else-if="item.slot" :name="item.slot" :row="row" :index="$index"></slot>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -22,8 +24,14 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue'
+
 const emit = defineEmits(['handleList'])
 const props = defineProps({
+	search: {
+		type: Array as PropType<Table.Search[]>,
+		default: () => []
+	},
 	column: {
 		type: Object,
 		default: () => []
@@ -37,7 +45,7 @@ const props = defineProps({
 		type: Function,
 		default: null
 	},
-	// 请求参数
+	// 初始化的请求参数
 	params: {
 		type: Object,
 		default: () => ({})
@@ -67,10 +75,16 @@ const getProps = () => {
 		...props.config
 	}
 }
+// 合并所有的请求参数
+const allParams = reactive({
+	...props.params
+})
 const getList = async () => {
 	try {
 		loading.value = true
-		let { data } = await props.api(props.params)
+		Object.assign(allParams,{ current: page.current, limit: page.limit })
+		let { data } = await props.api(allParams)
+		console.log(allParams)
 		props.callback && (data = props.callback(data))
 		list.value = props.isPageables ? data.data : data
 		props.isPageables && (page.total = data.total)
@@ -80,6 +94,12 @@ const getList = async () => {
 		loading.value = false
 	}
 }
+
+const onSearch = (data: Recordable) => {
+	Object.assign(allParams, data)
+	getList()
+}
+
 const handleSizeChange = (val: number) => {
 	page.current = 1
 	page.limit = val

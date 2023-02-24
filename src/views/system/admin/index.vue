@@ -1,6 +1,6 @@
 <template>
 	<div class="app-container">
-		<el-form :model="search" inline class="search">
+		<!-- <el-form :model="search" inline class="search">
 			<el-form-item label="手机号">
 				<el-input v-model="search.phone" placeholder="请输入手机号" clearable></el-input>
 			</el-form-item>
@@ -14,15 +14,8 @@
 				<el-button :icon="Search" @click="getList()" :loading="loading">搜索</el-button>
 				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
 			</el-form-item>
-		</el-form>
-		<BaseTable
-			:data="tableData"
-			:loading="loading"
-			:column="column"
-			:page="page"
-			@handleSizeChange="handleSizeChange"
-			@handleCurrentChange="handleCurrentChange"
-		>
+		</el-form> -->
+		<BaseTable ref="tableRef" :api="adminList" :column="column" :search="search">
 			<template #action="scope">
 				<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 				<el-button type="primary" plain>菜单权限</el-button>
@@ -34,22 +27,17 @@
 </template>
 
 <script lang="ts" setup>
-import { Search, Plus } from '@element-plus/icons-vue'
-import { adminList } from '@/api/admin'
-import type { AdminItem } from '@/api/admin'
-import AddOrUpdate from './components/AddOrUpdate.vue'
-import { useTable } from '@/hooks/useTable'
-import { ElMessageBox, ElTag } from 'element-plus'
 
+import { adminList, AdminItem } from '@/api/admin'
+import AddOrUpdate from './components/AddOrUpdate.vue'
+import { ElMessage, ElMessageBox, ElTag } from 'element-plus'
+
+const tableRef = ref()
 const addOrUpdateRef = ref()
-const search = reactive({
-	status: '',
-	phone: ''
+
+onMounted(() => {
+	tableRef.value.getList()
 })
-const { tableData, loading, page, getList, handleSizeChange, handleCurrentChange } = useTable(
-	adminList,
-	search
-)
 const onDelete = () => {
 	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
 		confirmButtonText: '确认',
@@ -72,6 +60,16 @@ const onDelete = () => {
 const onAddOrUpdate = (data?: AdminItem) => {
 	addOrUpdateRef.value.init(data)
 }
+const search: Table.Search[] = [
+	{ type: 'el-input', prop: 'name', label: '名称' },
+	{ type: 'el-input', prop: 'name1', label: '名称' },
+	{ type: 'el-input', prop: 'name2', label: '名称' },
+	{ type: 'el-input', prop: 'name3', label: '名称' },
+	{ type: 'el-input', prop: 'name4', label: '名称' },
+	{ type: 'el-input', prop: 'name5', label: '名称' },
+	{ type: 'el-input', prop: 'name6', label: '名称' },
+	{ type: 'el-input', prop: 'name6', label: '名称' },
+]
 const column: Table.Column[] = [
 	{ type: 'selection', width: 50 },
 	{ type: 'index', width: 50, label: 'No.' },

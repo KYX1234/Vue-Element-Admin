@@ -1,6 +1,13 @@
 declare type Recordable<T = any> = Record<string, T>
 
 declare namespace Table {
+	interface Search{
+		label: string
+		prop: string
+		type: string
+		clearable?: boolean
+		placeholder?:string
+	}
 	interface Column {
 		type?: 'index' | 'selection'
 		label?: string

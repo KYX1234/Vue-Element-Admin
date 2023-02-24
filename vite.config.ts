@@ -2,7 +2,6 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import setupExtend from 'vite-plugin-vue-setup-extend'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -19,7 +18,6 @@ export default defineConfig(({ command, mode }) => {
 			AutoImport({
 				imports: ['vue', 'vue-router', 'pinia'],
 				resolvers: [
-					ElementPlusResolver(),
 					// 自动导入图标组件
 					IconsResolver({
 						prefix: 'Icon'
@@ -32,7 +30,6 @@ export default defineConfig(({ command, mode }) => {
 				// 自动导入自定义组件
 				dirs: ['src/components'],
 				resolvers: [
-					ElementPlusResolver(),
 					// 自动注册图标组件
 					IconsResolver({
 						enabledCollections: ['ep']

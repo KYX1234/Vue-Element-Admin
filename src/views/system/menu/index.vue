@@ -27,6 +27,7 @@
 import { menuList } from '@/api/menu'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import { Plus } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus';
 
 const tableRef = ref()
 const allMenuList=ref<Array<any>>([])

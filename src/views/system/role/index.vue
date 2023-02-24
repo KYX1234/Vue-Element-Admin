@@ -1,6 +1,12 @@
 <template>
 	<div class="app-container">
-		<BaseTable ref="tableRef" :column="column" :api="roleList" :callback="callback" :is-pageable="false">
+		<BaseTable
+			ref="tableRef"
+			:column="column"
+			:api="roleList"
+			:callback="callback"
+			:is-pageable="false"
+		>
 			<template #action="scope">
 				<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 				<el-button type="primary" plain @click="onAuthority(scope.row)">菜单权限</el-button>
@@ -8,13 +14,13 @@
 			</template>
 		</BaseTable>
 		<add-or-update ref="addOrUpdateRef" />
-		<authority ref="authorityRef" :all-menu-list="allMenuList"/>
+		<authority ref="authorityRef" :all-menu-list="allMenuList" />
 	</div>
 </template>
 
 <script lang="ts" setup>
 import { roleList, getRoleById } from '@/api/role'
-import { ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import Authority from './components/Authority.vue'
 
@@ -79,7 +85,6 @@ const onDelete = () => {
 			})
 		})
 }
-
 </script>
 
 <style lang="scss" scoped></style>
