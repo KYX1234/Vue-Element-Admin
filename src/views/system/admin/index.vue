@@ -1,21 +1,20 @@
 <template>
 	<div class="app-container">
-		<!-- <el-form :model="search" inline class="search">
-			<el-form-item label="手机号">
-				<el-input v-model="search.phone" placeholder="请输入手机号" clearable></el-input>
-			</el-form-item>
-			<el-form-item label="状态">
-				<el-select v-model="search.status" clearable placeholder="请选择">
+
+				<!-- <el-select v-model="search.status" clearable placeholder="请选择">
 					<el-option label="启用" :value="1"></el-option>
 					<el-option label="禁用" :value="0"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item>
-				<el-button :icon="Search" @click="getList()" :loading="loading">搜索</el-button>
-				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
-			</el-form-item>
-		</el-form> -->
+				</el-select> -->
+
+		<!-- render渲染 -->
 		<BaseTable ref="tableRef" :api="adminList" :column="column" :search="search">
+			<template #header>
+				<el-form inline>
+					<el-form-item>
+						<el-button :icon="Plus"  type="primary" @click="onAddOrUpdate()">添加</el-button>
+					</el-form-item>
+				</el-form>
+			</template>
 			<template #action="scope">
 				<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
 				<el-button type="primary" plain>菜单权限</el-button>
@@ -27,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-
+import { Plus } from '@element-plus/icons-vue'
 import { adminList, AdminItem } from '@/api/admin'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import { ElMessage, ElMessageBox, ElTag } from 'element-plus'

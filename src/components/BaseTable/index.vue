@@ -1,6 +1,7 @@
 <template>
-	<div v-loading="loading" class="table">
-		<search :search="search" @search="onSearch"></search>
+	<SearchForm :search="search" @search="onSearch"></SearchForm>
+	<div v-loading="loading" class="card table" shadow="never">
+		<slot name="header"></slot>
 		<el-table :data="list" v-bind="getProps()">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
@@ -10,7 +11,7 @@
 			</el-table-column>
 		</el-table>
 		<el-pagination
-			v-if="isPageables"
+			v-if="isPageable"
 			background
 			layout="->,total, sizes, prev, pager, next, jumper"
 			:current-page="page.current"
@@ -51,7 +52,7 @@ const props = defineProps({
 		default: () => ({})
 	},
 	// 是否显示分页
-	isPageables: {
+	isPageable: {
 		type: Boolean,
 		default: true
 	},
@@ -82,12 +83,11 @@ const allParams = reactive({
 const getList = async () => {
 	try {
 		loading.value = true
-		Object.assign(allParams,{ current: page.current, limit: page.limit })
+		Object.assign(allParams, { current: page.current, limit: page.limit })
 		let { data } = await props.api(allParams)
-		console.log(allParams)
 		props.callback && (data = props.callback(data))
-		list.value = props.isPageables ? data.data : data
-		props.isPageables && (page.total = data.total)
+		list.value = props.isPageable ? data.data : data
+		props.isPageable && (page.total = data.total)
 		//暴露数组与原始数据，以便有其他内容展示
 		emit('handleList', list.value, data)
 	} finally {
@@ -122,9 +122,9 @@ defineExpose({ getList, resetTable })
 	margin-top: 15px;
 }
 .table {
+	flex: 1;
 	display: flex;
 	flex-direction: column;
-	flex: 1;
-	overflow: hidden;
+	height: 100%;
 }
 </style>

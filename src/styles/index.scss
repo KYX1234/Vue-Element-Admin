@@ -61,8 +61,15 @@ html {
 .app-container {
 	display: flex;
 	flex-direction: column;
-	padding: 20px;
 	height: 100%;
 	overflow: hidden;
+}
+
+.card{
+	padding: 20px;
+	overflow-x: hidden;
 	background-color: var(--el-fill-color-blank);
+	border: 1px solid var(--el-border-color-light);
+	border-radius: 4px;
+	transition: var(--el-transition-duration);
 }

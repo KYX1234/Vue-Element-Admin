@@ -1,14 +1,23 @@
 <template>
 	<div class="app-container">
-		<el-form inline>
-			<el-form-item>
-				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
-			</el-form-item>
-		</el-form>
-		<BaseTable ref="tableRef" :api="menuList" :column="column" :config="getConfig()" @handle-list="handleList">
+		<!-- 插槽渲染 -->
+		<BaseTable
+			ref="tableRef"
+			:api="menuList"
+			:column="column"
+			:config="getConfig()"
+			@handle-list="handleList"
+		>
+			<template #header>
+				<el-form inline>
+					<el-form-item>
+						<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
+					</el-form-item>
+				</el-form>
+			</template>
 			<template #icon="scope">
-					<svg-icon :class-name="scope.row.icon" size="22"></svg-icon>
-				</template>
+				<svg-icon :class-name="scope.row.icon" size="22"></svg-icon>
+			</template>
 			<template #type="scope">
 				<el-tag :type="scope.row.type ? 'success' : ''">
 					{{ ['Layout', 'ParentLayout'].includes(scope.row.component) ? '目录' : '菜单' }}
@@ -27,10 +36,10 @@
 import { menuList } from '@/api/menu'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import { Plus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 
 const tableRef = ref()
-const allMenuList=ref<Array<any>>([])
+const allMenuList = ref<Array<any>>([])
 const addOrUpdateRef = ref()
 const column: Table.Column[] = [
 	{ type: 'index', width: 50, label: 'No.' },
@@ -43,14 +52,14 @@ const column: Table.Column[] = [
 ]
 const getConfig = () => {
 	return {
-		'row-key':'id'
+		'row-key': 'id'
 	}
 }
 onMounted(() => {
 	tableRef.value.getList()
 })
-const handleList = (list:Array<any>) => {
-	allMenuList.value=list
+const handleList = (list: Array<any>) => {
+	allMenuList.value = list
 }
 const onAddOrUpdate = (data?: MenuItem) => {
 	addOrUpdateRef.value.init(data)

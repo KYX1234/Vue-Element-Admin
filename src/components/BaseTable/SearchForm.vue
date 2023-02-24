@@ -1,5 +1,5 @@
 <template>
-	<div class="searchForm-wrap" v-if="search.length">
+	<div class="card searchForm-wrap" v-if="search.length">
 		<el-form ref="searchFormRef" class="form-inline" :model="form">
 			<el-row :gutter="25">
 				<el-col
@@ -26,12 +26,15 @@
 		<div class="search-btn">
 			<el-button @click="onSearch" type="primary" :icon="Search">搜索</el-button>
 			<el-button @click="onSearch">重置</el-button>
-			<div @click="isExpand = !isExpand" class="expand-btn">
-				<span>{{ isExpand ? '展开' : '收起' }}</span>
-				<el-icon :size="20">
-					<component :is="isExpand ? ArrowUp : ArrowDown"></component>
-				</el-icon>
-			</div>
+			<el-button
+				class="expand"
+				type="primary"
+				link
+				@click="isExpand = !isExpand"
+				:icon="isExpand ? ArrowUp : ArrowDown"
+			>
+				{{ isExpand ? '收起' : '展开' }}
+			</el-button>
 		</div>
 	</div>
 </template>
@@ -60,6 +63,7 @@ const onSearch = () => {
 .searchForm-wrap {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 15px;
 	.form-inline {
 		flex: 1;
 		.el-row {
@@ -70,11 +74,8 @@ const onSearch = () => {
 		display: flex;
 		flex-shrink: 0;
 		margin-left: 30px;
-
-		.expand-btn {
+		.expand {
 			height: 32px;
-			line-height: 32px;
-			margin-left: 12px;
 		}
 	}
 }
