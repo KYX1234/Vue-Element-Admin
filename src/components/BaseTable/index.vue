@@ -1,7 +1,11 @@
 <template>
-	<SearchForm :search="search" @search="onSearch"></SearchForm>
+	<SearchForm ref="form" :search="search" @search="onSearch"></SearchForm>
 	<div v-loading="loading" class="card table" shadow="never">
-		<slot name="header"></slot>
+		<el-form inline>
+			<el-form-item>
+				<slot name="header"></slot>
+			</el-form-item>
+		</el-form>
 		<el-table :data="list" v-bind="getProps()">
 			<el-table-column v-for="item in column" v-bind="item" :align="item.align ?? 'center'">
 				<template #default="{ row, $index }">
@@ -63,8 +67,9 @@ const props = defineProps({
 	}
 })
 
-const loading = ref(false)
+const form = ref()
 const list = ref([])
+const loading = ref(false)
 const page = reactive({
 	current: 1,
 	limit: 10,
@@ -76,14 +81,12 @@ const getProps = () => {
 		...props.config
 	}
 }
-// 合并所有的请求参数
-const allParams = reactive({
-	...props.params
-})
+
 const getList = async () => {
 	try {
 		loading.value = true
-		Object.assign(allParams, { current: page.current, limit: page.limit })
+		const pageParams = props.isPageable ? { current: page.current, limit: page.limit } : {}
+		const allParams = { ...props.params, ...form.value.form, ...pageParams }
 		let { data } = await props.api(allParams)
 		props.callback && (data = props.callback(data))
 		list.value = props.isPageable ? data.data : data
@@ -95,8 +98,7 @@ const getList = async () => {
 	}
 }
 
-const onSearch = (data: Recordable) => {
-	Object.assign(allParams, data)
+const onSearch = () => {
 	getList()
 }
 
@@ -125,6 +127,5 @@ defineExpose({ getList, resetTable })
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 }
 </style>

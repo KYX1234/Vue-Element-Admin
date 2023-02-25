@@ -1,19 +1,9 @@
 <template>
 	<div class="app-container">
-
-				<!-- <el-select v-model="search.status" clearable placeholder="请选择">
-					<el-option label="启用" :value="1"></el-option>
-					<el-option label="禁用" :value="0"></el-option>
-				</el-select> -->
-
 		<!-- render渲染 -->
-		<BaseTable ref="tableRef" :api="adminList" :column="column" :search="search">
+		<BaseTable ref="tableRef" :api="adminList" :column="column" :search="search" :params="params">
 			<template #header>
-				<el-form inline>
-					<el-form-item>
-						<el-button :icon="Plus"  type="primary" @click="onAddOrUpdate()">添加</el-button>
-					</el-form-item>
-				</el-form>
+				<el-button :icon="Plus" type="primary" @click="onAddOrUpdate()">添加</el-button>
 			</template>
 			<template #action="scope">
 				<el-button type="primary" plain @click="onAddOrUpdate(scope.row)">编辑</el-button>
@@ -27,16 +17,24 @@
 
 <script lang="ts" setup>
 import { Plus } from '@element-plus/icons-vue'
-import { adminList, AdminItem } from '@/api/admin'
+import { adminList, AdminItem, adminStatus } from '@/api/admin'
 import AddOrUpdate from './components/AddOrUpdate.vue'
 import { ElMessage, ElMessageBox, ElTag } from 'element-plus'
 
 const tableRef = ref()
 const addOrUpdateRef = ref()
-
+// 如果需要初始化携带额外参数
+const params = reactive({
+	type:1
+})
 onMounted(() => {
+	getStatus()
 	tableRef.value.getList()
 })
+const getStatus = async () => {
+	const { data } = await adminStatus()
+	search.value[2].options=data
+}
 const onDelete = () => {
 	ElMessageBox.confirm('您确认要删除当前项吗？', '提示', {
 		confirmButtonText: '确认',
@@ -59,16 +57,19 @@ const onDelete = () => {
 const onAddOrUpdate = (data?: AdminItem) => {
 	addOrUpdateRef.value.init(data)
 }
-const search: Table.Search[] = [
+// 针对异步的select数据需要将数组变为响应式
+const search = ref([
 	{ type: 'el-input', prop: 'name', label: '名称' },
-	{ type: 'el-input', prop: 'name1', label: '名称' },
-	{ type: 'el-input', prop: 'name2', label: '名称' },
-	{ type: 'el-input', prop: 'name3', label: '名称' },
-	{ type: 'el-input', prop: 'name4', label: '名称' },
-	{ type: 'el-input', prop: 'name5', label: '名称' },
-	{ type: 'el-input', prop: 'name6', label: '名称' },
-	{ type: 'el-input', prop: 'name6', label: '名称' },
-]
+	{ type: 'el-input', prop: 'phone', label: '手机号' },
+	{
+		type: 'el-select',
+		prop: 'status',
+		label: '状态',
+		defaultValue:1,
+		options:[],
+		clearable: true
+	}
+])
 const column: Table.Column[] = [
 	{ type: 'selection', width: 50 },
 	{ type: 'index', width: 50, label: 'No.' },

@@ -1,12 +1,19 @@
 declare type Recordable<T = any> = Record<string, T>
 
 declare namespace Table {
-	interface Search{
+	interface Search {
 		label: string
 		prop: string
 		type: string
+		defaultValue?: string | number | boolean | any[],//初始化的默认参数
 		clearable?: boolean
-		placeholder?:string
+		placeholder?: string
+		options?: Children[]
+		defaultName?: {
+			label: string
+			value: string
+		} //支持option字段[label,value]的替换
+		config?: Object
 	}
 	interface Column {
 		type?: 'index' | 'selection'
@@ -30,6 +37,12 @@ interface Pageable {
 	limit: number
 }
 
+// children
+interface Children {
+	label: string
+	value: string | number
+	children?: Children[]
+}
 // 接口返回数据格式
 interface ApiRes<T> {
 	code: number

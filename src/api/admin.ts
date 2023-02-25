@@ -17,3 +17,8 @@ export interface AdminItem {
 export const adminList = (params: AdminParams) => {
 	return request.get(`/mock/admin`, { params })
 }
+
+/** @desc 获取状态 */
+export const adminStatus = () => {
+	return request.get(`/mock/admin/status`)
+}
