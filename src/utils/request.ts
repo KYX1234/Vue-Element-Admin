@@ -1,21 +1,20 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { getToken } from '@/utils/auth'
+import { ElMessage } from 'element-plus'
 
 const service: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VUE_APP_API_PREFIX,
 	timeout: 10 * 1000
 })
 
-
-
 /**
  * @description 请求拦截器
  * */
 service.interceptors.request.use(
-	(config: AxiosRequestConfig) => { 
+	(config: AxiosRequestConfig) => {
 		const token = getToken()
-		if (token && config.headers && typeof config.headers.set === 'function') {
-			config.headers.set('Authorization', token)
+		if (config.headers) {
+			config.headers['Authorization'] = token
 		}
 		return config
 	},
@@ -48,8 +47,6 @@ service.interceptors.response.use(
 		return Promise.reject(error)
 	}
 )
-
-
 
 // /**
 //  * @description 封装axios类型

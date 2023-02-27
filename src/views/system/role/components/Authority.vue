@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus';
 import { PropType } from 'vue'
 
 defineProps({
