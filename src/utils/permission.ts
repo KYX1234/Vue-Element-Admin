@@ -17,7 +17,8 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuItem[]) => {
         alwaysShow:item.alwaysShow===1,
 				hidden: item.hidden === 1,
 				title: item.title,
-				icon: item.icon
+				icon: item.icon,
+				auth:item.auth||[]
 			}
 		}
 		if (item.children && item.children.length > 0) {

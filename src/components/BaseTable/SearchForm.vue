@@ -7,6 +7,7 @@
 					:sm="12"
 					:md="8"
 					:lg="6"
+					style="min-width: 250px;"
 					v-for="(item, index) in search"
 					:key="index"
 					v-show="index < 4 || isExpand"

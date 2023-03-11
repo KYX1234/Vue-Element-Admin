@@ -59,6 +59,7 @@ interface NavTabsItem {
 
 // 菜单列表
 interface MenuItem {
+
 	id?: number
 	pid: number //父id
 	name: string //别名
@@ -68,6 +69,7 @@ interface MenuItem {
 	icon: string
 	hidden: 0 | 1 //状态0显示1隐藏
 	alwaysShow: 0 | 1 //单子菜单是否一直显示父目录、1显示
+	auth: string[] //权限标识
 	children: MenuItem[]
 }
 

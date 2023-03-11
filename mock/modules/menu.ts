@@ -85,7 +85,7 @@ export const superadmin = [
 						title: '测试页面12',
 						pid: 21,
 						hidden: 0,
-						component:'/test/test1/index',
+						component:'/test/test2/index',
 						sort: 0,
 						name:'test12',
 						type: 1,	
@@ -95,13 +95,14 @@ export const superadmin = [
 			{
 				icon: 'form',
 				id: 22,
-				title: '测试页面2',
+				title: '自定义指令',
 				pid: 3,
         hidden: 0,
-        component:'/test/test1/index',
+        component:'/test/directives/index',
 				sort: 0,
 				name:'test2',
 				type: 1,
+				auth:['add','delete']
 			}
 		]
 	}

@@ -13,7 +13,7 @@ const service: AxiosInstance = axios.create({
 service.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
 		const token = getToken()
-		if (config.headers) {
+		if (token && config.headers) {
 			config.headers['Authorization'] = token
 		}
 		return config

@@ -65,7 +65,7 @@ const search = ref([
 		type: 'el-select',
 		prop: 'status',
 		label: '状态',
-		defaultValue:1,
+		defaultValue:'',
 		options:[],
 		clearable: true
 	}
