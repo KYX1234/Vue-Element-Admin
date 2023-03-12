@@ -27,6 +27,7 @@ const directive: Directive = {
 		// 取消计时器
 		const cancel = () => {
 			pressTimer && clearTimeout(pressTimer)
+			pressTimer =null
 		}
 		// 运行函数
 		const handler = (e: MouseEvent | TouchEvent) => {
