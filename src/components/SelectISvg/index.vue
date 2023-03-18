@@ -56,9 +56,6 @@ const onSelectIcon = (item:string) => {
 .icon-bg:hover {
 	box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.svg-icon{
-	margin-right: 5px;
-}
 .el-input{
 	width: 200px;
 }

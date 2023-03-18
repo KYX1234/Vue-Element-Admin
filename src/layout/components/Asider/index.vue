@@ -28,6 +28,18 @@ const menus = getChildrenRouter(routeStore.routes)
 const isCollapse = computed(() => appStore.isCollapse)
 const isMenuUnique = computed(() => appStore.isMenuUnique)
 const activeMenu = computed(() => route.path)
+
+// 监听窗口大小变化，折叠侧边栏
+const screenWidth = ref<number>(0)
+const listeningWindow = () => {
+	screenWidth.value = document.body.clientWidth
+	if (!isCollapse.value && screenWidth.value < 1200) appStore.setCollapse()
+	if (isCollapse.value && screenWidth.value > 1200) appStore.setCollapse()
+}
+window.addEventListener('resize', listeningWindow)
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', listeningWindow)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -38,11 +50,13 @@ const activeMenu = computed(() => route.path)
 	background-color: var(--el-menu-bg-color);
 	box-shadow: var(--el-box-shadow-lighter);
 
+
 	.el-scrollbar {
 		height: calc(100% - 48px);
 		:deep(.el-menu) {
 			border-right: none;
 			background: transparent;
+			--el-menu-text-color: #333639;
 		}
 	}
 }

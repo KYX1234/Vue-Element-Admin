@@ -67,10 +67,12 @@
 	// dark&&header-dark
 	&.dark {
 		--el-menu-bg-color: #001428;
-		--el-menu-text-color: #b9b9b9;
 		.sidebar-logo-container {
 			border-bottom-color: #363637;
 			color: #ffffff;
+		}
+		.el-scrollbar .el-menu {
+			--el-menu-text-color: #b9b9b9 !important;
 		}
 	}
 }
@@ -104,9 +106,9 @@
 	margin-top: 10px;
 }
 
-// 行内 form 样式 
-.el-form--inline{
-	.el-input{
+// 行内 form 样式
+.el-form--inline {
+	.el-input {
 		width: 200px;
 	}
-} 
+}

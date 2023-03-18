@@ -3,11 +3,14 @@
 /* 暗黑模式适配 */
 
 html.dark {
-	--el-text-color-primary: #b9b9b9;
+	.el-menu{
+		--el-menu-text-color: #b9b9b9 !important;
+	}
 	.sidebar-container.dark {
 		--el-menu-bg-color: #121212;
 	}
 	.el-menu--popup-container.dark .el-menu{
 		--el-menu-bg-color: #1d1e1f;
+
 	}
 }
