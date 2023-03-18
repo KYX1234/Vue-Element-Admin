@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     IEpCaretTop: typeof import('~icons/ep/caret-top')['default']
     IEpCheck: typeof import('~icons/ep/check')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
+    IEpLock: typeof import('~icons/ep/lock')['default']
     IEpMinus: typeof import('~icons/ep/minus')['default']
     IEpRefreshRight: typeof import('~icons/ep/refresh-right')['default']
     IEpSwitch: typeof import('~icons/ep/switch')['default']

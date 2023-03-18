@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
-import { getToken } from '@/utils/auth'
+import { getStore } from '@/utils/auth'
 import { ElMessage } from 'element-plus'
 
 const service: AxiosInstance = axios.create({
@@ -12,7 +12,7 @@ const service: AxiosInstance = axios.create({
  * */
 service.interceptors.request.use(
 	(config: AxiosRequestConfig) => {
-		const token = getToken()
+		const token = getStore()
 		if (token && config.headers) {
 			config.headers['Authorization'] = token
 		}

@@ -24,5 +24,13 @@ export default [
 			}
 			return success('登录成功', { token,userInfo:user.admin})
 		}
+	},
+	{
+		url: '/mock/logout', // 登录
+		method: 'get',
+		timeout: 300,
+		response: () => {
+			return success('退出成功',null)
+		 }
 	}
 ]

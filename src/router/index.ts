@@ -39,8 +39,8 @@ const router = createRouter({
 
 // 重置路由
 export function resetRouter() {
-	const { routes } = useRouteStore()
-	routes.forEach(route => {
+	const { addRoutes } = useRouteStore()
+	addRoutes.forEach(route => {
 		const name = route.name
 		if (name && router.hasRoute(name)) {
 			router.removeRoute(name)

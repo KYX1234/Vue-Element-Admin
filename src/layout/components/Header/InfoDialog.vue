@@ -8,7 +8,7 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item><el-icon><i-ep-user/></el-icon>个人中心</el-dropdown-item>
-          <el-dropdown-item divided><el-icon><i-ep-switchButton/></el-icon>退出系统</el-dropdown-item>
+          <el-dropdown-item divided @click="userStore.logout"><el-icon><i-ep-switchButton/></el-icon>退出系统</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>

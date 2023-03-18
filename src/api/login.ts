@@ -12,5 +12,5 @@ export const login = (data: LoginParams) => {
 
 /** @desc 退出登录 */
 export const logout = () => {
-	return request.post(`/mock/logout`)
+	return request.get(`/mock/logout`)
 }

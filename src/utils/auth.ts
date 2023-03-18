@@ -1,13 +1,13 @@
 const TOKEN_KEY = 'token'
 
-export const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY)
+export const getStore = (key: string = TOKEN_KEY) => {
+	return localStorage.getItem(key)
 }
 
-export const setToken = (token: string) => {
-  localStorage.setItem(TOKEN_KEY, token)
+export const setStore = ({ key: key = TOKEN_KEY, value }: { key?: string; value: string}) => {
+	localStorage.setItem(key, value)
 }
 
-export const clearToken = () => {
-  localStorage.removeItem(TOKEN_KEY)
+export const clearStore = (key: string = TOKEN_KEY) => {
+	localStorage.removeItem(key)
 }

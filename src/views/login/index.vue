@@ -45,6 +45,7 @@
 
 <script lang='ts' setup name="Login">
 import { useUserStore } from '@/store'
+import { ElMessage } from 'element-plus';
 const userStore = useUserStore()
 const router = useRouter()
 const route = useRoute();
@@ -69,7 +70,7 @@ const onSubmit=async ()=>{
     ElMessage.error('密码不能为空！')
   }
   await userStore.login(state.form)
-  await router.replace((route.query.redirect as string) || '/');
+  router.replace((route.query.redirect as string) || '/');
 }
 </script>
 
