@@ -50,7 +50,6 @@ onBeforeUnmount(() => {
 	background-color: var(--el-menu-bg-color);
 	box-shadow: var(--el-box-shadow-lighter);
 
-
 	.el-scrollbar {
 		height: calc(100% - 48px);
 		:deep(.el-menu) {
