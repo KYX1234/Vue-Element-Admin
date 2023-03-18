@@ -1,24 +1,24 @@
-import { Layout,ParentLayout } from '@/router'
+import { Layout, ParentLayout } from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 
-const viewsModules = import.meta.glob("@/views/**/*.vue");
+const viewsModules = import.meta.glob('@/views/**/*.vue')
 
 /**
  * @description 过滤后端返回路由组件
  * */
 export const generateMenu = (routes: RouteRecordRaw[], data: MenuItem[]) => {
 	data.forEach((item: MenuItem) => {
-		const menu:RouteRecordRaw = {
+		const menu: RouteRecordRaw = {
 			path: `/${item.name}`,
 			component: filterComponent(item.component),
 			children: [],
 			name: item.name,
-      meta: {
-        alwaysShow:item.alwaysShow===1,
+			meta: {
+				alwaysShow: item.alwaysShow === 1,
 				hidden: item.hidden === 1,
 				title: item.title,
 				icon: item.icon,
-				auth:item.auth||[]
+				auth: item.auth || []
 			}
 		}
 		if (item.children && item.children.length > 0) {
@@ -26,15 +26,15 @@ export const generateMenu = (routes: RouteRecordRaw[], data: MenuItem[]) => {
 			generateMenu(menu.children, item.children)
 		}
 		routes.push(menu)
-  })
+	})
 	return routes
 }
-const filterComponent=(component:string)=> {
+const filterComponent = (component: string) => {
 	if (component === 'Layout') {
 		return Layout
 	} else if (component !== 'ParentPage') {
-		return viewsModules["/src/views" + component + ".vue"]
-	}else{
+		return viewsModules['/src/views' + component + '.vue']
+	} else {
 		return ParentLayout
 	}
 }
@@ -49,27 +49,38 @@ export const isRootRouter = (item: RouteRecordRaw) => {
 }
 
 /**
- * 排除Router
+ *  @description 排除Router
  * */
 export function filterRouter(routerMap: Array<RouteRecordRaw>) {
-  return routerMap.filter((item) => {
-    return (item.meta?.hidden || false) !== true
-  })
+	return routerMap.filter(item => {
+		return (item.meta?.hidden || false) !== true
+	})
 }
 
 /**
  * @description 递归组装子菜单
  * */
- export const getChildrenRouter=(routerMap: Array<any>)=> {
-  return filterRouter(routerMap).map((item:RouteRecordRaw) => {
-    const isRoot = isRootRouter(item);
-    const info = isRoot ? item.children![0] : item;
-    const currentMenu = {...info };
-    // 是否有子菜单，并递归处理
-    if (info.children && info.children.length > 0) {
-      // Recursion
-      currentMenu.children = getChildrenRouter(info.children);
-    }
-    return currentMenu;
-  });
+export const getChildrenRouter = (routerMap: Array<any>) => {
+	return filterRouter(routerMap).map((item: RouteRecordRaw) => {
+		const isRoot = isRootRouter(item)
+		const info = isRoot ? item.children![0] : item
+		const currentMenu = { ...info }
+		// 是否有子菜单，并递归处理
+		if (info.children && info.children.length > 0) {
+			// Recursion
+			currentMenu.children = getChildrenRouter(info.children)
+		}
+		return currentMenu
+	})
+}
+
+/**
+ * @description 递归过滤需要缓存的路由
+ * */
+export function getKeepAliveArr(menuList: RouteRecordRaw[], keepAliveArr: string[] = []) {
+	menuList.forEach(item => {
+		item.meta?.isKeepAlive && item.name && keepAliveArr.push(item.name as string)
+		item.children?.length && getKeepAliveArr(item.children, keepAliveArr)
+	})
+	return keepAliveArr
 }

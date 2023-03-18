@@ -5,7 +5,7 @@ declare namespace Table {
 		label: string
 		prop: string
 		type: string
-		defaultValue?: string | number | boolean | any[],//初始化的默认参数
+		defaultValue?: string | number | boolean | any[] //初始化的默认参数
 		clearable?: boolean
 		placeholder?: string
 		options?: Children[]
@@ -59,7 +59,6 @@ interface NavTabsItem {
 
 // 菜单列表
 interface MenuItem {
-
 	id?: number
 	pid: number //父id
 	name: string //别名
@@ -70,6 +69,7 @@ interface MenuItem {
 	hidden: 0 | 1 //状态0显示1隐藏
 	alwaysShow: 0 | 1 //单子菜单是否一直显示父目录、1显示
 	auth: string[] //权限标识
+	isKeepAlive: boolean //是否缓存
 	children: MenuItem[]
 }
 

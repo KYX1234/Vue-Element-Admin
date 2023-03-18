@@ -9,9 +9,15 @@ export const useAppStore = defineStore({
 	state: () => ({ ...appSetting, ...AppSetting }),
 	getters: {
 		transitionName: state => (state.animate ? state.animateMode : ''),
-		isDark: state => (state.themeMode==='dark'? true : false)
+		isDark: state => (state.themeMode === 'dark' ? true : false)
 	},
 	actions: {
+		reloadPage() {
+			this.reloadFlag = false
+			nextTick(() => {
+				this.reloadFlag = true
+			})
+		},
 		setCollapse() {
 			this.isCollapse = !this.isCollapse
 		},
@@ -41,9 +47,8 @@ export const useAppStore = defineStore({
 					this.isDark ? `${getDarkColor(color, i / 10)}` : `${getLightColor(color, i / 10)}`
 				)
 			}
-
 		},
-		setGrayMode(value:boolean) {
+		setGrayMode(value: boolean) {
 			this.grayMode = value
 			document.documentElement.classList.toggle('html-grey')
 		},

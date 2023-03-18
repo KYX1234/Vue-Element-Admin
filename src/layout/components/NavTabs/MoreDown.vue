@@ -5,7 +5,7 @@
 		</div>
 		<template #dropdown>
 			<el-dropdown-menu>
-				<el-dropdown-item @click="onRefresh">
+				<el-dropdown-item @click="appStore.reloadPage()">
 					<el-icon><i-ep-refreshRight /></el-icon>
 					重新加载
 				</el-dropdown-item>
@@ -27,17 +27,12 @@
 </template>
 
 <script lang="ts" setup name="MoreDown">
-import { useNavTabsStore } from '@/store'
+import { useAppStore,useNavTabsStore } from '@/store'
 
 const route = useRoute()
-const router = useRouter()
+const appStore = useAppStore()
 const navTabsStore = useNavTabsStore()
 
-const onRefresh = () => {
-	router.push({
-		path: '/redirect' + unref(route).fullPath
-	})
-}
 </script>
 
 <style lang="scss" scoped>

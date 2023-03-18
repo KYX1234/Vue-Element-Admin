@@ -1,20 +1,19 @@
 <template>
 	<div class="header-action-item" @click="onRefresh">
-      <svg-icon class-name="refresh" :class="isRefresh && 'tun-refresh'" size="18"></svg-icon>
+		<svg-icon class-name="refresh" :class="isRefresh && 'tun-refresh'" size="18"></svg-icon>
 	</div>
 </template>
 
 <script lang="ts" setup name="Reload">
-const router = useRouter()
-const route = useRoute()
+import { useAppStore } from '@/store'
+
 const isRefresh = ref(false)
+const appStore = useAppStore()
 
 const onRefresh = () => {
 	if (isRefresh.value) return
 	isRefresh.value = true
-	router.push({
-		path: '/redirect' + unref(route).fullPath
-	})
+	appStore.reloadPage()
 	setTimeout(() => {
 		isRefresh.value = false
 	}, 1200)
@@ -30,7 +29,7 @@ const onRefresh = () => {
 	cursor: pointer;
 
 	&:hover {
-    background-color: var(--el-fill-color-light);
+		background-color: var(--el-fill-color-light);
 	}
 	.tun-refresh {
 		animation: refresh 1.2s ease-in-out infinite;

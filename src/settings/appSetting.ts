@@ -18,6 +18,8 @@ export const appSetting = {
 	// 动画类型
 	animateMode: 'fade',
 	// 灰色模式
-	grayMode: false
+	grayMode: false,
+	// 刷新页面
+	reloadFlag: true
 }
 

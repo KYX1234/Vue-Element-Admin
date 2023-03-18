@@ -3,7 +3,9 @@
 			<router-view>
 				<template #default="{ Component, route }">
 					<transition :name="appStore.transitionName" mode="out-in" appear>
-						<component :is="Component" :key="route.path" />
+						<keep-alive :include="routeStore.keepAlive" v-if="appStore.reloadFlag">
+							<component :is="Component" :key="route.path" />
+						</keep-alive>
 					</transition>
 				</template>
 			</router-view>
@@ -11,10 +13,10 @@
 </template>
 
 <script lang="ts" setup name="Main">
-import { useAppStore } from '@/store'
+import { useAppStore,useRouteStore } from '@/store'
 
 const appStore = useAppStore()
-const route = useRoute()
+const routeStore = useRouteStore()
 </script>
 
 <style lang="scss" scoped>

@@ -25,18 +25,6 @@ export const constantRoutes: RouteRecordRaw[] = [
 		meta: { hidden: true, title: '登录' }
 	},
 	{
-		path: '/redirect',
-		component: Layout,
-		children: [
-			{
-				path: '/redirect/:path(.*)',
-				name: 'redirect',
-				component: () => import('@/views/redirect/index.vue')
-			}
-		],
-		meta: { hidden: true, title: '' }
-	},
-	{
 		path: '/:pathMatch(.*)*',
 		component: () => import('@/views/error/404.vue'),
 		meta: { hidden: true, title: '404' }
