@@ -4,7 +4,6 @@ import { getStore } from '@/utils/auth'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-NProgress.configure({ showSpinner: false }) // 进度环显示/隐藏
 
 /**
  * @description 路由拦截 beforeEach

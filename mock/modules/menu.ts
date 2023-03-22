@@ -233,7 +233,7 @@ export default [
 	{
 		url: '/mock/menu', //获取菜单
 		method: 'get',
-		timeout: 300,
+		timeout: 100,
 		response: () => {
 			return success('获取成功', { page: 1, limit: 20, total: 20, data: superadmin })
 		}

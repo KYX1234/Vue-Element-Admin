@@ -19,7 +19,6 @@ declare module '@vue/runtime-core' {
     IEpSwitch: typeof import('~icons/ep/switch')['default']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
-    lectISvg: typeof import('./../src/components/SelectISvg/index.vue')['default']
     Pagination: typeof import('./../src/components/Pagination/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

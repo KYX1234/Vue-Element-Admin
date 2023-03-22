@@ -1,16 +1,12 @@
 <template>
 	<div class="card searchForm-wrap" v-if="search.length">
-		<el-form ref="searchFormRef" class="form-inline" :model="form" label-width="80px">
-			<el-row>
-				<el-col
-					:xs="24"
-					:sm="12"
-					:md="8"
-					:lg="6"
-					style="min-width: 250px;"
+		<el-form ref="searchFormRef" class="form-inline" :model="form">
+			<div class="grid-wrap" :style="style">
+				<div
 					v-for="(item, index) in search"
 					:key="index"
-					v-show="index < 4 || isExpand"
+					:style="expandNum === 1 ? 'grid-column:span 1' : `grid-column:span ${item.span || 1}`"
+					v-show="index < (expandNum>1 ? expandNum - 1 : expandNum) || isExpand"
 				>
 					<el-form-item :label="item.label" :prop="item.prop">
 						<component
@@ -36,22 +32,24 @@
 							</template>
 						</component>
 					</el-form-item>
-				</el-col>
-			</el-row>
+				</div>
+				<div :style="`grid-column:${expandNum}`">
+					<div class="search-btn-box">
+						<el-button @click="onSearch" type="primary" :icon="Search">搜索</el-button>
+						<el-button @click="onReset" :icon="Refresh">重置</el-button>
+						<el-button
+							class="expand"
+							type="primary"
+							link
+							@click="isExpand = !isExpand"
+							:icon="isExpand ? ArrowUp : ArrowDown"
+						>
+							{{ isExpand ? '收起' : '展开' }}
+						</el-button>
+					</div>
+				</div>
+			</div>
 		</el-form>
-		<div class="search-btn">
-			<el-button @click="onSearch" type="primary" :icon="Search">搜索</el-button>
-			<el-button @click="onReset" :icon="Refresh">重置</el-button>
-			<el-button
-				class="expand"
-				type="primary"
-				link
-				@click="isExpand = !isExpand"
-				:icon="isExpand ? ArrowUp : ArrowDown"
-			>
-				{{ isExpand ? '收起' : '展开' }}
-			</el-button>
-		</div>
 	</div>
 </template>
 
@@ -66,8 +64,9 @@ const props = defineProps({
 	}
 })
 const isExpand = ref<boolean>(false)
+const expandNum = ref<number>(0)
 const form = reactive<any>({})
-const searchFormRef=ref()
+const searchFormRef = ref()
 for (const item of props.search) {
 	form[item.prop] = item.defaultValue ?? ''
 }
@@ -81,6 +80,48 @@ const placeholder = (item: Table.Search) => {
 	return item.placeholder ?? (item.type === 'el-input' ? '请输入' : '请选择')
 }
 
+const style = computed(() => {
+	return {
+		display: 'grid',
+		gap: '15px',
+		gridTemplateColumns: `repeat(${expandNum.value}, minmax(0, 1fr))`
+	}
+})
+
+const resize = () => {
+	const width = window.innerWidth
+	switch (!!width) {
+		case width < 768:
+			expandNum.value = 1
+			break
+		case width >= 768 && width < 992:
+			expandNum.value = 2
+			break
+		case width >= 992 && width < 1200:
+			expandNum.value = 3
+			break
+		case width >= 1200 && width < 1920:
+			expandNum.value = 4
+			break
+		case width >= 1920:
+			expandNum.value = 4
+			break
+	}
+}
+onMounted(() => {
+	resize()
+	window.addEventListener('resize', resize)
+})
+onActivated(() => {
+	resize()
+	window.addEventListener('resize', resize)
+})
+onUnmounted(() => {
+	window.removeEventListener('resize', resize)
+})
+onDeactivated(() => {
+	window.removeEventListener('resize', resize)
+})
 const onSearch = () => {
 	emit('search')
 }
@@ -92,26 +133,14 @@ defineExpose({ form })
 
 <style lang="scss" scoped>
 .searchForm-wrap {
-	display: flex;
-	justify-content: space-between;
+	width: 100%;
 	margin-bottom: 15px;
-
-	.form-inline {
-		flex: 1;
-
-		.el-row {
-			width: 100%;
-		}
+	.el-form-item {
+		margin-bottom: unset;
 	}
-
-	.search-btn {
+	.search-btn-box {
 		display: flex;
-		flex-shrink: 0;
-		margin-left: 30px;
-
-		.expand {
-			height: 32px;
-		}
+		justify-content: flex-end;
 	}
 }
 </style>

@@ -68,6 +68,20 @@ const search = ref([
 		defaultValue:'',
 		options:[],
 		clearable: true
+	},
+	{ type: 'el-input', prop: 'test1', label: '测试1' },
+	{ type: 'el-input', prop: 'test2', label: '测试2' },
+	{ type: 'el-input', prop: 'test3', label: '测试3' },
+	{ type: 'el-input', prop: 'test4', label: '测试4' },
+	{
+		type: "el-date-picker",
+		prop: 'dateRangeValue',
+		label: "时间",
+		span:2,
+		config: {
+			type: "datetimerange",
+			align:"right"
+		}
 	}
 ])
 const column: Table.Column[] = [

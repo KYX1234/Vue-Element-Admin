@@ -9,6 +9,7 @@ declare namespace Table {
 		clearable?: boolean
 		placeholder?: string
 		options?: Children[]
+		span?:number,// 栅格占位
 		defaultName?: {
 			label: string
 			value: string
