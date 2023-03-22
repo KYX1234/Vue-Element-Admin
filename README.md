@@ -19,8 +19,19 @@ ElementAdmin 是一个基于 Vue3、Vite、TypeScript、Element plus、Pinia、V
 
 ## 项目示例图
 
-<img src="https://s1.ax1x.com/2022/11/15/zAzP7n.png" />
+<img src="https://s1.ax1x.com/2023/03/22/ppd3KpT.png" alt="ppd3KpT.png" border="0" />
 
+<img src="https://s1.ax1x.com/2023/03/22/ppd1Fd1.md.png" alt="ppd1Fd1.png" border="0" />
+
+<img src="https://s1.ax1x.com/2023/03/22/ppd1ezD.md.png" alt="ppd1ezD.png" border="0" />
+
+<img src="https://s1.ax1x.com/2023/03/22/ppd1ldI.md.png" alt="ppd1ldI.png" border="0" />
+
+<img src="https://s1.ax1x.com/2023/03/22/ppd1tSS.png" alt="ppd1tSS.png" border="0" />
+
+<img src="https://s1.ax1x.com/2023/03/22/ppd10wn.png" alt="ppd10wn.png" border="0" />
+
+<img src="https://s1.ax1x.com/2023/03/22/ppd14T1.png" alt="ppd14T1.png" border="0" />
 
 ## 安装使用
 

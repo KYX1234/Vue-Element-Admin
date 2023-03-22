@@ -90,7 +90,8 @@ export const superadmin = [
 				hidden: 0,
 				component: '/assembly/directives/auth',
 				sort: 0,
-				name: 'auth'
+				name: 'auth',
+				auth:['add','delete']
 			},
 			{
 				icon: '',
@@ -202,7 +203,6 @@ export const admin = [
 				sort: 0,
 				name: 'test1',
 				component: 'ParentLayout',
-
 				children: [
 					{
 						icon: 'form',
