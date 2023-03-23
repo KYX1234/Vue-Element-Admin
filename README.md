@@ -5,7 +5,7 @@ ElementAdmin 是一个基于 Vue3、Vite、TypeScript、Element plus、Pinia、V
 ## 特性
 
 - 动态路由菜单
-- 二次封装实用扩展性组件
+- 二次封装实用高扩展性组件
 - 最新技术栈，使用 `Vue3`、`Typescript`、`Pinia`、`Vite` 等前端前沿技术
 
 ## 预览
@@ -19,19 +19,17 @@ ElementAdmin 是一个基于 Vue3、Vite、TypeScript、Element plus、Pinia、V
 
 ## 项目示例图
 
-<img src="https://www.helloimg.com/images/2023/03/23/o1pzvg.bmp" alt="o1pzvg.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwuyIf.png" alt="ppwuyIf.png" border="0" />
 
-<img src="https://www.helloimg.com/images/2023/03/23/o1p0zY.bmp" alt="o1p0zY.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwnSXR.png" alt="ppwnSXR.png" border="0" />
 
-<img src="https://www.helloimg.com/images/2023/03/23/o1p7fM.bmp" alt="o1p7fM.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwuNGD.png" alt="ppwuNGD.png" border="0" />
 
-<img src="https://www.helloimg.com/images/2023/03/23/o1pIqP.bmp" alt="o1pIqP.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwuJIK.png" alt="ppwuJIK.png" border="0" />
 
-<img src="https://www.helloimg.com/images/2023/03/23/o1p6T6.bmp" alt="o1p6T6.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwnRD1.png" alt="ppwnRD1.png" border="0" />
 
-<img src="https://s1.ax1x.com/2023/03/22/ppd10wn.png" alt="ppd10wn.png" border="0" />
-
-<img src="https://www.helloimg.com/images/2023/03/23/o1p8Un.bmp" alt="o1p8Un.bmp" border="0" />
+<img src="https://s1.ax1x.com/2023/03/23/ppwuQM9.png" alt="ppwuQM9.png" border="0" />
 
 ## 安装使用
 
