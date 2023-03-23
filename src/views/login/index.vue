@@ -94,7 +94,7 @@ const onSubmit = async () => {
 				width: 40px;
 				height: 40px;
 				vertical-align: sub;
-				background: url('/public/favicon.ico') no-repeat;
+				background: url('/favicon.ico') no-repeat;
 				background-size: contain;
 				margin-right: 6px;
 			}

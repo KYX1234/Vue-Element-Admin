@@ -1,5 +1,5 @@
 import router from '@/router'
-import { useUserStore, useRouteStore } from '@/store'
+import { useRouteStore } from '@/store'
 import { getStore } from '@/utils/auth'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -15,6 +15,9 @@ router.beforeEach(async (to, from, next) => {
 	const hasToken = getStore()
 
 	NProgress.start()
+
+	const title = import.meta.env.VITE_GLOB_TITLE;
+	document.title = to.meta.title ? `${to.meta.title} - ${title}` : title;
 
 	if (to.path === '/login') {
 		if (!hasToken) return next()

@@ -1,5 +1,6 @@
 import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import setupExtend from 'vite-plugin-vue-setup-extend'
@@ -15,6 +16,13 @@ export default defineConfig(({ command, mode }) => {
 		plugins: [
 			vue(),
 			setupExtend(), //setup name使用
+			createHtmlPlugin({
+				inject: {
+					data: {
+						title: loadEnv(mode, process.cwd()).VITE_GLOB_TITLE
+					}
+				}
+			}),
 			AutoImport({
 				imports: ['vue', 'vue-router', 'pinia'],
 				resolvers: [
@@ -35,7 +43,7 @@ export default defineConfig(({ command, mode }) => {
 						enabledCollections: ['ep']
 					})
 				],
-				 // 组件的有效文件扩展名
+				// 组件的有效文件扩展名
 				extensions: ['vue'],
 				dts: resolve(__dirname, 'types/components.d.ts')
 			}),

@@ -8,12 +8,8 @@ import router, { resetRouter } from '@/router';
 export const useUserStore = defineStore({
 	id: 'user',
 	state: () => ({
-		token: getStore() ,
-		userInfo: JSON.parse(getStore('UserInfo') as string) || {
-			name: '',
-			avatar: '',
-			phone: '',
-		}
+		token: getStore(),
+		userInfo: JSON.parse(getStore('UserInfo')||'{}')
 	}),
 	getters: {
 		userName: state => state.userInfo.name

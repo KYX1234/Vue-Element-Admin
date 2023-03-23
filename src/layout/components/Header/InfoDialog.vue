@@ -2,8 +2,8 @@
   <div class="header-action-item">
     <el-dropdown trigger="click">
       <div class="info">
-        <img :src="userStore.userInfo.avatar" />
-        <span>{{ userStore.userInfo.username }}</span>
+        <img :src="userStore.userInfo?.avatar" />
+        <span>{{ userStore.userInfo?.username }}</span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -19,6 +19,7 @@
 import { useUserStore } from '@/store'
 
 const userStore = useUserStore()
+console.log(userStore.userInfo)
 </script>
 
 <style lang='scss' scoped>
