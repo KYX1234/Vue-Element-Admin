@@ -16,7 +16,7 @@
 							style="width: 100%"
 							:clearable="item.clearable ?? false"
 							:placeholder="placeholder(item)"
-							:options="item.type === 'cascader' ? item.options : []"
+							:options="['el-select-v2','el-cascader'].includes(item.type) ? item.options : []"
 							range-separator="至"
 							start-placeholder="开始时间"
 							end-placeholder="结束时间"
