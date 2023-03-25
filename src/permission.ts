@@ -4,7 +4,7 @@ import { getStore } from '@/utils/auth'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-
+const white = ['/dashboard']
 /**
  * @description 路由拦截 beforeEach
  * */
@@ -16,8 +16,8 @@ router.beforeEach(async (to, from, next) => {
 
 	NProgress.start()
 
-	const title = import.meta.env.VITE_GLOB_TITLE;
-	document.title = to.meta.title ? `${to.meta.title} - ${title}` : title;
+	const title = import.meta.env.VITE_GLOB_TITLE
+	document.title = to.meta.title ? `${to.meta.title} - ${title}` : title
 
 	if (to.path === '/login') {
 		if (!hasToken) return next()
@@ -25,11 +25,12 @@ router.beforeEach(async (to, from, next) => {
 	}
 	// 判断是否有 Token，没有重定向到 login
 	if (!hasToken) return next(`/login?redirect=${to.path}`)
-
 	// 判断是否有 菜单列表，没有重载菜单列表并添加动态路由
 	const hasRoutes = useRouteStore().addRoutes.length > 0
 	if (!hasRoutes) {
 		await useRouteStore().initRoutes()
+		// 白名单允许跳转
+		if (white.includes(to.path)) return next()
 		return next({ ...to, replace: true })
 	}
 

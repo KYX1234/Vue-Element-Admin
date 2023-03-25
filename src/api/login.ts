@@ -6,8 +6,8 @@ export interface LoginParams {
 }
 
 /** @desc 登录 */
-export const login = (data: LoginParams) => {
-	return request.post(`/mock/login`, data)
+export const login = (params: LoginParams) => {
+	return request.get(`/mock/login`, { params })
 }
 
 /** @desc 退出登录 */

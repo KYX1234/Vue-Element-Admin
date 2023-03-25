@@ -3,7 +3,8 @@ import { getStore } from '@/utils/auth'
 import { ElMessage } from 'element-plus'
 
 const service: AxiosInstance = axios.create({
-	baseURL: import.meta.env.VUE_APP_API_PREFIX,
+	baseURL:
+		process.env.NODE_ENV === 'development' ? import.meta.env.VITE_API_BASE_URL : location.origin,
 	timeout: 10 * 1000
 })
 
@@ -41,9 +42,7 @@ service.interceptors.response.use(
 		// 接口超时
 		if (error?.message?.includes('timeout')) ElMessage.error('请求超时！请您稍后重试')
 		// 其它错误
-		ElMessage.error(
-			error instanceof Error ? error.message : String(error) || '系统异常, 请检查网络或联系管理员！'
-		)
+		ElMessage.error(error?.message)
 		return Promise.reject(error)
 	}
 )
