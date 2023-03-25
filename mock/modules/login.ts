@@ -11,10 +11,10 @@ const user = {
 export default [
 	{
 		url: '/mock/login', // 登录
-		method: 'post',
+		method: 'get',
 		timeout: 300,
 		response: (req: any) => {
-			const { username, password } = req.body
+			const { username, password } = req.query
 			const token = 'adminToken'
 			if (!username) {
 				return fail('用户名不能为空', 5000, null)

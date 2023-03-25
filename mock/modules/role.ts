@@ -30,12 +30,12 @@ export default [
 	},
 	{
 		url: '/mock/roleId', //获取角色
-		method: 'post',
+		method: 'get',
 		timeout: 300,
-		response: ({ body }: any) => {
-			if (body.id === 1) {
+		response: ({ query }: any) => {
+			if (query.id === 1) {
 				return success('获取成功', superadmin)
-			} else if (body.id === 2) { 
+			} else if (query.id === 2) { 
 				return success("获取成功",admin)
 			}
 		}
