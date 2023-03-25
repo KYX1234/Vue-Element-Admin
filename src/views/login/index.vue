@@ -25,7 +25,7 @@
 				</el-form-item>
 				<el-form-item prop="">
 					<el-space direction="vertical" fill style="width: 100%">
-						<el-button type="primary" :loading="state.form.loading" @click="onSubmit">
+						<el-button type="primary" @click="onSubmit">
 							登录
 						</el-button>
 					</el-space>
@@ -44,8 +44,7 @@ const route = useRoute()
 const state = reactive({
 	form: {
 		username: 'admin',
-		password: '123456',
-		loading: false
+		password: '123456'
 	},
 	rules: {
 		username: [{ required: true, message: '请输入账户名称', trigger: 'blur' }],
